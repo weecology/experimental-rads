@@ -18,11 +18,11 @@ Jung2008,52,0,pollution,"unpolluted, heavy metal concentration in soil; Cd = 0.0
 Jung2008,53,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 1.39 mg/kg, Pb = 41.0 mg/kg",1,arachnid,1,residential,1
 Jung2008,54,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 0.28 mg/kg, Pb = 14.8 mg/kg",1,arachnid,1,agricultural,1
 Jung2008,55,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 0.32 mg/kg, Pb = 45.6 mg/kg",1,arachnid,1,agricultural,1
-Vargas2000,62,1,fertilization,,3,arachnid,1,tropical_forest,1
-Vargas2000,63,1,habitat_structure,,3,arachnid,1,tropical_forest,1
-Vargas2000,64,0,control,,3,arachnid,1,tropical_forest,1
-Vargas2000,65,1,fertilization,,3,arachnid,1,tropical_forest,1
-Vargas2000,66,0,control,,3,arachnid,1,tropical_forest,1
+Vargas2000,62,1,fertilization,"fertilizer first applied immediately after Hurricane Hugo (September 1989), then every 3 months at an annual rate of 300 kg/ha N, 100 kg/ha P, 100 kg/ha K, 8kg/ha B, 15.4 kg/ha Cu, 2.2 kg/ha Fe, 25 kg/ha Mn, 26 kg/ha Zn and 19 kg/ha Mg. Rates represent N (3x), P (30x), and K (2x) mean annual input from litterfall.",3,arachnid,1,tropical_forest,1
+Vargas2000,63,1,habitat_structure,"one-time total debris removal, one month after Hurrican Hugo (September 1989)",3,arachnid,1,tropical_forest,1
+Vargas2000,64,0,control,unmanipulated,3,arachnid,1,tropical_forest,1
+Vargas2000,65,1,fertilization,"fertilizer first applied in April 1990 and then every 3 mongths to present. Represents N (15x), P (166x) and K (30x) mean annual input from litterfall.",3,arachnid,1,tropical_forest,1
+Vargas2000,66,0,control,unmanipulated,3,arachnid,1,tropical_forest,1
 Nitterus2006,67,1,habitat_structure,,6,carabid,1,evergreen_forest,1
 Nitterus2006,68,1,habitat_structure,,6,carabid,1,evergreen_forest,1
 Nitterus2006,69,0,control,,6,carabid,1,evergreen_forest,1
