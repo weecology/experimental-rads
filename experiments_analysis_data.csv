@@ -23,8 +23,8 @@ Vargas2000,63,1,habitat_structure,"one-time total debris removal, one month afte
 Vargas2000,64,0,control,unmanipulated,3,arachnid,1,tropical_forest,1
 Vargas2000,65,1,fertilization,"fertilizer first applied in April 1990 and then every 3 mongths to present. Represents N (15x), P (166x) and K (30x) mean annual input from litterfall.",3,arachnid,1,tropical_forest,1
 Vargas2000,66,0,control,unmanipulated,3,arachnid,1,tropical_forest,1
-Nitterus2006,67,1,habitat_structure,,6,carabid,1,evergreen_forest,1
-Nitterus2006,68,1,habitat_structure,,6,carabid,1,evergreen_forest,1
+Nitterus2006,67,1,habitat_structure,"bare ground, slash and debris removed",6,carabid,1,evergreen_forest,1
+Nitterus2006,68,1,habitat_structure,"slash piled regularly across the landscape in a grid pattern, with height of slash within the natural range of variability",6,carabid,1,evergreen_forest,1
 Nitterus2006,69,0,control,,6,carabid,1,evergreen_forest,1
 Gruner2004,91,0,control,,8,arachnid,1,basaltic_lava,1
 Gruner2004,92,1,fertilization,,8,arachnid,1,basaltic_lava,1
