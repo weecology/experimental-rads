@@ -12,12 +12,12 @@ Stevenson1982,30,1,habitat_structure,flat filter paper disks,27,arachnid,1,fores
 Stevenson1982,31,0,habitat_structure,curled filter paper disks,27,arachnid,1,forest_leaf_litter,1
 Stevenson1982,32,1,habitat_structure,flat maple leaves,27,arachnid,1,forest_leaf_litter,1
 Stevenson1982,33,0,habitat_structure,curled maple leaves,27,arachnid,1,forest_leaf_litter,1
-Jung2008,50,2,pollution,,1,arachnid,1,agricultural,1
-Jung2008,51,2,pollution,,1,arachnid,1,residential,1
-Jung2008,52,2,pollution,,1,arachnid,1,industrial,1
-Jung2008,53,2,pollution,,1,arachnid,1,residential,1
-Jung2008,54,2,pollution,,1,arachnid,1,agricultural,1
-Jung2008,55,2,pollution,,1,arachnid,1,agricultural,1
+Jung2008,50,0,pollution,"unpolluted, heavy metal concentration in the soil; Cd = 0.06 mg/kg, Pb = 4.0 mg/kg",1,arachnid,1,agricultural,1
+Jung2008,51,0,pollution,"unpolluted, heavy metal concentration in soil; Cd = 0.06 mg/kg, Pb = 2.9 mg/kg",1,arachnid,1,residential,1
+Jung2008,52,0,pollution,"unpolluted, heavy metal concentration in soil; Cd = 0.07 mg/kg, Pb = 2.3 mg/kg",1,arachnid,1,industrial,1
+Jung2008,53,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 1.39 mg/kg, Pb = 41.0 mg/kg",1,arachnid,1,residential,1
+Jung2008,54,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 0.28 mg/kg, Pb = 14.8 mg/kg",1,arachnid,1,agricultural,1
+Jung2008,55,2,pollution,"moderately polluted; heavy metal concentration in soil; Cd = 0.32 mg/kg, Pb = 45.6 mg/kg",1,arachnid,1,agricultural,1
 Vargas2000,62,1,fertilization,,3,arachnid,1,tropical_forest,1
 Vargas2000,63,1,habitat_structure,,3,arachnid,1,tropical_forest,1
 Vargas2000,64,0,control,,3,arachnid,1,tropical_forest,1
