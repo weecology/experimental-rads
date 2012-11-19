@@ -25,15 +25,15 @@ Vargas2000,65,1,fertilization,"fertilizer first applied in April 1990 and then e
 Vargas2000,66,0,control,unmanipulated,3,arachnid,1,tropical_forest,1
 Nitterus2006,67,1,habitat_structure,"bare ground, slash and debris removed",6,carabid,1,evergreen_forest,1
 Nitterus2006,68,1,habitat_structure,"slash piled regularly across the landscape in a grid pattern, with height of slash within the natural range of variability",6,carabid,1,evergreen_forest,1
-Nitterus2006,69,0,control,,6,carabid,1,evergreen_forest,1
-Gruner2004,91,0,control,,8,arachnid,1,basaltic_lava,1
-Gruner2004,92,1,fertilization,,8,arachnid,1,basaltic_lava,1
-Gruner2004,93,1,bird_exclosure,,8,arachnid,1,basaltic_lava,1
-Gruner2004,94,1,fertilization+bird_exclosure,,8,arachnid,1,basaltic_lava,1
-Gruner2004,95,0,control,,8,insect,1,basaltic_lava,1
-Gruner2004,96,1,fertilization,,8,insect,1,basaltic_lava,1
-Gruner2004,97,1,bird_exclosure,,8,insect,1,basaltic_lava,1
-Gruner2004,98,1,fertilization+bird_exclosure,,8,insect,1,basaltic_lava,1
+Nitterus2006,69,0,control,"unmanipulated, slash randomly piled on site",6,carabid,1,evergreen_forest,1
+Gruner2004,91,0,control,unmanipulated,8,arachnid,1,basaltic_lava,1
+Gruner2004,92,1,fertilization,"Semi-annual hand broadcast of N, P, K. Ca, and micronutrient mix spread at level of 50 kg/ha, beginning in September 1998. Later applications were half initial level. Fertilization ended October 2000.",8,arachnid,1,basaltic_lava,1
+Gruner2004,93,1,bird_exclosure,cages 4 m tall X 4-6 m/side with sheer UV-resistant 2x2 cm mesh to keep out birds. Insects should be able to pass through.,8,arachnid,1,basaltic_lava,1
+Gruner2004,94,1,fertilization+bird_exclosure,combination of fertilization and bird cage exclosure,8,arachnid,1,basaltic_lava,1
+Gruner2004,95,0,control,unmanipulated,8,insect,1,basaltic_lava,1
+Gruner2004,96,1,fertilization,"Semi-annual hand broadcast of N, P, K. Ca, and micronutrient mix spread at level of 50 kg/ha, beginning in September 1998. Later applications were half initial level. Fertilization ended October 2000.",8,insect,1,basaltic_lava,1
+Gruner2004,97,1,bird_exclosure,cages 4 m tall X 4-6 m/side with sheer UV-resistant 2x2 cm mesh to keep out birds. Insects should be able to pass through.,8,insect,1,basaltic_lava,1
+Gruner2004,98,1,fertilization+bird_exclosure,combination of fertilization and bird cage exclosure,8,insect,1,basaltic_lava,1
 Neff2007,141,1,herbivore_removal,,4,lepidopteran,1,grassland,1
 Neff2007,142,0,herbivore_removal,,4,lepidopteran,1,grassland,1
 Neff2007,143,1,herbivore_removal,,4,lepidopteran,1,grassland,1
