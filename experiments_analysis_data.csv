@@ -48,18 +48,18 @@ Neff2007,151,1,herbivore_removal,elk exclosure,5,lepidopteran,1,evergreen_forest
 Neff2007,152,0,herbivore_removal,unmanipulated,5,lepidopteran,1,evergreen_forest,1
 Rundlof2008,153,2,pesticide,"Organically farmed landscapes, cereal fields and borders",8,lepidopteran,1,agricultural,1
 Rundlof2008,154,2,pesticide,"Conventionally farmed landscapes, cereal fields and bords",8,lepidopteran,1,agricultural,1
-Cleary2004,164,0,burning_and_logging,,16,lepidopteran,1,tropical_forest,1
-Cleary2004,165,2,burning_and_logging,,16,lepidopteran,1,tropical_forest,1
-Cleary2004,166,2,burning_and_logging,,16,lepidopteran,1,tropical_forest,1
-Cleary2004,167,2,burning_and_logging,,16,lepidopteran,1,tropical_forest,1
-Cleary2004,168,2,burning_and_logging,,21,lepidopteran,1,tropical_forest,1
-Cleary2004,169,2,burning_and_logging,,16,lepidopteran,1,tropical_forest,1
-Cleary2004,170,0,burning_and_logging,,16,odonate,1,tropical_forest,1
-Cleary2004,171,2,burning_and_logging,,16,odonate,1,tropical_forest,1
-Cleary2004,172,2,burning_and_logging,,16,odonate,1,tropical_forest,1
-Cleary2004,173,2,burning_and_logging,,16,odonate,1,tropical_forest,1
-Cleary2004,174,2,burning_and_logging,,21,odonate,1,tropical_forest,1
-Cleary2004,175,2,burning_and_logging,,16,odonate,1,tropical_forest,1
+Cleary2004,164,0,burning_and_logging,primary landscape in large unburned isolate,16,lepidopteran,1,tropical_forest,1
+Cleary2004,165,2,habitat_size,"primary landscape in small, unburned isolate (small habitat size)",16,lepidopteran,1,tropical_forest,1
+Cleary2004,166,2,logging,logged landscape in large unburned isolate,16,lepidopteran,1,tropical_forest,1
+Cleary2004,167,2,burning,once-burned forest,16,lepidopteran,1,tropical_forest,1
+Cleary2004,168,2,burning,twice-burned forest,21,lepidopteran,1,tropical_forest,1
+Cleary2004,169,2,burning,slash and burn agriculture area,16,lepidopteran,1,tropical_forest,1
+Cleary2004,170,0,burning_and_logging,primary landscape in large unburned isolate,16,odonate,1,tropical_forest,1
+Cleary2004,171,2,habitat_size,"primary landscape in small, unburned isolate (small habitat size)",16,odonate,1,tropical_forest,1
+Cleary2004,172,2,logging,logged landscape in large unburned isolate,16,odonate,1,tropical_forest,1
+Cleary2004,173,2,burning,once-burned forest,16,odonate,1,tropical_forest,1
+Cleary2004,174,2,burning,twice-burned forest,21,odonate,1,tropical_forest,1
+Cleary2004,175,2,burning,slash and burn agriculture area,16,odonate,1,tropical_forest,1
 Stork2003,176,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
 Stork2003,177,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
 Stork2003,178,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
