@@ -916,56 +916,56 @@ Neff2007,152,C,2001,Nymphalidae,Vanessa,cardui,1,99
 Neff2007,152,C,2001,Nymphalidae,Vanessa,atalanta,1,1
 Neff2007,152,C,2001,Nymphalidae,Cercyonis,oetus,1,7
 Neff2007,152,C,2001,Hesperiidae,Hesperiidae g.,spp,0,13
-Rundlof2008,153,C,2004,,Adscita,statices,1,1
-Rundlof2008,153,C,2004,,Zygaena,lonicerae,1,9
-Rundlof2008,153,C,2004,,Thymelicus,lineola,1,394
-Rundlof2008,153,C,2004,,Hesperia,comma,1,1
-Rundlof2008,153,C,2004,,Ochlodes ,sylvanus,1,4
-Rundlof2008,153,C,2004,,Anthocharis,cardamines,1,2
-Rundlof2008,153,C,2004,,Pieris ,brassicae,1,191
-Rundlof2008,153,C,2004,,Pieris ,rapae,1,508
-Rundlof2008,153,C,2004,,Pieris,napi,1,1380
-Rundlof2008,153,C,2004,,Polyommatus,amandus,1,4
-Rundlof2008,153,C,2004,,Polyommatus,icarus,1,22
-Rundlof2008,153,C,2004,,Lycaena,phlaeas,1,26
-Rundlof2008,153,C,2004,,Favonius,quercus,1,1
-Rundlof2008,153,C,2004,,Argynnis,paphia,1,1
-Rundlof2008,153,C,2004,,Argynnis,aglaja,1,1
-Rundlof2008,153,C,2004,,Issoria ,lathonia,1,81
-Rundlof2008,153,C,2004,,Boloria,selene,1,3
-Rundlof2008,153,C,2004,,Araschnia,levana,1,7
-Rundlof2008,153,C,2004,,Vanessa,atalanta,1,7
-Rundlof2008,153,C,2004,,Cynthia,cardui,1,2
-Rundlof2008,153,C,2004,,Inachis,io ,1,49
-Rundlof2008,153,C,2004,,Aglais,urticae,1,323
-Rundlof2008,153,C,2004,,Melitaea,athalia,1,1
-Rundlof2008,153,C,2004,,Lasiommata,megera,1,3
-Rundlof2008,153,C,2004,,Lasiommata,maera,1,1
-Rundlof2008,153,C,2004,,Coenonympha,pamphilus,1,30
-Rundlof2008,153,C,2004,,Aphantopus,hyperantus,1,886
-Rundlof2008,153,C,2004,,Maniola,jurtina,1,180
-Rundlof2008,154,E,2004,,Adscita,statices,1,5
-Rundlof2008,154,E,2004,,Thymelicus,lineola,1,66
-Rundlof2008,154,E,2004,,Ochlodes ,sylvanus,1,14
-Rundlof2008,154,E,2004,,Anthocharis,cardamines,1,1
-Rundlof2008,154,E,2004,,Pieris,brassicae,1,58
-Rundlof2008,154,E,2004,,Pieris,rapae,1,166
-Rundlof2008,154,E,2004,,Pieris,napi,1,399
-Rundlof2008,154,E,2004,,Gonepteryx,rhamni,1,1
-Rundlof2008,154,E,2004,,Polyommatus,amandus,1,1
-Rundlof2008,154,E,2004,,Polyommatus,icarus,1,3
-Rundlof2008,154,E,2004,,Lycaena,phlaeas,1,1
-Rundlof2008,154,E,2004,,Argynnis,aglaja,1,2
-Rundlof2008,154,E,2004,,Issoria ,lathonia,1,8
-Rundlof2008,154,E,2004,,Boloria,selene,1,1
-Rundlof2008,154,E,2004,,Araschnia,levana,1,2
-Rundlof2008,154,E,2004,,Vanessa,atalanta,1,6
-Rundlof2008,154,E,2004,,Inachis,io,1,69
-Rundlof2008,154,E,2004,,Aglais,urticae,1,190
-Rundlof2008,154,E,2004,,Melitaea,athalia,1,1
-Rundlof2008,154,E,2004,,Coenonympha,pamphilus,1,6
-Rundlof2008,154,E,2004,,Aphantopus,hyperantus,1,588
-Rundlof2008,154,E,2004,,Maniola,jurtina,1,34
+Rundlof2008,153,C,2004,Zygaenidae,Adscita,statices,1,1
+Rundlof2008,153,C,2004,Zygaenidae,Zygaena,lonicerae,1,9
+Rundlof2008,153,C,2004,Hesperiidae,Thymelicus,lineola,1,394
+Rundlof2008,153,C,2004,Hesperiidae,Hesperia,comma,1,1
+Rundlof2008,153,C,2004,Hesperiidae,Ochlodes ,sylvanus,1,4
+Rundlof2008,153,C,2004,Pieridae,Anthocharis,cardamines,1,2
+Rundlof2008,153,C,2004,Pieridae,Pieris ,brassicae,1,191
+Rundlof2008,153,C,2004,Pieridae,Pieris ,rapae,1,508
+Rundlof2008,153,C,2004,Pieridae,Pieris,napi,1,1380
+Rundlof2008,153,C,2004,Lycaenidae,Polyommatus,amandus,1,4
+Rundlof2008,153,C,2004,Lycaenidae,Polyommatus,icarus,1,22
+Rundlof2008,153,C,2004,Lycaenidae,Lycaena,phlaeas,1,26
+Rundlof2008,153,C,2004,Lycaenidae,Favonius,quercus,1,1
+Rundlof2008,153,C,2004,Nymphalidae,Argynnis,paphia,1,1
+Rundlof2008,153,C,2004,Nymphalidae,Argynnis,aglaja,1,1
+Rundlof2008,153,C,2004,Nymphalidae,Issoria ,lathonia,1,81
+Rundlof2008,153,C,2004,Nymphalidae,Boloria,selene,1,3
+Rundlof2008,153,C,2004,Nymphalidae,Araschnia,levana,1,7
+Rundlof2008,153,C,2004,Nymphalidae,Vanessa,atalanta,1,7
+Rundlof2008,153,C,2004,Nymphalidae,Cynthia,cardui,1,2
+Rundlof2008,153,C,2004,Nymphalidae,Inachis,io ,1,49
+Rundlof2008,153,C,2004,Nymphalidae,Aglais,urticae,1,323
+Rundlof2008,153,C,2004,Nymphalidae,Melitaea,athalia,1,1
+Rundlof2008,153,C,2004,Nymphalidae,Lasiommata,megera,1,3
+Rundlof2008,153,C,2004,Nymphalidae,Lasiommata,maera,1,1
+Rundlof2008,153,C,2004,Nymphalidae,Coenonympha,pamphilus,1,30
+Rundlof2008,153,C,2004,Nymphalidae,Aphantopus,hyperantus,1,886
+Rundlof2008,153,C,2004,Nymphalidae,Maniola,jurtina,1,180
+Rundlof2008,154,E,2004,Zygaenidae,Adscita,statices,1,5
+Rundlof2008,154,E,2004,Hesperiidae,Thymelicus,lineola,1,66
+Rundlof2008,154,E,2004,Hesperiidae,Ochlodes ,sylvanus,1,14
+Rundlof2008,154,E,2004,Pieridae,Anthocharis,cardamines,1,1
+Rundlof2008,154,E,2004,Pieridae,Pieris,brassicae,1,58
+Rundlof2008,154,E,2004,Pieridae,Pieris,rapae,1,166
+Rundlof2008,154,E,2004,Pieridae,Pieris,napi,1,399
+Rundlof2008,154,E,2004,Pieridae,Gonepteryx,rhamni,1,1
+Rundlof2008,154,E,2004,Lycaenidae,Polyommatus,amandus,1,1
+Rundlof2008,154,E,2004,Lycaenidae,Polyommatus,icarus,1,3
+Rundlof2008,154,E,2004,Lycaenidae,Lycaena,phlaeas,1,1
+Rundlof2008,154,E,2004,Nymphalidae,Argynnis,aglaja,1,2
+Rundlof2008,154,E,2004,Nymphalidae,Issoria ,lathonia,1,8
+Rundlof2008,154,E,2004,Nymphalidae,Boloria,selene,1,1
+Rundlof2008,154,E,2004,Nymphalidae,Araschnia,levana,1,2
+Rundlof2008,154,E,2004,Nymphalidae,Vanessa,atalanta,1,6
+Rundlof2008,154,E,2004,Nymphalidae,Inachis,io,1,69
+Rundlof2008,154,E,2004,Nymphalidae,Aglais,urticae,1,190
+Rundlof2008,154,E,2004,Nymphalidae,Melitaea,athalia,1,1
+Rundlof2008,154,E,2004,Nymphalidae,Coenonympha,pamphilus,1,6
+Rundlof2008,154,E,2004,Nymphalidae,Aphantopus,hyperantus,1,588
+Rundlof2008,154,E,2004,Nymphalidae,Maniola,jurtina,1,34
 Cleary2004,164,C,2000,,Abisara ,geza,1,9
 Cleary2004,164,C,2000,,Abisara,savitri,1,4
 Cleary2004,164,C,2000,,Allotinus,apries,1,1
