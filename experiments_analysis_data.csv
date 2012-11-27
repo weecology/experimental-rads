@@ -60,20 +60,20 @@ Cleary2004,172,2,logging,logged landscape in large unburned isolate,16,odonate,1
 Cleary2004,173,2,burning,once-burned forest,16,odonate,1,tropical_forest,1
 Cleary2004,174,2,burning,twice-burned forest,21,odonate,1,tropical_forest,1
 Cleary2004,175,2,burning,slash and burn agriculture area,16,odonate,1,tropical_forest,1
-Stork2003,176,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,177,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,178,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,179,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,180,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,181,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,182,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,183,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,184,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,185,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,186,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,187,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,188,2,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
-Stork2003,189,0,silvicultural_treatment,,1,lepidopteran,1,tropical_forest,1
+Stork2003,176,0,silvicultural_treatment,"uncleared forest, near-primary, no logging roads",1,lepidopteran,1,tropical_forest,1
+Stork2003,177,2,silvicultural_treatment,"all trees completely cleared in 1987, planted with Terminalia ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,178,0,silvicultural_treatment,"uncleared forest, near-primary, no logging roads",1,lepidopteran,1,tropical_forest,1
+Stork2003,179,2,silvicultural_treatment,"manually cleared, some trees and vegetation removed with chainsaw and poison in 1987, planted with Terminalia ivorensis ",1,lepidopteran,1,tropical_forest,1
+Stork2003,180,2,silvicultural_treatment," mechanically cleared, most undergrowth and trees removed in 1987 using bulldozer, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,181,2,silvicultural_treatment,"all trees and vegetation removed in 1991, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,182,0,silvicultural_treatment,"uncleared forest, near-primary, one access road",1,lepidopteran,1,tropical_forest,1
+Stork2003,183,2,silvicultural_treatment,"farm fallow, manually cleared of all trees in 1990 and left fallow, weeded to remove trees",1,lepidopteran,1,tropical_forest,1
+Stork2003,184,2,silvicultural_treatment,"all trees completely cleared in 1987, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,185,0,silvicultural_treatment,"uncleared forest, near-primary, no logging roads",1,lepidopteran,1,tropical_forest,1
+Stork2003,186,2,silvicultural_treatment,"manually cleared, some trees and vegetation removed with chainsaw and poison in 1987, planted with Terminalia ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,187,2,silvicultural_treatment,"mechanically cleared, most undergrowth and trees removed in 1987 using bulldozer, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,188,2,silvicultural_treatment,"all trees and vegetation removed in 1991, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
+Stork2003,189,0,silvicultural_treatment,"uncleared forest, near-primary, one access road",1,lepidopteran,1,tropical_forest,1
 Bobo2006,190,0,silviculture_and_logging,,6,lepidopteran,1,tropical_forest,1
 Bobo2006,191,2,silviculture_and_logging,,6,lepidopteran,1,tropical_forest,1
 Bobo2006,192,2,silviculture_and_logging,,6,lepidopteran,1,tropicalforest_agriculture,1
