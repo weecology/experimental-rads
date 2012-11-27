@@ -1,4 +1,4 @@
-referenceID,siteID,experiment,experiment_type,experiment_details,replicates,taxa,terrestrial,biome,abundance
+referenceID,siteID,experiment,experiment_type,experiment_description,replicates,taxa,terrestrial,biome,abundance
 Pekar1998,19,1,pesticide,"ANDA, treated with 0.6 l/ha of flucycloxuron",1,arachnid,1,agricultural,1
 Pekar1998,20,1,pesticide,DIMI treated with 0.25 l/ha of diflubenzuron,1,arachnid,1,agricultural,1
 Pekar1998,21,1,pesticide,CONS treated with 0.75 l/ha of hexaflumuron,1,arachnid,1,agricultural,1

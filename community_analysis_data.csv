@@ -1,4 +1,4 @@
-referenceID,siteID,exp_or_control,year,family,genus,species,id2species,abund
+referenceID,siteID,exp_or_control,initial_year,family,genus,species,id2species,abundance
 Pekar1998,19,E,1993,,Araniella,cucurbitina,1,20
 Pekar1998,19,E,1993,,Gibbaranea,gibbosa,1,4
 Pekar1998,19,E,1993,,Mangora,acalypha,1,4

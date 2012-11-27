@@ -1,4 +1,4 @@
-referenceID,siteID,country,state,site_name,lat,long,uncertainty_radius(km),elev_min(m),elev_max(m),spatial extent(m2),first_year,end_year,notes1,notes2
+referenceID,siteID,country,state,site_name,latitude,longitude,uncertainty_radius(km),elevation_min,elevation_max,spatial_extent,first_year,end_year,notes1,notes2
 Pekar1998,19,Czech Republic,NULL,"treated pear orchard at Doksany, near Prague",50.454976,14.161097,5,150,215,"5,000",1993,1993,,
 Pekar1998,20,Czech Republic,NULL,"treated pear orchard at Doksany, near Prague",50.454976,14.161097,5,150,215,"5,000",1993,1993,,
 Pekar1998,21,Czech Republic,NULL,"treated pear orchard at Doksany, near Prague",50.454976,14.161097,5,150,215,"5,000",1993,1993,,
