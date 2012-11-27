@@ -78,12 +78,12 @@ Bobo2006,190,0,silvicultural_treatment,"uncleared control, near-primary forest",
 Bobo2006,191,2,silvicultural_treatment,old secondary forest,6,lepidopteran,1,tropical_forest,1
 Bobo2006,192,2,silvicultural_treatment,"agro-forestry, cocoa and coffee plantations, large trees remain",6,lepidopteran,1,tropicalforest_agriculture,1
 Bobo2006,193,2,agriculture_practice,"annual-cultures, crops, few trees remain",6,lepidopteran,1,agricultural,1
-Legge2008,231,2,fire,,6,mammal,1,tropical_forest,1
-Legge2008,232,0,fire,,6,mammal,1,tropical_forest,1
-Legge2008,233,2,fire,,6,lizard,1,tropical_forest,1
-Legge2008,234,0,fire,,6,lizard,1,tropical_forest,1
-Legge2008,235,2,fire,,6,bird,1,tropical_forest,1
-Legge2008,236,0,fire,,6,bird,1,tropical_forest,1
+Legge2008,231,2,fire,"burned by large, intense natural wildfire in September 2006; sampled approx 5 weeks later",6,mammal,1,open_woodland,1
+Legge2008,232,0,fire,"unburned, but near large, natural wildfire in September 2006; sampled approx. 5 weeks later",6,mammal,1,open_woodland,1
+Legge2008,233,2,fire,"burned by large, intense natural wildfire in September 2006; sampled approx 5 weeks later",6,lizard,1,open_woodland,1
+Legge2008,234,0,fire,"unburned, but near large, natural wildfire in September 2006; sampled approx. 5 weeks later",6,lizard,1,open_woodland,1
+Legge2008,235,2,fire,"burned by large, intense natural wildfire in September 2006; sampled approx 5 weeks later",6,bird,1,open_woodland,1
+Legge2008,236,0,fire,"unburned, but near large, natural wildfire in September 2006; sampled approx. 5 weeks later",6,bird,1,open_woodland,1
 Dritschilo1982,252,0,agriculture_practice,,1,carabid,1,agricultural,1
 Dritschilo1982,253,1,agriculture_practice,,1,carabid,1,agricultural,1
 Dritschilo1982,254,1,agriculture_practice,,1,carabid,1,agricultural,1
