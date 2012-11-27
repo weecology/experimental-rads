@@ -74,17 +74,17 @@ Stork2003,186,2,silvicultural_treatment,"manually cleared, some trees and vegeta
 Stork2003,187,2,silvicultural_treatment,"mechanically cleared, most undergrowth and trees removed in 1987 using bulldozer, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
 Stork2003,188,2,silvicultural_treatment,"all trees and vegetation removed in 1991, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
 Stork2003,189,0,silvicultural_treatment,"uncleared forest, near-primary, one access road",1,lepidopteran,1,tropical_forest,1
-Bobo2006,190,0,silviculture_and_logging,"uncleared control, near-primary forest",6,lepidopteran,1,tropical_forest,1
-Bobo2006,191,2,silviculture_and_logging,old secondary forest,6,lepidopteran,1,tropical_forest,1
-Bobo2006,192,2,silviculture_and_logging,agro-forestry,6,lepidopteran,1,tropicalforest_agriculture,1
-Bobo2006,193,2,silviculture_and_logging,"annual-cultures, crops",6,lepidopteran,1,agricultural,1
-Pianka2011,224,0,fire,,1,lizard,1,desert,1
-Pianka2011,225,0,fire,,1,lizard,1,desert,1
-Pianka2011,226,1,fire,,1,lizard,1,desert,1
-Pianka2011,227,1,fire,,1,lizard,1,desert,1
-Pianka2011,228,1,fire,,1,lizard,1,desert,1
-Pianka2011,229,2,fire,,1,lizard,1,desert,1
-Pianka2011,230,1,fire,,1,lizard,1,desert,1
+Bobo2006,190,0,silvicultural_treatment,"uncleared control, near-primary forest",6,lepidopteran,1,tropical_forest,1
+Bobo2006,191,2,silvicultural_treatment,old secondary forest,6,lepidopteran,1,tropical_forest,1
+Bobo2006,192,2,silvicultural_treatment,"agro-forestry, cocoa and coffee plantations, large trees remain",6,lepidopteran,1,tropicalforest_agriculture,1
+Bobo2006,193,2,agriculture_practice,"annual-cultures, crops, few trees remain",6,lepidopteran,1,agricultural,1
+Pianka2011,224,0,fire,"control, mature pre-burn community",1,lizard,1,desert,1
+Pianka2011,225,0,fire,"control, mature pre-burn community",1,lizard,1,desert,1
+Pianka2011,226,1,fire,1-4 months post-burn community; burned 11 October 1995,1,lizard,1,desert,1
+Pianka2011,227,1,fire,3 years post- presrcibed burn community; burned 11 October 1995,1,lizard,1,desert,1
+Pianka2011,228,1,fire,8 years post- presrcibed burn community; burned 11 October 1995,1,lizard,1,desert,1
+Pianka2011,229,2,fire,8 years post burn; twice-burned community; burned 11 October 1995 and by natural fire in 2000,1,lizard,1,desert,1
+Pianka2011,230,1,fire,13 years post- presrcibed burn community; burned 11 October 1995 and by natural fire in 2000,1,lizard,1,desert,1
 Legge2008,231,2,fire,,6,mammal,1,tropical_forest,1
 Legge2008,232,0,fire,,6,mammal,1,tropical_forest,1
 Legge2008,233,2,fire,,6,lizard,1,tropical_forest,1
