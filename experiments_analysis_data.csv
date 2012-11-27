@@ -74,10 +74,10 @@ Stork2003,186,2,silvicultural_treatment,"manually cleared, some trees and vegeta
 Stork2003,187,2,silvicultural_treatment,"mechanically cleared, most undergrowth and trees removed in 1987 using bulldozer, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
 Stork2003,188,2,silvicultural_treatment,"all trees and vegetation removed in 1991, planted with T. ivorensis",1,lepidopteran,1,tropical_forest,1
 Stork2003,189,0,silvicultural_treatment,"uncleared forest, near-primary, one access road",1,lepidopteran,1,tropical_forest,1
-Bobo2006,190,0,silviculture_and_logging,,6,lepidopteran,1,tropical_forest,1
-Bobo2006,191,2,silviculture_and_logging,,6,lepidopteran,1,tropical_forest,1
-Bobo2006,192,2,silviculture_and_logging,,6,lepidopteran,1,tropicalforest_agriculture,1
-Bobo2006,193,2,silviculture_and_logging,,6,lepidopteran,1,agricultural,1
+Bobo2006,190,0,silviculture_and_logging,"uncleared control, near-primary forest",6,lepidopteran,1,tropical_forest,1
+Bobo2006,191,2,silviculture_and_logging,old secondary forest,6,lepidopteran,1,tropical_forest,1
+Bobo2006,192,2,silviculture_and_logging,agro-forestry,6,lepidopteran,1,tropicalforest_agriculture,1
+Bobo2006,193,2,silviculture_and_logging,"annual-cultures, crops",6,lepidopteran,1,agricultural,1
 Pianka2011,224,0,fire,,1,lizard,1,desert,1
 Pianka2011,225,0,fire,,1,lizard,1,desert,1
 Pianka2011,226,1,fire,,1,lizard,1,desert,1
