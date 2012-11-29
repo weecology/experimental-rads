@@ -126,6 +126,8 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
   r2_comp = summary.lm(lm_comp)$r.squared
 lm_perc_sn = lm(stdz_bc_rad ~ stdz_perc_s + stdz_perc_n + stdz_perc_n:stdz_perc_s)
   r2_perc_sn = summary.lm(lm_perc_sn)$r.squared
+
+# variance partitioning of variable impact on RADs using 
   
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
