@@ -118,6 +118,21 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
 lm_sn = lm(stdz_bc_rad ~ stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
   r2_sn = summary.lm(lm_sn)$r.squared
 
+### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and TAXONOMIC GROUP
+lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n + taxon)
+  r2_full = summary.lm(lm_full)$r.squared
+lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
+  r2_comm_vars = summary.lm(lm_comm_vars)$r.squared
+lm_taxa = lm(stdz_bc_rad ~ taxon)
+  r2_taxa = summary.lm(lm_taxa)$r.squared
+
+### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and EXPERIMENT TYPE 
+lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n + etype)
+  r2_full = summary.lm(lm_full)$r.squared
+lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
+  r2_comm_vars = summary.lm(lm_comm_vars)$r.squared
+lm_etype = lm(stdz_bc_rad ~ etype)
+  r2_etype = summary.lm(lm_etype)$r.squared
 
 # variance partitioning of variable impact on RADs, using abs % difference S and N
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n)
@@ -127,8 +142,23 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
 lm_perc_sn = lm(stdz_bc_rad ~ stdz_perc_s + stdz_perc_n + stdz_perc_n:stdz_perc_s)
   r2_perc_sn = summary.lm(lm_perc_sn)$r.squared
 
-# variance partitioning of variable impact on RADs using 
-  
+### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and TAXONOMIC GROUP
+lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n + taxon)
+  r2_full = summary.lm(lm_full)$r.squared
+lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n)
+  r2_comm_vars = summary.lm(lm_comm_vars)$r.squared
+lm_taxa = lm(stdz_bc_rad ~ taxon)
+  r2_taxa = summary.lm(lm_taxa)$r.squared
+
+### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and EXPERIMENT TYPE 
+lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n + etype)
+  r2_full = summary.lm(lm_full)$r.squared
+lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n)
+  r2_comm_vars = summary.lm(lm_comm_vars)$r.squared
+lm_etype = lm(stdz_bc_rad ~ etype)
+  r2_etype = summary.lm(lm_etype)$r.squared
+
+
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
 n_rmse = rmse(EN, CN)
