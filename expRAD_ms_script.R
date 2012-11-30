@@ -165,6 +165,7 @@ n_rmse = rmse(EN, CN)
 s_rmse = rmse(ES, CS)
 j_rmse = rmse(Je, Jc)
 
+
 #count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
 table(Cshape)
 table(Eshape)
@@ -260,6 +261,7 @@ for (iRow in 1:nrow(comps)){
         r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
       }}}}
 sigma_r2 = rsquare(c, e)
+relabun_rmse = rmse(e, c)
 legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
 
 # FIX ME  - why do I get some r2 values <0?!? FLAG AND FIGURE OUT!!!
