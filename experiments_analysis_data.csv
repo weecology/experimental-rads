@@ -1,4 +1,4 @@
-referenceID,siteID,experiment,experiment_type,experiment_description,replicates,taxa,terrestrial,biome,abundance
+referenceID,siteID,experiment,experiment_type,experiment_description,replicates,taxa,biome,habitat,abundance
 Pekar1998,19,1,pesticide,"ANDA, treated with 0.6 l/ha of flucycloxuron",1,arachnid,1,agricultural,1
 Pekar1998,20,1,pesticide,DIMI treated with 0.25 l/ha of diflubenzuron,1,arachnid,1,agricultural,1
 Pekar1998,21,1,pesticide,CONS treated with 0.75 l/ha of hexaflumuron,1,arachnid,1,agricultural,1
@@ -94,11 +94,11 @@ Dritschilo1982,258,1,ag_chemical use,"conventionally farmed, using herbicide and
 Dritschilo1982,259,0,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled.",1,carabid,1,agricultural,1
 Dritschilo1982,260,1,ag_chemical use,"conventionally farmed, using herbicide and chemical fertilizer. Tilled with heavy machinery.",1,carabid,1,agricultural,1
 Dritschilo1982,261,1,ag_chemical use,"conventionally farmed, using herbicide only - NO chemical fertilizers. Tilled with heavy machinery.",1,carabid,1,agricultural,1
-Elek2001,262,0,silvicultural_treatment,,1,carabid,1,deciduous_forest,1
-Elek2001,263,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
-Elek2001,264,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
-Elek2001,265,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
-Elek2001,266,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
+Elek2001,262,0,silvicultural_treatment,native beech forest,1,carabid,1,deciduous_forest,1
+Elek2001,263,2,silvicultural_treatment,5 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
+Elek2001,264,2,silvicultural_treatment,15 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
+Elek2001,265,2,silvicultural_treatment,30 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
+Elek2001,266,2,silvicultural_treatment,50 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
 Lemieux2004,267,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
 Lemieux2004,268,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
 Lemieux2004,269,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
