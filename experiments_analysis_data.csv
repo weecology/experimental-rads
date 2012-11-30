@@ -99,11 +99,11 @@ Elek2001,263,2,silvicultural_treatment,5 yr old Norway spruce plantation,1,carab
 Elek2001,264,2,silvicultural_treatment,15 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
 Elek2001,265,2,silvicultural_treatment,30 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
 Elek2001,266,2,silvicultural_treatment,50 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1
-Lemieux2004,267,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Lemieux2004,268,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Lemieux2004,269,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Lemieux2004,270,1,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Lemieux2004,271,0,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
+Lemieux2004,267,1,silvicultural_treatment,clearcut,3,carabid,1,evergreen_forest,1
+Lemieux2004,268,1,silvicultural_treatment,open areas in patch-retention harvest,3,carabid,1,evergreen_forest,1
+Lemieux2004,269,1,silvicultural_treatment,wooded area in patch-retention harvest,3,carabid,1,evergreen_forest,1
+Lemieux2004,270,1,silvicultural_treatment,intact forest at edge of patch-retention harvest ,3,carabid,1,evergreen_forest,1
+Lemieux2004,271,0,silvicultural_treatment,undisturbed forest,3,carabid,1,evergreen_forest,1
 Phillips2006,272,0,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
 Phillips2006,273,2,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
 Phillips2006,274,2,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
