@@ -84,16 +84,16 @@ Legge2008,233,2,fire,"burned by large, intense natural wildfire in September 200
 Legge2008,234,0,fire,"unburned, but near large, natural wildfire in September 2006; sampled approx. 5 weeks later",6,lizard,1,open_woodland,1
 Legge2008,235,2,fire,"burned by large, intense natural wildfire in September 2006; sampled approx 5 weeks later",6,bird,1,open_woodland,1
 Legge2008,236,0,fire,"unburned, but near large, natural wildfire in September 2006; sampled approx. 5 weeks later",6,bird,1,open_woodland,1
-Dritschilo1982,252,0,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,253,1,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,254,1,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,255,0,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,256,1,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,257,0,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,258,1,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,259,0,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,260,1,agriculture_practice,,1,carabid,1,agricultural,1
-Dritschilo1982,261,1,agriculture_practice,,1,carabid,1,agricultural,1
+Dritschilo1982,252,0,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled.",1,carabid,1,agricultural,1
+Dritschilo1982,253,1,ag_chemical use,"conventionally farmed, using herbicide and chemical fertilizer. Tilled with heavy machinery.",1,carabid,1,agricultural,1
+Dritschilo1982,254,1,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled. Planted with corn only.",1,carabid,1,agricultural,1
+Dritschilo1982,255,0,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled. Crop rotation in place, corn following beans.",1,carabid,1,agricultural,1
+Dritschilo1982,256,1,ag_chemical use,"conventionally farmed, using herbicide and chemical fertilizer. Tilled with heavy machinery.",1,carabid,1,agricultural,1
+Dritschilo1982,257,0,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled.",1,carabid,1,agricultural,1
+Dritschilo1982,258,1,ag_chemical use,"conventionally farmed, using herbicide and chemical fertilizer. Tilled with heavy machinery.",1,carabid,1,agricultural,1
+Dritschilo1982,259,0,ag_chemical use,"organically farmed, without the use of chemical fertilizers or pesticides. Lightly tilled.",1,carabid,1,agricultural,1
+Dritschilo1982,260,1,ag_chemical use,"conventionally farmed, using herbicide and chemical fertilizer. Tilled with heavy machinery.",1,carabid,1,agricultural,1
+Dritschilo1982,261,1,ag_chemical use,"conventionally farmed, using herbicide only - NO chemical fertilizers. Tilled with heavy machinery.",1,carabid,1,agricultural,1
 Elek2001,262,0,silvicultural_treatment,,1,carabid,1,deciduous_forest,1
 Elek2001,263,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
 Elek2001,264,2,silvicultural_treatment,,1,carabid,1,evergreen_forest,1
