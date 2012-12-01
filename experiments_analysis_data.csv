@@ -112,10 +112,10 @@ Skalski2010,276,2,pollution,"2.5 km from zinc and lead mine smelter in Scots pin
 Skalski2010,277,2,pollution,"3.9 km from zinc and lead mine smelter in Scots pine forest, 3rd most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
 Skalski2010,278,2,pollution,"7.9 km from zinc and lead mine smelter in Scots pine forest, 4th most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
 Skalski2010,279,0,pollution,"31.9 km from zinc and lead mine smelter in Scots pine forest, least polluted of the 5 sites",1,carabid,1,evergreen_forest,1
-Magura2005,284,0,habitat_structure,,3,carabid,1,evergreen_forest,1
-Magura2005,285,1,habitat_structure,,3,carabid,1,evergreen_forest,1
-Magura2005,286,0,habitat_structure,,3,carabid,1,evergreen_forest,1
-Magura2005,287,1,habitat_structure,,3,carabid,1,evergreen_forest,1
+Magura2005,284,0,habitat_structure,control; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
+Magura2005,285,1,habitat_structure,leaf litter addition from nearby beech forest (native-type) to at least 15 cm deep; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
+Magura2005,286,0,habitat_structure,control; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
+Magura2005,287,1,habitat_structure,leaf litter addition from nearby beech forest (native-type) to at least 15 cm deep; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
 Yu2006,292,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
 Yu2006,293,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
 Yu2006,294,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
