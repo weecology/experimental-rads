@@ -116,10 +116,10 @@ Magura2005,284,0,habitat_structure,control; 50 yr-old Norway spruce plantation,3
 Magura2005,285,1,habitat_structure,leaf litter addition from nearby beech forest (native-type) to at least 15 cm deep; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
 Magura2005,286,0,habitat_structure,control; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
 Magura2005,287,1,habitat_structure,leaf litter addition from nearby beech forest (native-type) to at least 15 cm deep; 50 yr-old Norway spruce plantation,3,carabid,1,evergreen_forest,1
-Yu2006,292,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
-Yu2006,293,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
-Yu2006,294,2,silvicultural_treatment,,4,carabid,1,deciduous_forest,1
-Yu2006,295,0,silvicultural_treatment,,5,carabid,1,deciduous_forest,1
+Yu2006,292,2,silvicultural_treatment,5 yro larch plantation,4,carabid,1,deciduous_forest,1
+Yu2006,293,2,silvicultural_treatment,15 yro larch plantation,4,carabid,1,deciduous_forest,1
+Yu2006,294,2,silvicultural_treatment,45 yro larch plantation,4,carabid,1,deciduous_forest,1
+Yu2006,295,0,silvicultural_treatment,native broad-leaved forest,5,carabid,1,deciduous_forest,1
 Nadeau2006,314,0,fire,,3,orthoptera ,1,grassland,1
 Nadeau2006,315,1,fire,,3,orthoptera ,1,grassland,1
 Nadeau2006,316,0,fire,,3,orthoptera ,1,grassland,1
