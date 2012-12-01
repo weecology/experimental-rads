@@ -104,9 +104,9 @@ Lemieux2004,268,1,silvicultural_treatment,open areas in patch-retention harvest,
 Lemieux2004,269,1,silvicultural_treatment,wooded area in patch-retention harvest,3,carabid,1,evergreen_forest,1
 Lemieux2004,270,1,silvicultural_treatment,intact forest at edge of patch-retention harvest ,3,carabid,1,evergreen_forest,1
 Lemieux2004,271,0,silvicultural_treatment,undisturbed forest,3,carabid,1,evergreen_forest,1
-Phillips2006,272,0,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Phillips2006,273,2,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
-Phillips2006,274,2,silvicultural_treatment,,3,carabid,1,evergreen_forest,1
+Phillips2006,272,0,silvicultural_treatment,"unsalvaged forest; within boundary of Chisholm fire, which burned in 2001",3,carabid,1,evergreen_forest,1
+Phillips2006,273,2,silvicultural_treatment,"edge between salvaged and unsalvaged forest (transition); within boundary of Chisholm fire, which burned in 2001 ",3,carabid,1,evergreen_forest,1
+Phillips2006,274,2,silvicultural_treatment,"salvage logged forest; within boundary of Chisholm fire, which burned in 2001 ",3,carabid,1,evergreen_forest,1
 Skalski2010,275,2,pollution,,1,carabid,1,evergreen_forest,1
 Skalski2010,276,2,pollution,,1,carabid,1,evergreen_forest,1
 Skalski2010,277,2,pollution,,1,carabid,1,evergreen_forest,1
