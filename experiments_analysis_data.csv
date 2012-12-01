@@ -120,10 +120,10 @@ Yu2006,292,2,silvicultural_treatment,5 yro larch plantation,4,carabid,1,deciduou
 Yu2006,293,2,silvicultural_treatment,15 yro larch plantation,4,carabid,1,deciduous_forest,1
 Yu2006,294,2,silvicultural_treatment,45 yro larch plantation,4,carabid,1,deciduous_forest,1
 Yu2006,295,0,silvicultural_treatment,native broad-leaved forest,5,carabid,1,deciduous_forest,1
-Nadeau2006,314,0,fire,,3,orthoptera ,1,grassland,1
-Nadeau2006,315,1,fire,,3,orthoptera ,1,grassland,1
-Nadeau2006,316,0,fire,,3,orthoptera ,1,grassland,1
-Nadeau2006,317,1,fire,,3,orthoptera ,1,grassland,1
+Nadeau2006,314,0,fire,unburned,3,orthoptera ,1,grassland,1
+Nadeau2006,315,1,fire,controlled burned,3,orthoptera ,1,grassland,1
+Nadeau2006,316,0,fire,unburned,3,orthoptera ,1,grassland,1
+Nadeau2006,317,1,fire,1 yr since controlled burned,3,orthoptera ,1,grassland,1
 Wilgers2006,363,2,fire,,2,herpetofauna,1,grassland,1
 Wilgers2006,364,2,fire,,2,herpetofauna,1,grassland,1
 Wilgers2006,365,2,fire,,2,herpetofauna,1,grassland,1
