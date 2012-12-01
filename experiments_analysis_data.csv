@@ -107,11 +107,11 @@ Lemieux2004,271,0,silvicultural_treatment,undisturbed forest,3,carabid,1,evergre
 Phillips2006,272,0,silvicultural_treatment,"unsalvaged forest; within boundary of Chisholm fire, which burned in 2001",3,carabid,1,evergreen_forest,1
 Phillips2006,273,2,silvicultural_treatment,"edge between salvaged and unsalvaged forest (transition); within boundary of Chisholm fire, which burned in 2001 ",3,carabid,1,evergreen_forest,1
 Phillips2006,274,2,silvicultural_treatment,"salvage logged forest; within boundary of Chisholm fire, which burned in 2001 ",3,carabid,1,evergreen_forest,1
-Skalski2010,275,2,pollution,,1,carabid,1,evergreen_forest,1
-Skalski2010,276,2,pollution,,1,carabid,1,evergreen_forest,1
-Skalski2010,277,2,pollution,,1,carabid,1,evergreen_forest,1
-Skalski2010,278,2,pollution,,1,carabid,1,evergreen_forest,1
-Skalski2010,279,0,pollution,,1,carabid,1,evergreen_forest,1
+Skalski2010,275,2,pollution,"3.5 km from zinc and lead mine smelter in Scots pine forest, most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
+Skalski2010,276,2,pollution,"2.5 km from zinc and lead mine smelter in Scots pine forest, 2nd most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
+Skalski2010,277,2,pollution,"3.9 km from zinc and lead mine smelter in Scots pine forest, 3rd most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
+Skalski2010,278,2,pollution,"7.9 km from zinc and lead mine smelter in Scots pine forest, 4th most polluted of the 5 sites",1,carabid,1,evergreen_forest,1
+Skalski2010,279,0,pollution,"31.9 km from zinc and lead mine smelter in Scots pine forest, least polluted of the 5 sites",1,carabid,1,evergreen_forest,1
 Magura2005,284,0,habitat_structure,,3,carabid,1,evergreen_forest,1
 Magura2005,285,1,habitat_structure,,3,carabid,1,evergreen_forest,1
 Magura2005,286,0,habitat_structure,,3,carabid,1,evergreen_forest,1
