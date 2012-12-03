@@ -139,8 +139,8 @@ McLeod1998,425,0,silvicultural_treatment,hardwood forest,1,mammal,1,deciduous_fo
 McLeod1998,426,2,silvicultural_treatment,cut-over hardwood,1,mammal,1,deciduous_forest,1
 McLeod1998,427,0,fire,mixed pine-hardwood,1,mammal,1,evergreen_forest,1
 McLeod1998,428,2,fire,prescribed burn pine,1,mammal,1,evergreen_forest,1
-Langford2007,429,2,fire,,3,herpetofauna,1,evergreen_forest,1
-Langford2007,430,0,fire,,3,herpetofauna,1,evergreen_forest,1
+Langford2007,429,2,fire,"low intensity prescribed burn, conducted in March 2003",3,herpetofauna,1,evergreen_forest,1
+Langford2007,430,0,fire,unburned,3,herpetofauna,1,evergreen_forest,1
 Cano2009,441,0,burning_and_grazing,,1,herpetofauna,1,grassland,1
 Cano2009,442,2,burning_and_grazing,,1,herpetofauna,1,grassland,1
 Cano2009,443,2,burning_and_grazing,,1,herpetofauna,1,grassland,1
