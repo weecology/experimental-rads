@@ -131,14 +131,14 @@ Smith2009,413,2,fire,"0-1 years since last burn, longleaf pine (pinus palustris)
 Smith2009,414,2,fire,"3-4 years since last burn, longleaf pine (pinus palustris) stands",6,herpetofauna,1,mixed forest,1
 Smith2009,415,2,fire,"6-7 years since last burn, longleaf pine (pinus palustris) stands",6,herpetofauna,1,mixed forest,1
 Smith2009,416,2,fire,">20 years since last burn, longleaf pine (pinus palustris) stands",4,herpetofauna,1,mixed forest,1
-McLeod1998,421,0,silvicultural_treatment,,1,herpetofauna,1,deciduous_forest,1
-McLeod1998,422,2,silvicultural_treatment,,1,herpetofauna,1,deciduous_forest,1
-McLeod1998,423,0,burning_and_logging,,1,herpetofauna,1,evergreen_forest,1
-McLeod1998,424,2,burning_and_logging,,1,herpetofauna,1,evergreen_forest,1
-McLeod1998,425,0,silvicultural_treatment,,1,mammal,1,deciduous_forest,1
-McLeod1998,426,2,silvicultural_treatment,,1,mammal,1,deciduous_forest,1
-McLeod1998,427,0,burning_and_logging,,1,mammal,1,evergreen_forest,1
-McLeod1998,428,2,burning_and_logging,,1,mammal,1,evergreen_forest,1
+McLeod1998,421,0,silvicultural_treatment,hardwood forest,1,herpetofauna,1,deciduous_forest,1
+McLeod1998,422,2,silvicultural_treatment,cut-over hardwood,1,herpetofauna,1,deciduous_forest,1
+McLeod1998,423,0,fire,mixed pine-hardwood,1,herpetofauna,1,evergreen_forest,1
+McLeod1998,424,2,fire,prescribed burn pine,1,herpetofauna,1,evergreen_forest,1
+McLeod1998,425,0,silvicultural_treatment,hardwood forest,1,mammal,1,deciduous_forest,1
+McLeod1998,426,2,silvicultural_treatment,cut-over hardwood,1,mammal,1,deciduous_forest,1
+McLeod1998,427,0,fire,mixed pine-hardwood,1,mammal,1,evergreen_forest,1
+McLeod1998,428,2,fire,prescribed burn pine,1,mammal,1,evergreen_forest,1
 Langford2007,429,2,fire,,3,herpetofauna,1,evergreen_forest,1
 Langford2007,430,0,fire,,3,herpetofauna,1,evergreen_forest,1
 Cano2009,441,0,burning_and_grazing,,1,herpetofauna,1,grassland,1
