@@ -159,18 +159,18 @@ Matthews2010,459,2,fire,"twice burned (Mar 2003, Feb 2006)",3,herpetofauna,1,mix
 Matthews2010,460,0,control,control,3,herpetofauna,1,mixed forest,1
 Matthews2010,461,2,silvicultural_treatment,mechanical understory cut (Dec 2001 - Feb 2002),3,herpetofauna,1,mixed forest,1
 Matthews2010,462,2,silvicultural_treatment_and_fire,"mechanical understory cut (Dec 2001 - Feb 2002) followed by 2 prescribed burns (Mar 2003, Feb 2006)",3,herpetofauna,1,mixed forest,1
-Schlesinger1997,463,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,464,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,465,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,466,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,467,0,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,468,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,469,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,470,2,fire,,1,reptile,1,deciduous_forest,1
-Schlesinger1997,471,0,fire,,1,beetle,1,deciduous_forest,1
-Schlesinger1997,472,2,fire,,1,beetle,1,deciduous_forest,1
-Schlesinger1997,473,2,fire,,1,beetle,1,deciduous_forest,1
-Schlesinger1997,474,2,fire,,1,beetle,1,deciduous_forest,1
+Schlesinger1997,463,2,fire,twice-burned; in 1982 and 1985,1,reptile,1,deciduous_forest,1
+Schlesinger1997,464,2,fire,once-burned;  1985,1,reptile,1,deciduous_forest,1
+Schlesinger1997,465,2,fire,twice-burned; in 1982 and 1985,1,reptile,1,deciduous_forest,1
+Schlesinger1997,466,2,fire,once-burned;  1985,1,reptile,1,deciduous_forest,1
+Schlesinger1997,467,0,fire,burned 1974; 18 years post burn,1,reptile,1,deciduous_forest,1
+Schlesinger1997,468,2,fire,burned 1985; 7 years post burn,1,reptile,1,deciduous_forest,1
+Schlesinger1997,469,2,fire,burned 1987; 5 years post burn,1,reptile,1,deciduous_forest,1
+Schlesinger1997,470,2,fire,burned 1989; 3 years post burn,1,reptile,1,deciduous_forest,1
+Schlesinger1997,471,0,fire,burned 1974; 18 years post burn,1,beetle,1,deciduous_forest,1
+Schlesinger1997,472,2,fire,burned 1985; 7 years post burn,1,beetle,1,deciduous_forest,1
+Schlesinger1997,473,2,fire,burned 1987; 5 years post burn,1,beetle,1,deciduous_forest,1
+Schlesinger1997,474,2,fire,burned 1989; 3 years post burn,1,beetle,1,deciduous_forest,1
 Styring2011,489,2,silvicultural_treatment,,5,bird,1,tropical_forest,1
 Styring2011,490,2,silvicultural_treatment,,6,bird,1,tropical_forest,1
 Styring2011,491,2,silvicultural_treatment,,6,bird,1,tropical_forest,1
