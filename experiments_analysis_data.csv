@@ -148,9 +148,9 @@ Cano2010,444,2,fire_and_grazing,"annually burned and grazed, D",1,herpetofauna,1
 Enge1986,445,1,logging,clearcut pine forest with low-intensity site preparation (leaving a lot of understory vegetation and minimizing soil effects),1,herpetofauna,1,evergreen_forest,1
 Enge1986,446,1,logging,clearcut pine forest with high-intensity site preparation (used most-intense management tools and mechanized equipment),1,herpetofauna,1,evergreen_forest,1
 Enge1986,447,0,logging,uncut pine forest ,1,herpetofauna,1,evergreen_forest,1
-Jones2000,448,2,burning_and_herbicide,,3,herpetofauna,1,deciduous_forest,1
-Jones2000,449,2,burning_and_herbicide,,3,herpetofauna,1,deciduous_forest,1
-Jones2000,450,0,burning_and_herbicide,,3,herpetofauna,1,deciduous_forest,1
+Jones2000,448,2,herbicide,soil-applied tebuthiuron herbicide applied at 2 kg a.i./ha in March 1983,3,herpetofauna,1,deciduous_forest,1
+Jones2000,449,2,herbicide_and_fire,soil-applied tebuthiuron herbicide applied at 2 kg a.i./ha in March 1983 and fire (every three years 1987-1994) in spring,3,herpetofauna,1,deciduous_forest,1
+Jones2000,450,0,control,"control, no herbicide or burning",3,herpetofauna,1,deciduous_forest,1
 Matthews2010,455,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
 Matthews2010,456,0,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
 Matthews2010,457,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
