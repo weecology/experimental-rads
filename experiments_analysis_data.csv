@@ -151,14 +151,14 @@ Enge1986,447,0,logging,uncut pine forest ,1,herpetofauna,1,evergreen_forest,1
 Jones2000,448,2,herbicide,soil-applied tebuthiuron herbicide applied at 2 kg a.i./ha in March 1983,3,herpetofauna,1,deciduous_forest,1
 Jones2000,449,2,herbicide_and_fire,soil-applied tebuthiuron herbicide applied at 2 kg a.i./ha in March 1983 and fire (every three years 1987-1994) in spring,3,herpetofauna,1,deciduous_forest,1
 Jones2000,450,0,control,"control, no herbicide or burning",3,herpetofauna,1,deciduous_forest,1
-Matthews2010,455,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,456,0,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,457,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,458,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,459,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,460,0,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,461,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
-Matthews2010,462,2,silvicultural_treatment,,3,herpetofauna,1,mixed forest,1
+Matthews2010,455,2,fire,"twice burned (Mar 2003, Feb 2006)",3,herpetofauna,1,mixed forest,1
+Matthews2010,456,0,control,control,3,herpetofauna,1,mixed forest,1
+Matthews2010,457,2,silvicultural_treatment,mechanical understory cut (Dec 2001 - Feb 2002),3,herpetofauna,1,mixed forest,1
+Matthews2010,458,2,silvicultural_treatment_and_fire,"mechanical understory cut (Dec 2001 - Feb 2002) followed by 2 prescribed burns (Mar 2003, Feb 2006)Mountains of Polk County",3,herpetofauna,1,mixed forest,1
+Matthews2010,459,2,fire,"twice burned (Mar 2003, Feb 2006)",3,herpetofauna,1,mixed forest,1
+Matthews2010,460,0,control,control,3,herpetofauna,1,mixed forest,1
+Matthews2010,461,2,silvicultural_treatment,mechanical understory cut (Dec 2001 - Feb 2002),3,herpetofauna,1,mixed forest,1
+Matthews2010,462,2,silvicultural_treatment_and_fire,"mechanical understory cut (Dec 2001 - Feb 2002) followed by 2 prescribed burns (Mar 2003, Feb 2006)",3,herpetofauna,1,mixed forest,1
 Schlesinger1997,463,2,fire,,1,reptile,1,deciduous_forest,1
 Schlesinger1997,464,2,fire,,1,reptile,1,deciduous_forest,1
 Schlesinger1997,465,2,fire,,1,reptile,1,deciduous_forest,1
