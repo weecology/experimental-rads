@@ -141,10 +141,10 @@ McLeod1998,427,0,fire,mixed pine-hardwood,1,mammal,1,evergreen_forest,1
 McLeod1998,428,2,fire,prescribed burn pine,1,mammal,1,evergreen_forest,1
 Langford2007,429,2,fire,"low intensity prescribed burn, conducted in March 2003",3,herpetofauna,1,evergreen_forest,1
 Langford2007,430,0,fire,unburned,3,herpetofauna,1,evergreen_forest,1
-Cano2009,441,0,burning_and_grazing,,1,herpetofauna,1,grassland,1
-Cano2009,442,2,burning_and_grazing,,1,herpetofauna,1,grassland,1
-Cano2009,443,2,burning_and_grazing,,1,herpetofauna,1,grassland,1
-Cano2009,444,2,burning_and_grazing,,1,herpetofauna,1,grassland,1
+Cano2010,441,0,burning_and_grazing,"non-burned and non-grazed since 1995, A",1,herpetofauna,1,grassland,1
+Cano2010,442,2,burning_and_grazing,"non-burned since 2003 and non-grazed, B",1,herpetofauna,1,grassland,1
+Cano2010,443,2,fire,"annually burned and non-grazed, C",1,herpetofauna,1,grassland,1
+Cano2010,444,2,fire_and_grazing,"annually burned and grazed, D",1,herpetofauna,1,grassland,1
 Enge1986,445,1,logging,,1,herpetofauna,1,evergreen_forest,1
 Enge1986,446,1,logging,,1,herpetofauna,1,evergreen_forest,1
 Enge1986,447,0,logging,,1,herpetofauna,1,evergreen_forest,1
