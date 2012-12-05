@@ -191,11 +191,11 @@ Decher1997,536,2,protection,farmland (in the eastern region),NULL,mammal,1,decid
 Decher1997,537,0,protection,sacred groves (Pinkwae Forest and Adumanya Sacred Grove) on the Accra Plains,2,mammal,1,deciduous_forest,1,0
 Decher1997,538,2,protection,Shai Hills Research reserve (2 plots) and fire-protected forests  at the Kpong Agricultural Experiment Station (2 plots),3,mammal,1,deciduous_forest,1,0
 ,,,,,,,,,,
-Amalin2001,34,0,pesticide,,15,arachnid,1,agricultural,0,1
-Amalin2001,35,0,pesticide,,15,arachnid,1,agricultural,0,1
-Amalin2001,36,0,pesticide,,15,arachnid,1,agricultural,0,1
-Amalin2001,37,0,pesticide,,15,arachnid,1,agricultural,0,1
-Amalin2001,38,1,pesticide,,15,arachnid,1,agricultural,0,1
+Amalin2001,34,0,pesticide,Orchard 1; unsprayed lime orchard,15,arachnid,1,agricultural,0,1
+Amalin2001,35,0,pesticide,Orchard 2; unsprayed lime orchard,15,arachnid,1,agricultural,0,1
+Amalin2001,36,0,pesticide,Orchard 3; unsprayed lime orchard,15,arachnid,1,agricultural,0,1
+Amalin2001,37,0,pesticide,Unsprayed lime orchard,15,arachnid,1,agricultural,0,1
+Amalin2001,38,1,pesticide,Sprayed lime orchard,15,arachnid,1,agricultural,0,1
 Bock1992,298,0,predation,,16,orthoptera ,1,grassland,0,1
 Bock1992,299,0,predation,,16,orthoptera ,1,grassland,0,1
 Bock1992,300,0,predation,,16,orthoptera ,1,grassland,0,1
