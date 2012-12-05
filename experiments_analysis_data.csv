@@ -196,18 +196,6 @@ Amalin2001,35,0,pesticide,Orchard 2; unsprayed lime orchard,15,arachnid,1,agricu
 Amalin2001,36,0,pesticide,Orchard 3; unsprayed lime orchard,15,arachnid,1,agricultural,0,1
 Amalin2001,37,0,pesticide,Unsprayed lime orchard,15,arachnid,1,agricultural,0,1
 Amalin2001,38,1,pesticide,Sprayed lime orchard,15,arachnid,1,agricultural,0,1
-Bock1992,298,0,predation,,16,orthoptera ,1,grassland,0,1
-Bock1992,299,0,predation,,16,orthoptera ,1,grassland,0,1
-Bock1992,300,0,predation,,16,orthoptera ,1,grassland,0,1
-Bock1992,301,0,predation,,16,orthoptera ,1,grassland,0,1
-Bock1992,302,0,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,303,1,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,304,1,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,305,1,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,306,0,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,307,1,predation,,8,orthoptera ,1,grassland,0,1
-Bock1992,308,1,predation_and_dispersal,,8,orthoptera ,1,grassland,0,1
-Bock1992,309,1,predation_and_dispersal,,8,orthoptera ,1,grassland,0,1
 Dickson1983,497,1,silvicultural_treatment,,4,bird,1,deciduous_forest,0,1
 Dickson1983,498,0,silvicultural_treatment,,4,bird,1,deciduous_forest,0,1
 Greenberg1994,417,2,fire,,3,reptile,1,evergreen_forest,0,1
