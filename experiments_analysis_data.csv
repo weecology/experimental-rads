@@ -182,8 +182,8 @@ Styring2011,496,0,silvicultural_treatment,logged native forest,12,bird,1,tropica
 Wu2008,499,0,habitat_fragmentation,"least fragmented site; connected to large patch of primary forest, total protected area > 220 km2",1,bird,1,tropical_forest,1
 Wu2008,500,2,habitat_fragmentation,"intermediate fragmented forest; a small reserve receiving a lot of ecotoursim, 0.48 km2 total, bordered by residences and patchy forest on one side and Rio Guacimal on the other side",1,bird,1,tropical_forest,1
 Wu2008,501,2,habitat_fragmentation,"highly fragmented forest; small forest patch surrounded by pasture on three sides and the road to the Cloud Forest School on the other side, total area 0.07 km2",1,bird,1,tropical_forest,1
-Kutiel2000,510,0,habitat_structure,,3,mammal,1,desert_scrub,1
-Kutiel2000,511,1,habitat_structure,,3,mammal,1,desert_scrub,1
+Kutiel2000,510,0,habitat_structure,control; vegetation left intact on semi-stabilized dunes,3,mammal,1,desert_scrub,1
+Kutiel2000,511,1,habitat_structure,"cleared, all above-ground woody vegetation removed from semi stabilized dunes",3,mammal,1,desert_scrub,1
 Medin1989,512,0,grazing,,1,mammal,1,riparian,1
 Medin1989,513,1,grazing,,1,mammal,1,riparian,1
 Decher1997,535,0,protection,,NULL,mammal,1,deciduous_forest,1
