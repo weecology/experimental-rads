@@ -184,8 +184,8 @@ Wu2008,500,2,habitat_fragmentation,"intermediate fragmented forest; a small rese
 Wu2008,501,2,habitat_fragmentation,"highly fragmented forest; small forest patch surrounded by pasture on three sides and the road to the Cloud Forest School on the other side, total area 0.07 km2",1,bird,1,tropical_forest,1
 Kutiel2000,510,0,habitat_structure,control; vegetation left intact on semi-stabilized dunes,3,mammal,1,desert_scrub,1
 Kutiel2000,511,1,habitat_structure,"cleared, all above-ground woody vegetation removed from semi stabilized dunes",3,mammal,1,desert_scrub,1
-Medin1989,512,0,grazing,,1,mammal,1,riparian,1
-Medin1989,513,1,grazing,,1,mammal,1,riparian,1
+Medin1989,512,0,grazing,ungrazed; protected from grazing for 11 yrs,1,mammal,1,riparian,1
+Medin1989,513,1,grazing,grazed,1,mammal,1,riparian,1
 Decher1997,535,0,protection,,NULL,mammal,1,deciduous_forest,1
 Decher1997,536,2,protection,,NULL,mammal,1,deciduous_forest,1
 Decher1997,537,0,protection,,2,mammal,1,deciduous_forest,1
