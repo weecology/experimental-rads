@@ -171,14 +171,14 @@ Schlesinger1997,471,0,fire,burned 1974; 18 years post burn,1,beetle,1,deciduous_
 Schlesinger1997,472,2,fire,burned 1985; 7 years post burn,1,beetle,1,deciduous_forest,1
 Schlesinger1997,473,2,fire,burned 1987; 5 years post burn,1,beetle,1,deciduous_forest,1
 Schlesinger1997,474,2,fire,burned 1989; 3 years post burn,1,beetle,1,deciduous_forest,1
-Styring2011,489,2,silvicultural_treatment,,5,bird,1,tropical_forest,1
-Styring2011,490,2,silvicultural_treatment,,6,bird,1,tropical_forest,1
-Styring2011,491,2,silvicultural_treatment,,6,bird,1,tropical_forest,1
-Styring2011,492,0,silvicultural_treatment,,6,bird,1,tropical_forest,1
-Styring2011,493,2,silvicultural_treatment,,5,bird,1,tropical_forest,1
-Styring2011,494,2,silvicultural_treatment,,5,bird,1,tropical_forest,1
-Styring2011,495,2,silvicultural_treatment,,6,bird,1,tropical_forest,1
-Styring2011,496,0,silvicultural_treatment,,12,bird,1,tropical_forest,1
+Styring2011,489,2,silvicultural_treatment,2 yr old plantations of exotic Acacia mangium,5,bird,1,tropical_forest,1
+Styring2011,490,2,silvicultural_treatment,5 yr old plantations of exotic Acacia mangium,6,bird,1,tropical_forest,1
+Styring2011,491,2,silvicultural_treatment,7 yr old plantations of exotic Acacia mangium,6,bird,1,tropical_forest,1
+Styring2011,492,0,silvicultural_treatment,logged native forest,6,bird,1,tropical_forest,1
+Styring2011,493,2,silvicultural_treatment,2 yr old plantations of exotic Acacia mangium,5,bird,1,tropical_forest,1
+Styring2011,494,2,silvicultural_treatment,5 yr old plantations of exotic Acacia mangium,5,bird,1,tropical_forest,1
+Styring2011,495,2,silvicultural_treatment,7 yr old plantations of exotic Acacia mangium,6,bird,1,tropical_forest,1
+Styring2011,496,0,silvicultural_treatment,logged native forest,12,bird,1,tropical_forest,1
 Wu2008,499,0,habitat_fragmentation,,1,bird,1,tropical_forest,1
 Wu2008,500,2,habitat_fragmentation,,1,bird,1,tropical_forest,1
 Wu2008,501,2,habitat_fragmentation,,1,bird,1,tropical_forest,1
