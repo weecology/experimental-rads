@@ -186,7 +186,7 @@ Kutiel2000,510,0,habitat_structure,control; vegetation left intact on semi-stabi
 Kutiel2000,511,1,habitat_structure,"cleared, all above-ground woody vegetation removed from semi stabilized dunes",3,mammal,1,desert_scrub,1
 Medin1989,512,0,grazing,ungrazed; protected from grazing for 11 yrs,1,mammal,1,riparian,1
 Medin1989,513,1,grazing,grazed,1,mammal,1,riparian,1
-Decher1997,535,0,protection,,NULL,mammal,1,deciduous_forest,1
-Decher1997,536,2,protection,,NULL,mammal,1,deciduous_forest,1
-Decher1997,537,0,protection,,2,mammal,1,deciduous_forest,1
-Decher1997,538,2,protection,,3,mammal,1,deciduous_forest,1
+Decher1997,535,0,protection,sacred groves (in the eastern region),NULL,mammal,1,deciduous_forest,1
+Decher1997,536,2,protection,farmland (in the eastern region),NULL,mammal,1,deciduous_forest,1
+Decher1997,537,0,protection,sacred groves (Pinkwae Forest and Adumanya Sacred Grove) on the Accra Plains,2,mammal,1,deciduous_forest,1
+Decher1997,538,2,protection,Shai Hills Research reserve (2 plots) and fire-protected forests  at the Kpong Agricultural Experiment Station (2 plots),3,mammal,1,deciduous_forest,1
