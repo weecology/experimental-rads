@@ -18,11 +18,12 @@ sites = read.csv("sites_analysis_data.csv", na.strings = 'NULL', colClasses = "c
 lat = as.numeric(sites$latitude)
 lon = as.numeric(sites$longitude)
 
-map("world", border = NA)
+map("world", col = "gray30")
+points(lon, lat, col = "indianred", pch = 19)
 axis(side = 1)
 axis(side = 2)
-points(lon, lat, col = "red", pch = 19)
 
+#read in a shapefile (saved from blm website)
 world<- readShapePoly("continent.shp")
 
 # Create a lat-long dataframe from the maps package
