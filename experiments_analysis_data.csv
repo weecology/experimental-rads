@@ -209,9 +209,9 @@ Hansen2009,290,0,invasion,native dominated vegetation; <1% mean cover spotted kn
 Hansen2009,291,2,invasion,invasive dominated vegetation; >25% mean cover spotted knapweed,3,carabid,1,savanna,0,1
 Joern1986,296,1,predation,unmanipulated,7,orthoptera ,1,grassland,0,1
 Joern1986,297,0,predation,bird exclosure,7,orthoptera ,1,grassland,0,1
+Mordkovich2006,99,1,dispersal,"defaunated soil community, open to recolonization and community assembly dynamics",NULL,microarthropods,1,pine_forest_soil,0,1
+Mordkovich2006,100,0,dispersal,unmanipulated soil community,NULL,microarthropods,1,pine_forest_soil,0,1
 ,,,,,,,,,,
-Mordkovich2006,99,1,recolonization,,,microarthropods,1,pine_forest_soil,0,1
-Mordkovich2006,100,0,recolonization,,,microarthropods,1,pine_forest_soil,0,1
 Nunes2006,239,0,fire,,1,carabid,1,woodland,0,1
 Nunes2006,240,1,fire,,1,carabid,1,woodland,0,1
 Nunes2006,241,0,fire,,1,carabid,1,woodland,0,1
