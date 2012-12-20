@@ -212,19 +212,19 @@ Joern1986,297,0,predation,bird exclosure,7,orthoptera ,1,grassland,0,1
 Mordkovich2006,99,1,dispersal,"defaunated soil community, open to recolonization and community assembly dynamics",NULL,microarthropods,1,pine_forest_soil,0,1
 Mordkovich2006,100,0,dispersal,unmanipulated soil community,NULL,microarthropods,1,pine_forest_soil,0,1
 ,,,,,,,,,,
-Nunes2006,239,0,fire,,1,carabid,1,woodland,0,1
-Nunes2006,240,1,fire,,1,carabid,1,woodland,0,1
-Nunes2006,241,0,fire,,1,carabid,1,woodland,0,1
-Nunes2006,242,1,fire,,1,carabid,1,woodland,0,1
-Nunes2006,243,1,fire,,1,carabid,1,woodland,0,1
-Nunes2006,244,0,fire,,1,carabid,1,shrubland,0,1
-Nunes2006,245,1,fire,,2,carabid,1,shrubland,0,1
-Nunes2006,246,0,fire,,3,carabid,1,shrubland,0,1
-Nunes2006,247,1,fire,,4,carabid,1,shrubland,0,1
-Nunes2006,248,1,fire,,5,carabid,1,shrubland,0,1
-Nunes2006,249,0,fire,,6,carabid,1,shrubland,0,1
-Nunes2006,250,1,fire,,7,carabid,1,shrubland,0,1
-Nunes2006,251,1,fire,,8,carabid,1,shrubland,0,1
+Nunes2006,239,0,fire,unburned,1,carabid,1,woodland,0,1
+Nunes2006,240,1,fire,1 yr after burn,1,carabid,1,woodland,0,1
+Nunes2006,241,0,fire,unburned,1,carabid,1,woodland,0,1
+Nunes2006,242,1,fire,1 yr after burn,1,carabid,1,woodland,0,1
+Nunes2006,243,1,fire,2 yr after burn,1,carabid,1,woodland,0,1
+Nunes2006,244,0,fire,unburned,1,carabid,1,shrubland,0,1
+Nunes2006,245,1,fire,1 yr after burn,1,carabid,1,shrubland,0,1
+Nunes2006,246,0,fire,unburned,1,carabid,1,shrubland,0,1
+Nunes2006,247,1,fire,1 yr after burn,1,carabid,1,shrubland,0,1
+Nunes2006,248,1,fire,2 yr after burn,1,carabid,1,shrubland,0,1
+Nunes2006,249,0,fire,unburned,1,carabid,1,shrubland,0,1
+Nunes2006,250,1,fire,2 yr after burn,1,carabid,1,shrubland,0,1
+Nunes2006,251,1,fire,3 yr after burn,1,carabid,1,shrubland,0,1
 Purtauf2005,280,2,agriculture_practice,,12,carabid,1,agricultural,0,1
 Purtauf2005,281,0,agriculture_practice,,12,carabid,1,agricultural,0,1
 Ramirez1981,518,2,silvicultural_treatment,,6,mammal,1,evergreen_forest,0,1
