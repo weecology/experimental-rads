@@ -196,8 +196,8 @@ Amalin2001,35,0,pesticide,Orchard 2; unsprayed lime orchard,15,arachnid,1,agricu
 Amalin2001,36,0,pesticide,Orchard 3; unsprayed lime orchard,15,arachnid,1,agricultural,0,1
 Amalin2001,37,0,pesticide,Unsprayed lime orchard,15,arachnid,1,agricultural,0,1
 Amalin2001,38,1,pesticide,Sprayed lime orchard,15,arachnid,1,agricultural,0,1
-Dickson1983,497,1,silvicultural_treatment,,4,bird,1,deciduous_forest,0,1
-Dickson1983,498,0,silvicultural_treatment,,4,bird,1,deciduous_forest,0,1
+Dickson1983,497,1,silvicultural_treatment,clear-cut land with dead snags left behind,4,bird,1,deciduous_forest,0,1
+Dickson1983,498,0,silvicultural_treatment,clear-cut land with dead snags and all vegetation removed,4,bird,1,deciduous_forest,0,1
 Greenberg1994,417,2,fire,,3,reptile,1,evergreen_forest,0,1
 Greenberg1994,418,2,fire,,3,reptile,1,evergreen_forest,0,1
 Greenberg1994,419,2,fire,,3,reptile,1,evergreen_forest,0,1
