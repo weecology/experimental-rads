@@ -226,15 +226,15 @@ Nunes2006,250,1,fire,2 yr after burn,1,carabid,1,shrubland,0,1
 Nunes2006,251,1,fire,3 yr after burn,1,carabid,1,shrubland,0,1
 Purtauf2005,280,2,agriculture_practice,conventional farmed winter wheat fields,12,carabid,1,agricultural,0,1
 Purtauf2005,281,0,agriculture_practice,organic farmed winter wheat fields,12,carabid,1,agricultural,0,1
+Ramirez1981,518,2,silvicultural_treatment,clearcut in 1970 (5 yrs prior to study) in Abies-Clintonia habitat type forest,6,mammal,1,evergreen_forest,0,1
+Ramirez1981,519,2,silvicultural_treatment,clearcut in 1964 (9 yrs prior to study) in Abies-Clintonia habitat type forest,6,mammal,1,evergreen_forest,0,1
+Ramirez1981,520,2,silvicultural_treatment,clearcut in 1960 (15 yrs prior to study) in Abies-Clintonia habitat type forest,8,mammal,1,evergreen_forest,0,1
+Ramirez1981,521,0,silvicultural_treatment,uncut forest in Abies-Clintonia habitat type forest,8,mammal,1,evergreen_forest,0,1
+Ramirez1981,522,2,silvicultural_treatment,partially-cut forest in Abies-Clintonia habitat type forest,2,mammal,1,evergreen_forest,0,1
+Ramirez1981,523,2,silvicultural_treatment,"clearcut in 1960 (15 yrs prior to study), in Abies-Luzula habitat type",4,mammal,1,evergreen_forest,0,1
+Ramirez1981,524,0,silvicultural_treatment,uncut Abies-Luzula habitat type forest,4,mammal,1,evergreen_forest,0,1
+Ramirez1981,525,2,silvicultural_treatment,"subalpine basin in Abies-Luzula habitat type, supports few or no trees and shrubs",4,mammal,1,evergreen_forest,0,1
 ,,,,,,,,,,
-Ramirez1981,518,2,silvicultural_treatment,,6,mammal,1,evergreen_forest,0,1
-Ramirez1981,519,2,silvicultural_treatment,,6,mammal,1,evergreen_forest,0,1
-Ramirez1981,520,2,silvicultural_treatment,,8,mammal,1,evergreen_forest,0,1
-Ramirez1981,521,0,silvicultural_treatment,,8,mammal,1,evergreen_forest,0,1
-Ramirez1981,522,2,silvicultural_treatment,,2,mammal,1,evergreen_forest,0,1
-Ramirez1981,523,2,silvicultural_treatment,,4,mammal,1,evergreen_forest,0,1
-Ramirez1981,524,0,silvicultural_treatment,,4,mammal,1,evergreen_forest,0,1
-Ramirez1981,525,2,silvicultural_treatment,,4,mammal,1,evergreen_forest,0,1
 Ruthven2008,431,2,fire,,3,herpetofauna,1,desert_scrub,0,1
 Ruthven2008,432,0,fire,,3,herpetofauna,1,desert_scrub,0,1
 Ruthven2008,433,2,fire,,3,herpetofauna,1,desert_scrub,0,1
