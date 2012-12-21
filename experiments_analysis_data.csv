@@ -234,17 +234,17 @@ Ramirez1981,522,2,silvicultural_treatment,partially-cut forest in Abies-Clintoni
 Ramirez1981,523,2,silvicultural_treatment,"clearcut in 1960 (15 yrs prior to study), in Abies-Luzula habitat type",4,mammal,1,evergreen_forest,0,1
 Ramirez1981,524,0,silvicultural_treatment,uncut Abies-Luzula habitat type forest,4,mammal,1,evergreen_forest,0,1
 Ramirez1981,525,2,silvicultural_treatment,"subalpine basin in Abies-Luzula habitat type, supports few or no trees and shrubs",4,mammal,1,evergreen_forest,0,1
+Ruthven2008,431,2,fire,dormant-season prescribed burns (Dec-Feb),3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,432,0,fire,unburned,3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,433,2,fire,dormant-season prescribed burns (Dec-Feb),3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,434,0,fire,unburned,3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,435,2,fire,dormant-season prescribed burns (Dec-Feb),3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,436,0,fire,unburned,3,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,437,2,fire,growing-season prescribed burn (Jan-Mar),5,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,438,0,fire,unburned,5,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,439,2,fire,growing-season prescribed burn (Jan-Mar),5,herpetofauna,1,desert_scrub,0,1
+Ruthven2008,440,0,fire,unburned,5,herpetofauna,1,desert_scrub,0,1
 ,,,,,,,,,,
-Ruthven2008,431,2,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,432,0,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,433,2,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,434,0,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,435,2,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,436,0,fire,,3,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,437,2,fire,,5,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,438,0,fire,,5,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,439,2,fire,,5,herpetofauna,1,desert_scrub,0,1
-Ruthven2008,440,0,fire,,5,herpetofauna,1,desert_scrub,0,1
 Schmidt2005,282,2,agriculture_practice,,12,arachnid,1,agricultural,0,1
 Schmidt2005,283,0,agriculture_practice,,12,arachnid,1,agricultural,0,1
 Parmenter1988,237,0,predation,unmanipulated,10,carabid,1,sagebrush,0,1
