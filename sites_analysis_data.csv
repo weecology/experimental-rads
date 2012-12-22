@@ -246,6 +246,5 @@ Ruthven2008,437,USA,TX,growing-season prescribed burn (Jan-Mar); Chaparral Wildl
 Ruthven2008,438,USA,TX,unburned; Chaparral Wildlife Management Area in western South Texas plains and the northern portion of Tamaulipan Biotic Province,28.333333,-99.416667,0,150,160,750,2000,2000,,
 Ruthven2008,439,USA,TX,growing-season prescribed burn (Jan-Mar); Chaparral Wildlife Management Area in western South Texas plains and the northern portion of Tamaulipan Biotic Province,28.333333,-99.416667,0,150,160,750,2001,2001,,
 Ruthven2008,440,USA,TX,unburned; Chaparral Wildlife Management Area in western South Texas plains and the northern portion of Tamaulipan Biotic Province,28.333333,-99.416667,0,150,160,750,2001,2001,,
-,,,,,,,,,,,,,,
-Schmidt2005,282,Germany,NULL,conventional farmed winter wheat fields; near Gottingen in Southern Lower Saxony,NULL,NULL,,NULL,NULL,1200,2002,2002,"Purtauf2005 & Schmidt2005, same location and methods",
-Schmidt2005,283,Germany,NULL,organic farmed winter wheat fields; near Gottingen in Southern Lower Saxony,NULL,NULL,,NULL,NULL,1200,2002,2002,"Purtauf2005 & Schmidt2005, same location and methods",
+Schmidt2005,282,Germany,Lower Saxony,conventional farmed winter wheat fields; near Gottingen in Southern Lower Saxony,51.534439,9.932141,25,230,350,1200,2002,2002,,
+Schmidt2005,283,Germany,Lower Saxony,organic farmed winter wheat fields; near Gottingen in Southern Lower Saxony,51.534439,9.932141,25,230,350,1200,2002,2002,,
