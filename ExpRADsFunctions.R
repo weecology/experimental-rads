@@ -342,7 +342,4 @@ top_control_spp = function(control_data, experiment_data) {
 return(ranks_data)
 }
 
-plot_composition_ranks = function(ranks_data){
 
-  
-}
