@@ -63,8 +63,8 @@ for (iRow in 1:nrow(comps)){
   ref = as.character(comps[iRow,1])
     # Check that < 10% of individuals are unidentified. If meets criteria, continue
     if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
-      a1 = sort(as.numeric(comms[which(comms[,1] == control & comms[,6] != 0), 7])) #vector of control abundances
-      a2 = sort(as.numeric(comms[which(comms[,1] == experiment & comms[,6] != 0), 7])) #vector of exp abundances
+      a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) #vector of control abundances
+      a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8])) #vector of exp abundances
       # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
       if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
         # find categorical shapes (logseries vs. lognormal)
