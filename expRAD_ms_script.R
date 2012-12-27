@@ -61,8 +61,6 @@ for (iRow in 1:nrow(comps)){
   taxa = as.character(expers[which(expers[,2]==control),7])# find taxonomic group from experiments table
   type = as.character(expers[which(expers[,2]==control),4]) # find experiment type from experiments table
   ref = as.character(comps[iRow,1])
-  # make sure this pair is in the subset of acceptable comm data
-  if (nrow(comms[which(comms[,1]==control),]) > 1 & nrow(comms[which(comms[,1]==experiment),]) > 1){
     # Check that < 10% of individuals are unidentified. If meets criteria, continue
     if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
       a1 = sort(as.numeric(comms[which(comms[,1] == control & comms[,6] != 0), 7])) #vector of control abundances
