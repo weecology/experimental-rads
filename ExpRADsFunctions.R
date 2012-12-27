@@ -220,10 +220,11 @@ shortestVector = function(v1, v2, maxLen){
 
 # put two relative abundances into a matrix together for euclidean distance analysis
 abundMerge = function(r1, r2){
-  ranks = c(1:max(c(length(r1),length(r2)))) # find length of longest vector
-  rSizes = shortestVector(r1, r2, max(ranks))
-  diff = max(ranks) - length(rSizes$small)  
-  rSizes$small = append(rSizes$small, rep(0,diff))
+  ranks = c(1:max(c(length(r1),length(r2)))) # makes a list of ranks from 1 to the length of the longer vector
+  rSizes = shortestVector(r1, r2, max(ranks)) # returns a list of the vectors, labeling each "small" or "large"
+  diff = max(ranks) - length(rSizes$small)  # the difference in the number of ranks
+  rSizes$small = append(rSizes$small, rep(0,diff)) # adds the difference to the smaller vector as zeroes - so they are the same length
+  # put the data (now equal lengths) into a matrix where col 1 = control data and col 2 = experiment data
   matrix = matrix(data = c(as.numeric(unlist(rSizes[1])), as.numeric(unlist(rSizes[2]))), nrow = max(ranks), ncol = 2)
   return (matrix)
 }
