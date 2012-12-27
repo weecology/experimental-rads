@@ -86,10 +86,10 @@ for (iRow in 1:nrow(comps)){
         Eshape = append(Eshape, d$exp)
         CS = append(CS, length(a1))
         CN = append(CN, sum(a1))
-        Jc = append(Jc, round(SimpE(comms[which(comms[,1] == control),]),2))
+        Jc = append(Jc, round(SimpE(comms[which(comms[,2] == control),]),2))
         ES = append(ES, length(a2))
         EN = append(EN, sum(a2))
-        Je = append(Je, round(SimpE(comms[which(comms[,1] == experiment),]),2))
+        Je = append(Je, round(SimpE(comms[which(comms[,2] == experiment),]),2))
       }}}}
 
 #collapse taxon types so there aren't so many factors
