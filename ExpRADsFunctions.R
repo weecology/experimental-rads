@@ -32,20 +32,22 @@ reshape_data = function(dat){
   return(dat3)
 }
 
-# input a matrix where species are columns and rows are sites, with two sites. Calculates inverse simpson's diversity
-# and returns Simpson's evenness, where 1 represents a very even community and 0 represents a very uneven community
+
 SimpE = function(spp_data){
+  # input a matrix where species are columns and rows are sites, with two sites. Calculates inverse simpson's diversity
+  # and returns Simpson's evenness, where 1 represents a very even community and 0 represents a very uneven community
   spp_matrix = reshape_data(spp_data)
   D = diversity(spp_matrix[,2:ncol(spp_matrix)], index = 'invsimpson') #leave out first column, which is siteID
   J = D / specnumber(spp_matrix[,2:ncol(spp_matrix)])
   return (J)
 }
 
-# input a matrix where species are columns and rows are sites, with two sites. Compares the two rows using bray-curtis metric
-# returns the bray-curtis dissimilarity value, where 0 is the same and 1 is completely different
+
 BCdist = function(two_spp_data){
+  # input a matrix where species are columns and rows are sites, with two sites. Compares the two rows using bray-curtis metric
+  # returns the bray-curtis dissimilarity value, where 0 is the same and 1 is completely different
   if (ncol(two_spp_data) == 2){
-  data = t(two_spp_data)
+  data = t(two_spp_data) # transpose the data matrix
   }
   else {
     data = reshape_data(two_spp_data) 
@@ -99,9 +101,10 @@ percent_unidSpp = function(siteID, dataframe) {
   }
 }
 
-## Function: Calculate lambda_1 using (B.4) from Harte et al. 2008
-# This is the untruncated form of the log-series MLE
+
 get_lambda_sad=function(S,N){
+  ## Function: Calculate lambda_1 using (B.4) from Harte et al. 2008
+  # This is the untruncated form of the log-series MLE
   if (N<=0){
     print("Error: N must be greater than 0.")
     return(NA)}
@@ -122,8 +125,9 @@ get_lambda_sad=function(S,N){
   }
 }
 
-## Function: chi square test of two vectors     ## FIX ME, MAKE SURE I WORK CORRECTLY!
+
 chi.test = function(v1, v2){
+  ## Function: chi square test of two vectors     ## FIX ME, MAKE SURE I WORK CORRECTLY!
   dat_comb=c(v1, v2)
   q=unique(as.numeric(quantile(dat_comb, probs=seq(0, 1, 0.2)))) ## 5 bins
   count.v1=hist(v1, breaks=q,plot=FALSE)$counts
@@ -132,9 +136,10 @@ chi.test = function(v1, v2){
   return(p.chi)
 }
 
-# Function: input a vector of abundances. Calculates MLE of log-series and of poisson log-normal.
-# Gives a numeric weight for which model is better supported. Outputs 'logs' or 'logn'.
+
 sad_shape = function(abund){
+  # Function: input a vector of abundances. Calculates MLE of log-series and of poisson log-normal.
+  # Gives a numeric weight for which model is better supported. Outputs 'logs' or 'logn'.
   #mle for untruncated log-series
   p = get_lambda_sad(length(abund), sum(abund)) # inputs: S, N
   lik.logs = sum(dlog(abund, prob = p, log = TRUE))
@@ -156,11 +161,12 @@ sad_shape = function(abund){
   return(list(type = type,w = weight))
 }
 
-## Function to compare the predicted abundances with empirical abundances
-## Using both chi-square test and weights b/w log-series and log-normal
-## pred is value (list) taken from SAD_rank.r
-## dat is one row in Sarah's winter_tot.csv
+
 dist.test=function(v1, v2){
+  ## Function to compare the predicted abundances with empirical abundances
+  ## Using both chi-square test and weights b/w log-series and log-normal
+  ## pred is value (list) taken from SAD_rank.r
+  ## dat is one row in Sarah's winter_tot.csv
   require(poilog)
   ## chi-square test
   p.chi = chi.test(v1,v2)
@@ -171,8 +177,9 @@ dist.test=function(v1, v2){
   return(list(p_chi = p.chi, con = weight1$type, exp = weight2$type))
 }
 
-# get fit to 1:1 line
+
 rsquare = function(con, exp){
+  # get fit to 1:1 line
   return (1 - sum((con - exp) ** 2) / sum((con - mean(con)) ** 2))
 }
 
@@ -202,14 +209,16 @@ RAD_plot_and_data = function(siteID1, siteID2, abundance1, abundance2, taxa){
   return (SAD_results)
 }
  
-# get relative abundances from a vector of raw abundances, rounded to 3 decimal places and sorted in decreasing order
+
 relabund = function(abundances){
+  # get relative abundances from a vector of raw abundances, rounded to 3 decimal places and sorted in decreasing order
   relativeabund = sort((abundances/sum(abundances)), decreasing = TRUE) 
   return (relativeabund)
 }
 
-# identify the shorter vector
+
 shortestVector = function(v1, v2, maxLen){
+  # identify the shorter vector
   if (length(v1) < maxLen){
     return(list(small = v1, large = v2))
   }
@@ -218,8 +227,9 @@ shortestVector = function(v1, v2, maxLen){
   }
 }
 
-# put two relative abundances into a matrix together for euclidean distance analysis
+
 abundMerge = function(r1, r2){
+  # put two relative abundances into a matrix together for euclidean distance analysis
   ranks = c(1:max(c(length(r1),length(r2)))) # makes a list of ranks from 1 to the length of the longer vector
   rSizes = shortestVector(r1, r2, max(ranks)) # returns a list of the vectors, labeling each "small" or "large"
   diff = max(ranks) - length(rSizes$small)  # the difference in the number of ranks
@@ -229,8 +239,9 @@ abundMerge = function(r1, r2){
   return (matrix)
 }
 
-# find Euclidean distance between the RADs, returns ED rounded to 4 decimal places 
+
 Euclidean = function(twosite_matrix){
+  # find Euclidean distance between the RADs, returns ED rounded to 4 decimal places
   if (ncol(twosite_matrix) == 2){
     ED = sqrt(sum((twosite_matrix[,1] - twosite_matrix[,2]) ^ 2))
   }
@@ -245,9 +256,10 @@ Euclidean = function(twosite_matrix){
   return (round(ED, 4))
 }
 
-# input a vector of values. Takes the mean (meanx) and standard deviation (sdx) of the vector, 
-#    and outputs a new vector containing the standardized values (stdz_vector)
+
 standardize = function(vector){
+  # input a vector of values. Takes the mean (meanx) and standard deviation (sdx) of the vector, 
+  #    and outputs a new vector containing the standardized values (stdz_vector)
   meanx = sum(vector)/length(vector)
   sdx = sd(vector)
   stdz_vector = as.numeric()
@@ -259,8 +271,9 @@ return (stdz_vector)
 }
 
 
-# proportion difference in S and N, with sign
+
 analyzeSN = function(matrix){
+  # proportion difference in S and N, with sign
   s1 = matrix[1,1]
   s2 = matrix[1,2]
   result = s1-s2/max(matrix) #add abs back here to get rid of sign
@@ -268,8 +281,9 @@ analyzeSN = function(matrix){
 }
 
 
-#plots 1:1 plot of data with correct polygon and legend
+
 plot1to1 = function (type, controldata, experimentdata, maxpolygon, lolim, uplim) {
+  #plots 1:1 plot of data with correct polygon and legend
   #where maxpolygon gives the maximum limit of the polygon to be drawn,
     #lolim gives the lower limit to be used for xlim and ylim,
     #uplim gives the upper limit to be used for xlim and ylim, and
