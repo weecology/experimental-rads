@@ -30,6 +30,7 @@ setwd(wd)
 comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
 comps = read.csv("comparison_analysis_data.csv")
 names(comps)<-c('ref', 'controID','expID')
+expers = read.csv("experiments_analysis_data.csv")
 
 
 #descriptive variables
@@ -57,8 +58,8 @@ percN = as.numeric()
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
   experiment = comps[iRow,3]  # find experiment in pair
-  taxa = as.character(comps[iRow, 4])
-  type = as.character(comps[iRow, 7])
+  taxa = as.character(expers[which(expers[,2]==control),7])# find taxonomic group from experiments table
+  type = as.character(expers[which(expers[,2]==control),4]) # find experiment type from experiments table
   ref = as.character(comps[iRow,1])
   # make sure this pair is in the subset of acceptable comm data
   if (nrow(comms[which(comms[,1]==control),]) > 1 & nrow(comms[which(comms[,1]==experiment),]) > 1){
