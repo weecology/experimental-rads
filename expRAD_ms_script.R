@@ -22,15 +22,15 @@ library(VennDiagram)
 ################ DOES STUFF #######################################
 ##############################################################################################################################
 
-wd = "C:/Users//sarah//Desktop//Dropbox//Active Research Projects//ExperimentalMacroecology"
+wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
+#wd = "C:/Users//sarah//Desktop//Dropbox//Active Research Projects//ExperimentalMacroecology"
 #wd = "/Users/sarah/Desktop/WE_Dropbox_stuff/ExperimentalMacroecology/"
 setwd(wd)
 
-comms = read.csv("community_data.csv", na.strings = 'NULL')
-comms = comms[which(comms$raw_abun == 1),c(1:7)] #include only raw abundance data
-comps = read.csv("comparison_data.csv")
-names(comps)<-c('ref', 'controID','expID', 'taxa', 'experiment','unequal','type')
-comps = subset(comps, unequal == 0)
+comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
+comps = read.csv("comparison_analysis_data.csv")
+names(comps)<-c('ref', 'controID','expID')
+
 
 #descriptive variables
 refID = c()
