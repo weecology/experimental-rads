@@ -100,9 +100,12 @@ for (iRow in 1:nrow(comps)){
 
 #collapse taxon types so there aren't so many factors
 taxon[taxon=='carabid']<-'insect'
-taxon[taxon=='lepidoptera']<- 'insect'
+taxon[taxon=='lepidopteran']<- 'insect'
 taxon[taxon=='odonate']<- 'insect'
 taxon[taxon=='orthoptera']<-'insect'
+taxon[taxon=='orthoptera ']<-'insect'
+taxon[taxon=='beetle']<-'insect'
+taxon[taxon=='microarthropods']<-'microarthropod'
 taxon[taxon=='reptile']<-'herpetofauna'
 
 #### Standardize the variables
