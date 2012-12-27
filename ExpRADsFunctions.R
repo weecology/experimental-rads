@@ -21,7 +21,7 @@ library(hydroGOF)
 reshape_data = function(dat){
   # puts data in "wide" format CATEGORIZED BY SITEID for use with composition analysis
   
-  dat2 = aggregate(list(abun = dat$abund),by=list(siteID = dat$siteID, genus = dat$genus,
+  dat2 = aggregate(list(abun = dat$abundance),by=list(siteID = dat$siteID, genus = dat$genus,
                                                   species=dat$species),FUN=sum)
   dat2$genus_spp = paste(dat2$genus, dat2$species, sep = "_")
   dat2 = dat2[,c(1,5,4)]
