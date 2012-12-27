@@ -74,10 +74,12 @@ CCA_composition = function(species_matrix, experiment){
 
 percent_unidSpp = function(siteID, dataframe) {
   # input a numeric code for siteID and the dataframe, determines if the data can be used. 
+  # col 2 of the dataframe is siteID, col 6 indicates level of identification & col 8 is the abundance
+  # each row of the dataframe is a species-level record.
   # Data can be used if unidentified individuals are < 10% of the total number of individuals
-  NAindex = which(is.na(dataframe[which(dataframe[,1] == siteID),7]))
-  speciesData = as.numeric(dataframe[which(dataframe[,1] == siteID & dataframe[,6] != 0),7])
-  unidData = as.numeric(dataframe[which(dataframe[,1] == siteID & dataframe[,6] == 0),7])
+  NAindex = which(is.na(dataframe[which(dataframe[,2] == siteID),8]))
+  speciesData = as.numeric(dataframe[which(dataframe[,2] == siteID & dataframe[,7] != 0),8])
+  unidData = as.numeric(dataframe[which(dataframe[,2] == siteID & dataframe[,7] == 0),8])
   # if there are NAs in dataframe, then P/A data, data is NOT OK
   if (length(NAindex) > 0) {
     return('NA')
