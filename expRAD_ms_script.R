@@ -74,8 +74,8 @@ for (iRow in 1:nrow(comps)){
           Eshape = append(Eshape, d$exp)
           }
         else {
-          Cshape = append(Cshape, NULL)
-          Eshape = append(Eshape, NULL)
+          Cshape = append(Cshape, "ERROR")
+          Eshape = append(Eshape, "ERROR")
           }
         # get summary statistics from comparisons
         BCrad = append(BCrad, BCdist(abundMerge(relabund(a1), relabund(a2))))
