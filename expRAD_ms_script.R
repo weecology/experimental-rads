@@ -68,7 +68,15 @@ for (iRow in 1:nrow(comps)){
       # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
       if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
         # find categorical shapes (logseries vs. lognormal)
-        d = dist.test(a1, a2)
+        if(expers[which(expers[,2]==control),10] == 1) {
+         d = dist.test(a1, a2)
+          Cshape = append(Cshape, d$con)
+          Eshape = append(Eshape, d$exp)
+          }
+        else {
+          Cshape = append(Cshape, NULL)
+          Eshape = append(Eshape, NULL)
+          }
         # get summary statistics from comparisons
         BCrad = append(BCrad, BCdist(abundMerge(relabund(a1), relabund(a2))))
         BCS = append(BCS, BCdist(matrix(c(length(a1), length(a2)), nrow = 1, ncol = 2))) 
@@ -82,8 +90,6 @@ for (iRow in 1:nrow(comps)){
         refID = append(refID, ref)
         cID = append(cID, control)
         eID = append(eID, experiment)
-        Cshape = append(Cshape, d$con)
-        Eshape = append(Eshape, d$exp)
         CS = append(CS, length(a1))
         CN = append(CN, sum(a1))
         Jc = append(Jc, round(SimpE(comms[which(comms[,2] == control),]),2))
