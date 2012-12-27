@@ -90,7 +90,7 @@ for (iRow in 1:nrow(comps)){
         ES = append(ES, length(a2))
         EN = append(EN, sum(a2))
         Je = append(Je, round(SimpE(comms[which(comms[,2] == experiment),]),2))
-      }}}}
+      }}}
 
 #collapse taxon types so there aren't so many factors
 taxon[taxon=='carabid']<-'insect'
