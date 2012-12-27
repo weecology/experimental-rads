@@ -93,7 +93,7 @@ percent_unidSpp = function(siteID, dataframe) {
   # if data passes both checks, calculate percent unidentified individuals
   else {
     percent_unid = sum(unidData)/(sum(speciesData) + sum(unidData))
-    if (percent_unid < 0.10) {
+    if (percent_unid <= 0.10) {
       return ('OK') }
     else {
       return (round(percent_unid * 100,2)) 
