@@ -131,7 +131,7 @@ lm_sn = lm(stdz_bc_rad ~ stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
   r2_sn = summary.lm(lm_sn)$r.squared
 
 print ("using standardized bray curtis variables:")
-print (paste("full model:", r2_full, "composition:", r2_comp, "state variables:", r2_sn, sep = " "))
+print (paste("full model:", round(r2_full,4), "composition:", round(r2_comp,4), "state variables:", round(r2_sn,4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and TAXONOMIC GROUP
@@ -142,6 +142,10 @@ lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s
 lm_taxa = lm(stdz_bc_rad ~ taxon)
   r2_taxa = summary.lm(lm_taxa)$r.squared
 
+print ("using standardized bray curtis variables + taxa:")
+print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "taxonomic group:", round(r2_taxa,4), sep = " "))
+print ("")
+
 ### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and EXPERIMENT TYPE 
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n + etype)
   r2_full = summary.lm(lm_full)$r.squared
@@ -149,6 +153,10 @@ lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s
   r2_comm_vars = summary.lm(lm_comm_vars)$r.squared
 lm_etype = lm(stdz_bc_rad ~ etype)
   r2_etype = summary.lm(lm_etype)$r.squared
+
+print ("using standardized bray curtis variables + experiment type:")
+print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "experiment type:", round(r2_etype,4), sep = " "))
+print ("")
 
 # variance partitioning of variable impact on RADs, using abs % difference S and N
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n)
@@ -158,9 +166,8 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
 lm_perc_sn = lm(stdz_bc_rad ~ stdz_perc_s + stdz_perc_n + stdz_perc_n:stdz_perc_s)
   r2_perc_sn = summary.lm(lm_perc_sn)$r.squared
 
-
 print ("using standardized bray curtis composition and RADs and percent difference in S and N:")
-print (paste("full model:", r2_full, "composition:", r2_comp, "state variables:", r2_perc_sn, sep = " "))
+print (paste("full model:", round(r2_full,4), "composition:", round(r2_comp,4), "state variables:", round(r2_perc_sn,4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and TAXONOMIC GROUP
@@ -171,6 +178,10 @@ lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_
 lm_taxa = lm(stdz_bc_rad ~ taxon)
   r2_taxa = summary.lm(lm_taxa)$r.squared
 
+print ("using standardized bray curtis composition and RADs and percent difference in S and N + taxa:")
+print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "taxonomic group:", round(r2_taxa,4), sep = " "))
+print ("")
+
 ### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and EXPERIMENT TYPE 
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n + etype)
   r2_full = summary.lm(lm_full)$r.squared
@@ -179,15 +190,19 @@ lm_comm_vars = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_
 lm_etype = lm(stdz_bc_rad ~ etype)
   r2_etype = summary.lm(lm_etype)$r.squared
 
+print ("using standardized bray curtis composition and RADs and percent difference in S and N + taxa:")
+print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "experiment type:", round(r2_etype,4), sep = " "))
+print ("")
 
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
-n_rmse = rmse(EN, CN); print (n_rmse)
-s_rmse = rmse(ES, CS); print (s_rmse)
-j_rmse = rmse(Je, Jc); print (j_rmse)
-
+n_rmse = rmse(EN, CN); print (paste("root mean squared error for N: ", round(n_rmse,4)))
+s_rmse = rmse(ES, CS); print (paste("root mean squared error for S: ", round(s_rmse,4)))
+j_rmse = rmse(Je, Jc); print (paste("root mean squared error for J: ", round(j_rmse,4)))
+print ("")
 
 #count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
+print ("The number of communities for logseries vs. lognormal RADs:")
 count_RAD_shapes(cID, eID, Cshape, Eshape)
 
 #close sink file
