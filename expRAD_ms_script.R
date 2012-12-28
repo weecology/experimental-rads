@@ -33,6 +33,10 @@ names(comps)<-c('ref', 'controID','expID')
 expers = read.csv("experiments_analysis_data.csv")
 
 
+# output directed to expRAD_results.txt in wd. output is appended
+# to existing file. output also sent to terminal. 
+sink("expRAD_results.txt", append=TRUE, split=TRUE)
+
 #descriptive variables
 refID = c()
 cID = c()
@@ -126,6 +130,10 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
 lm_sn = lm(stdz_bc_rad ~ stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
   r2_sn = summary.lm(lm_sn)$r.squared
 
+print ("using standardized bray curtis variables:")
+print (paste("full model:", r2_full, "composition:", r2_comp, "state variables:", r2_sn, sep = " "))
+print ("")
+
 ### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and TAXONOMIC GROUP
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n + taxon)
   r2_full = summary.lm(lm_full)$r.squared
@@ -150,6 +158,11 @@ lm_comp = lm(stdz_bc_rad ~ stdz_bc_comp)
 lm_perc_sn = lm(stdz_bc_rad ~ stdz_perc_s + stdz_perc_n + stdz_perc_n:stdz_perc_s)
   r2_perc_sn = summary.lm(lm_perc_sn)$r.squared
 
+
+print ("using standardized bray curtis composition and RADs and percent difference in S and N:")
+print (paste("full model:", r2_full, "composition:", r2_comp, "state variables:", r2_perc_sn, sep = " "))
+print ("")
+
 ### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and TAXONOMIC GROUP
 lm_full = lm(stdz_bc_rad ~ stdz_bc_comp + stdz_perc_s + stdz_perc_n + stdz_perc_s:stdz_perc_n + taxon)
   r2_full = summary.lm(lm_full)$r.squared
@@ -169,13 +182,16 @@ lm_etype = lm(stdz_bc_rad ~ etype)
 
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
-n_rmse = rmse(EN, CN)
-s_rmse = rmse(ES, CS)
-j_rmse = rmse(Je, Jc)
+n_rmse = rmse(EN, CN); print (n_rmse)
+s_rmse = rmse(ES, CS); print (s_rmse)
+j_rmse = rmse(Je, Jc); print (j_rmse)
 
 
 #count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
 count_RAD_shapes(cID, eID, Cshape, Eshape)
+
+#close sink file
+sink()
 
 #### Plotting the data
 
