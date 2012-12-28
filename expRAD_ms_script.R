@@ -175,8 +175,7 @@ j_rmse = rmse(Je, Jc)
 
 
 #count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
-table(Cshape)
-table(Eshape)
+count_RAD_shapes(cID, eID, Cshape, Eshape)
 
 #### Plotting the data
 
@@ -247,16 +246,14 @@ r2 = as.numeric()
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
   experiment = comps[iRow,3]  # find experiment in pair
-  taxa = as.character(comps[iRow, 4])
-  type = as.character(comps[iRow, 7])
-  refID = as.character(comps[iRow, 1])
-  #make sure this pair is in the subset of acceptable comm data
-  if (nrow(comms[which(comms[,1]==control),]) > 1 & nrow(comms[which(comms[,1]==experiment),]) > 1){
+#  taxa = as.character(comps[iRow, 4])
+#  type = as.character(comps[iRow, 7])
+#  refID = as.character(comps[iRow, 1])
     #Check that < 10% of individuals are unidentified. If meets criteria, continue
     if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
       #Get a vector of all the abundances for each species in the control and in the experimental communities
-      abun_control = sort(as.numeric(comms[which(comms[,1] == control & comms[,6] != 0), 7])) 
-      abun_exprmt = sort(as.numeric(comms[which(comms[,1] == experiment & comms[,6] != 0), 7]))
+      abun_control = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) 
+      abun_exprmt = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8]))
       #Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
       if (length(abun_control) > 4 & length(abun_exprmt) > 4 & sum(abun_control) > 29 & sum(abun_exprmt) > 29){
         relcon = relabund(abun_control) #make the lengths the same!
@@ -267,7 +264,7 @@ for (iRow in 1:nrow(comps)){
         c = append(c, comparison_matrix[,1])
         e = append(e, comparison_matrix[,2])
         r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
-      }}}}
+      }}}
 sigma_r2 = rsquare(c, e)
 relabun_rmse = rmse(e, c)
 legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
