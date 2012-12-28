@@ -7,7 +7,7 @@ library(RgoogleMaps)
 library(ggplot2)
 library(RColorBrewer)
 library(mapproj)
-library(ggplot)
+
 
 wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
 #wd = "/Users/sarah/Desktop/WE_Dropbox_stuff/ExperimentalMacroecology/"
@@ -18,8 +18,8 @@ sites = read.csv("sites_analysis_data.csv", na.strings = 'NULL', colClasses = "c
 lat = as.numeric(sites$latitude)
 lon = as.numeric(sites$longitude)
 
-map("world", col = "gray30")
-points(lon, lat, col = "indianred", pch = 19)
+map("world", col = "black", fill = TRUE, bg = "white", lwd = 0.05)
+points(lon, lat, col = "yellowgreen", pch = 19, cex = 0.75)
 axis(side = 1)
 axis(side = 2)
 
