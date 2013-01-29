@@ -11,7 +11,6 @@ library(languageR)
 library(poilog)
 library(scatterplot3d)
 library(hydroGOF)
-library(VennDiagram)
 
 # All files should be organized as such:
 # RAD: SiteID | experiment/control | year | genus | species | id2species | abundance
