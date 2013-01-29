@@ -25,7 +25,7 @@ library(VennDiagram)
 wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
 setwd(wd)
 
-source("ExpRADsFunctions.R")
+source("ExpRADsFunctions.R")   #Run the code containing the functions
 
 comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
 comps = read.csv("comparison_analysis_data.csv")
@@ -102,7 +102,7 @@ for (iRow in 1:nrow(comps)){
         Je = append(Je, round(SimpE(comms[which(comms[,2] == experiment),]),2))
       }}}
 
-#collapse taxon types so there aren't so many factors
+#collapse taxon types into broader categories so there aren't so many factors
 taxon[taxon=='carabid']<-'insect'
 taxon[taxon=='lepidopteran']<- 'insect'
 taxon[taxon=='odonate']<- 'insect'
