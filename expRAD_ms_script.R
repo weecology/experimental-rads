@@ -242,6 +242,9 @@ box("outer", lty="solid", col="black")
 dev.off()
 
 ################# Figure 2. 1:1 plots of data ##########################################
+pdf("Figure2_scatterplots.pdf", 2, 6, pointsize = 10)
+par(mfrow=c(4,1), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1))
+
 # Fig 2A - plots for N
 plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
      xlab = '', ylab = '', bty = 'n')
@@ -250,10 +253,11 @@ plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
 #polygon(x, y, border = NA, col = "lightpink")
 #y2 = c(1.5*(0:8000), (8000:0)/1.5)
 #polygon(x, y2, border = NA, col = "lightgoldenrod1")
-abline(0, 1, lty = 2, lwd = 2, col = 'red')
+abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500), xlab = "", ylab = "", main = ""))
 N_r2 = rsquare(CN, EN)
 legend('topleft', paste('r2 = ', round(N_r2,3), sep = ''), bty = 'n', cex = 0.75)
+mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
 
 # Fig 2B - plots for S
 plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
@@ -263,10 +267,11 @@ plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
 #polygon(x, y, border = NA, col = "lightpink")
 #y2 = c(1.5*(0:300), (300:0)/1.5)
 #polygon(x, y2, border = NA, col = "lightgoldenrod1")
-abline(0, 1, lty = 2, lwd = 2, col = 'red')
+abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CS, ES, pch = 19, xlim = c(5,200), ylim = c(5,200), xlab = 'c', ylab = '', main = '')
 S_r2 = rsquare(CS, ES)
 legend('topleft', paste('r2 = ', round(S_r2,3), sep = ''), bty = 'n', cex = 0.75)
+mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
 
 # Fig 2C - plots for evenness
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty = "n")
@@ -275,15 +280,15 @@ plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty =
 #polygon(x, y, border = NA, col = "lightpink")
 #y2 = c(1.5*(0:1.25), (1.25:0)/1.5)
 #polygon(x, y2, border = NA, col = "lightgoldenrod1")
-abline(0,1, lty = 2, lwd = 2, col = 'red')
+abline(0,1, lty = 2, lwd = 1, col = 'gray20')
 points(Jc, Je, pch = 19, xlim = c(0,1), ylim = c(0,1), xlab = '', ylab = '', main = '')
 J_r2 = rsquare(Jc, Je)
 legend('topleft', paste('r2 = ', round(J_r2, 3), sep = ''), bty = 'n', cex = 0.75)
+mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
 
 #### Fig 2D.  compare relative abundance at each rank in all paired sites
-par(mfrow=c(1,1))
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
-abline(0, 1, lty = 2, col = 'red', lwd = 2)
+abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
 
 c = as.numeric()
 e = as.numeric()
@@ -314,9 +319,13 @@ for (iRow in 1:nrow(comps)){
 relabun_r2 = rsquare(c, e)
 relabun_rmse = rmse(e, c)
 legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
+mtext('Rank Abundance', side = 3, line = -0.25, cex = 0.75)
+
+box("outer", lty = "solid", col = "black")
+dev.off()
 
 
-# FIX ME  - why do I get some r2 values <0?!? FLAG AND FIGURE OUT!!!
+# histogram of R2 values
 hist(r2[r2>0], xlim = c(0,1), ylim = c(0,75), breaks = seq(0,1, by = 0.10), col = "gray40", freq = TRUE)
 h = hist(r2[r2>0], xlim = c(0,1), ylim = c(0,1), breaks = seq(0,1, by = 0.10), col = "gray40", freq = FALSE, plot = FALSE)
 plot(h$mids, h$counts/114, pch = 19, xlim = c(0,1), ylim = c(0,1), type = 'l', lwd = 2, 
