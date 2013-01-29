@@ -209,28 +209,6 @@ print (paste("variance due to commmunity-level vars:", round(r2_full - r2_etype,
 print ("")
 
 #---------------------------------------------------
-#          Print statments - descriptive 
-#---------------------------------------------------
-#root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
-# used as an indicator of the degree of change between control (obs) and the experiment (sim)
-n_rmse = rmse(EN, CN); print (paste("root mean squared error for N: ", round(n_rmse,4)))
-s_rmse = rmse(ES, CS); print (paste("root mean squared error for S: ", round(s_rmse,4)))
-j_rmse = rmse(Je, Jc); print (paste("root mean squared error for J: ", round(j_rmse,4)))
-print ("")
-
-#count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
-print ("The number of communities for logseries vs. lognormal RADs:")
-count_RAD_shapes(cID, eID, Cshape, Eshape)
-
-#print ranges for values
-print (paste("S ranges", min(CS,ES), "to", max(CS,ES), sep = " "))
-print (paste("N ranges", min(CN,EN), "to", max(CN,EN), sep = " "))
-print (paste("Bray-Curtis on composition ranges", round(min(BCcomp),4), "to", round(max(BCcomp),4), sep = " "))
-
-#close sink file
-sink()
-
-#---------------------------------------------------
 #          Plot the data
 #---------------------------------------------------
 
@@ -324,8 +302,32 @@ sigma_r2 = rsquare(c, e)
 relabun_rmse = rmse(e, c)
 legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
 
+
 # FIX ME  - why do I get some r2 values <0?!? FLAG AND FIGURE OUT!!!
 hist(r2[r2>0], xlim = c(0,1), ylim = c(0,75), breaks = seq(0,1, by = 0.10), col = "gray40", freq = TRUE)
 h = hist(r2[r2>0], xlim = c(0,1), ylim = c(0,1), breaks = seq(0,1, by = 0.10), col = "gray40", freq = FALSE, plot = FALSE)
 plot(h$mids, h$counts/114, pch = 19, xlim = c(0,1), ylim = c(0,1), type = 'l', lwd = 2, 
      bty = "n", xlab = "r2 bins", ylab = "proportion")
+
+#---------------------------------------------------
+#          Print statments - descriptive 
+#---------------------------------------------------
+#print ranges for values
+print (paste("S ranges", min(CS,ES), "to", max(CS,ES), sep = " "))
+print (paste("N ranges", min(CN,EN), "to", max(CN,EN), sep = " "))
+print (paste("Bray-Curtis on composition ranges", round(min(BCcomp),4), "to", round(max(BCcomp),4), sep = " "))
+
+#root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
+# used as an indicator of the degree of change between control (obs) and the experiment (sim)
+n_rmse = rmse(EN, CN); print (paste("root mean squared error for N: ", round(n_rmse,4)))
+s_rmse = rmse(ES, CS); print (paste("root mean squared error for S: ", round(s_rmse,4)))
+print (paste("root mean squared error for relative abundances at each rank: ", round(relabun_rmse,4)))
+j_rmse = rmse(Je, Jc); print (paste("root mean squared error for J: ", round(j_rmse,4)))
+print ("")
+
+#count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
+print ("The number of communities for logseries vs. lognormal RADs:")
+count_RAD_shapes(cID, eID, Cshape, Eshape)
+
+#close sink file
+sink()
