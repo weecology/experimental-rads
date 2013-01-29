@@ -27,6 +27,8 @@ wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
 #wd = "/Users/sarah/Desktop/WE_Dropbox_stuff/ExperimentalMacroecology/"
 setwd(wd)
 
+source("ExpRADsFunctions.R")
+
 comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
 comps = read.csv("comparison_analysis_data.csv")
 names(comps)<-c('ref', 'controID','expID')
