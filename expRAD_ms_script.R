@@ -223,6 +223,9 @@ print ("The number of communities for logseries vs. lognormal RADs:")
 count_RAD_shapes(cID, eID, Cshape, Eshape)
 
 #print ranges for values
+print (paste("S ranges", min(CS,ES), "to", max(CS,ES), sep = " "))
+print (paste("N ranges", min(CN,EN), "to", max(CN,EN), sep = " "))
+print (paste("Bray-Curtis on composition ranges", round(min(BCcomp),4), "to", round(max(BCcomp),4), sep = " "))
 
 #close sink file
 sink()
