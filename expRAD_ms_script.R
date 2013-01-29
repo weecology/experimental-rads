@@ -17,10 +17,9 @@ library(hydroGOF)
 # Code will compare S, N and composition among treatments at each site,
 # output and compare RADs, parameters for each treatment at each site.
 
-##############################################################################################################################
-################ DOES STUFF #######################################
-##############################################################################################################################
-
+#---------------------------------------------------------------------------------
+#          setup - select wd, import data, source code,  file to collect results
+#---------------------------------------------------------------------------------
 wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
 setwd(wd)
 
