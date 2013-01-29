@@ -213,25 +213,33 @@ print ("")
 #---------------------------------------------------
 
 ################## plot histograms of change, Fig 1 ###################################
-
-par(mfrow=c(4,1), mar=c(3,3,0.5,0.5), oma=c(1.1,1,1,1))
+pdf("Figure1_histograms.pdf", 2, 6, pointsize = 10)
+par(mfrow=c(4,1), mar=c(3,1.5,2,0.5), oma=c(1.5,2,1,1))
 
 binwidth <- 0.2
 #Bray-Curtis dissimilarity: 0 = the same, 1 = completely different"
-hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "Composition", 
-     col = "gray80", xlab = "Bray-Curtis dissimilarity", ylab = "")
+hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "",
+     col = "gray80", xlab = "", ylab = "")
+    mtext('Composition', side = 3, line = -0.75)
+    mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
-hist(abs(percN), xlim = c(0, 700), ylim = c(0,50), breaks = seq(0, 700, by = 25), main = "Total Abundance",
-     col = "gray80", xlab = "Absolute percent difference", ylab = "")
+hist(abs(percN), xlim = c(0, 700), ylim = c(0,50), breaks = seq(0, 700, by = 25), main = "",
+     col = "gray80", xlab = "", ylab = "")
+    mtext('Total Abundance', side = 3, line = -0.75)
+    mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
 
-hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "Species Richness",  
-     col = "gray80",  xlab = "Absolute percent difference", ylab ="")
+hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "",  
+     col = "gray80",  xlab = "", ylab ="")
+    mtext('Species Richness', side = 3, line = -0.75)
+    mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
 
-hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = 0.11), main = "Rank Abundance", 
-     xlab = "Bray-Curtis dissimilarity", ylab = "", col = "gray80")
-
+hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = 0.11), main = "", 
+     xlab = "", ylab = "", col = "gray80")
+    mtext('Rank Abundance', side = 3, line = -0.75)
+    mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 box("outer", lty="solid", col="black")
 
+dev.off()
 
 ################# Figure 2. 1:1 plots of data ##########################################
 # Fig 2A - plots for N
