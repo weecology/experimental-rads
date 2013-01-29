@@ -213,6 +213,7 @@ print ("")
 #---------------------------------------------------
 
 ################## plot histograms of change, Fig 1 ###################################
+
 par(mfrow=c(4,1), mar=c(3,3,0.5,0.5), oma=c(1.1,1,1,1))
 
 binwidth <- 0.2
@@ -220,7 +221,7 @@ binwidth <- 0.2
 hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "Composition", 
      col = "gray80", xlab = "Bray-Curtis dissimilarity", ylab = "")
 
-hist(abs(percN), xlim = c(0, 700), ylim = c(0,40), breaks = seq(0, 700, by = 25), main = "Total Abundance",
+hist(abs(percN), xlim = c(0, 700), ylim = c(0,50), breaks = seq(0, 700, by = 25), main = "Total Abundance",
      col = "gray80", xlab = "Absolute percent difference", ylab = "")
 
 hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "Species Richness",  
