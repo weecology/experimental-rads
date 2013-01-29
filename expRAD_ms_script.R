@@ -39,8 +39,8 @@ sink("expRAD_results.txt", append=TRUE, split=TRUE)
 #          generate values and comparisons between the sites 
 #--------------------------------------------------------------
 #open plotting pdf window
-pdf("allRADs.pdf", 7, 10, paper = "letter", pointsize = 10)
-par(mfrow=c(6,4), mar=c(1,2,3,1), oma=c(1,1,1,1))
+pdf("allRADs_300.pdf", 7, 10, paper = "letter", pointsize = 10)
+par(mfrow=c(5,4), mar=c(1,2,3,1), oma=c(1,1,1,1))
 
 
 #descriptive variables
