@@ -132,6 +132,7 @@ lm_sn = lm(stdz_bc_rad ~ stdz_bc_s + stdz_bc_n + stdz_bc_s:stdz_bc_n)
 
 print ("using standardized bray curtis variables:")
 print (paste("full model:", round(r2_full,4), "composition:", round(r2_comp,4), "state variables:", round(r2_sn,4), sep = " "))
+print (paste("variance due to composition:", round(r2_full - r2_sn, 4), "variance due to state variables:", round(r2_full - r2_comp, 4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and TAXONOMIC GROUP
@@ -144,6 +145,7 @@ lm_taxa = lm(stdz_bc_rad ~ taxon)
 
 print ("using standardized bray curtis variables + taxa:")
 print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "taxonomic group:", round(r2_taxa,4), sep = " "))
+print (paste("variance due to commmunity-level vars:", round(r2_full - r2_taxa, 4), "variance due to taxa:", round(r2_full - r2_comm_vars, 4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs using Bray-Curtis S and N, composition and EXPERIMENT TYPE 
@@ -156,6 +158,7 @@ lm_etype = lm(stdz_bc_rad ~ etype)
 
 print ("using standardized bray curtis variables + experiment type:")
 print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "experiment type:", round(r2_etype,4), sep = " "))
+print (paste("variance due to commmunity-level vars:", round(r2_full - r2_etype, 4), "variance due to experiment type:", round(r2_full - r2_comm_vars, 4), sep = " "))
 print ("")
 
 # variance partitioning of variable impact on RADs, using abs % difference S and N
@@ -168,6 +171,7 @@ lm_perc_sn = lm(stdz_bc_rad ~ stdz_perc_s + stdz_perc_n + stdz_perc_n:stdz_perc_
 
 print ("using standardized bray curtis composition and RADs and percent difference in S and N:")
 print (paste("full model:", round(r2_full,4), "composition:", round(r2_comp,4), "state variables:", round(r2_perc_sn,4), sep = " "))
+print (paste("variance due to composition:", round(r2_full - r2_perc_sn, 4), "variance due to state variables:", round(r2_full - r2_comp, 4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and TAXONOMIC GROUP
@@ -180,6 +184,7 @@ lm_taxa = lm(stdz_bc_rad ~ taxon)
 
 print ("using standardized bray curtis composition and RADs and percent difference in S and N + taxa:")
 print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "taxonomic group:", round(r2_taxa,4), sep = " "))
+print (paste("variance due to commmunity-level vars:", round(r2_full - r2_taxa, 4), "variance due to taxa:", round(r2_full - r2_comm_vars, 4), sep = " "))
 print ("")
 
 ### variance partitioning of variable impact on RADs, using abs % difference S and N, composition and EXPERIMENT TYPE 
@@ -192,6 +197,7 @@ lm_etype = lm(stdz_bc_rad ~ etype)
 
 print ("using standardized bray curtis composition and RADs and percent difference in S and N + taxa:")
 print (paste("full model:", round(r2_full,4), "community variables:", round(r2_comm_vars,4), "experiment type:", round(r2_etype,4), sep = " "))
+print (paste("variance due to commmunity-level vars:", round(r2_full - r2_etype, 4), "variance due to experiment type:", round(r2_full - r2_comm_vars, 4), sep = " "))
 print ("")
 
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
