@@ -10,10 +10,11 @@ library(mapproj)
 
 
 wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
-#wd = "/Users/sarah/Desktop/WE_Dropbox_stuff/ExperimentalMacroecology/"
 setwd(wd)
 
 sites = read.csv("sites_analysis_data.csv", na.strings = 'NULL', colClasses = "character")
+
+pdf("Appendix_map", 7, 5, pointsize = 10)
 
 lat = as.numeric(sites$latitude)
 lon = as.numeric(sites$longitude)
@@ -23,6 +24,12 @@ points(lon, lat, col = "yellowgreen", pch = 19, cex = 0.75)
 axis(side = 1)
 axis(side = 2)
 
+dev.off()
+
+
+#---------------------------------------------
+#         FIXME
+#---------------------------------------------
 #read in a shapefile (saved from blm website)
 world<- readShapePoly("continent.shp")
 
