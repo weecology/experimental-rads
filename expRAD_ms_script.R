@@ -23,8 +23,6 @@ library(VennDiagram)
 ##############################################################################################################################
 
 wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
-#wd = "C:/Users//sarah//Desktop//Dropbox//Active Research Projects//ExperimentalMacroecology"
-#wd = "/Users/sarah/Desktop/WE_Dropbox_stuff/ExperimentalMacroecology/"
 setwd(wd)
 
 source("ExpRADsFunctions.R")
