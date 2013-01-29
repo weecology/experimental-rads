@@ -117,6 +117,8 @@ taxon[taxon=='reptile']<-'herpetofauna'
 #--------------------------------------------------------
 #          Variance partitioning analysis and results 
 #--------------------------------------------------------
+print ("--------------- variance partitioning results ----------------")
+print ("")
 
 #### Standardize the variables
 stdz_bc_rad = standardize(BCrad)
@@ -211,19 +213,23 @@ print ("")
 #---------------------------------------------------
 
 ################## plot histograms of change, Fig 1 ###################################
+par(mfrow=c(4,1), mar=c(3,3,0.5,0.5), oma=c(1.1,1,1,1))
+
 binwidth <- 0.2
 #Bray-Curtis dissimilarity: 0 = the same, 1 = completely different"
-hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "compositional similarity", 
-     col = "gray80", xlab = "", ylab = "")
+hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "Composition", 
+     col = "gray80", xlab = "Bray-Curtis dissimilarity", ylab = "")
 
-hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), 
-     col = "gray80",  xlab = "", ylab ="")
+hist(abs(percN), xlim = c(0, 700), ylim = c(0,40), breaks = seq(0, 700, by = 25), main = "Total Abundance",
+     col = "gray80", xlab = "Absolute percent difference", ylab = "")
 
-hist(abs(percN), xlim = c(0, 700), ylim = c(0,40), breaks = seq(0, 700, by = 25), 
-     col = "gray80", xlab = "", ylab = "")
+hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "Species Richness",  
+     col = "gray80",  xlab = "Absolute percent difference", ylab ="")
 
-hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = 0.11), main = "RAD similarity", 
-     xlab = "", ylab = "", col = "gray80")
+hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = 0.11), main = "Rank Abundance", 
+     xlab = "Bray-Curtis dissimilarity", ylab = "", col = "gray80")
+
+box("outer", lty="solid", col="black")
 
 
 ################# Figure 2. 1:1 plots of data ##########################################
@@ -296,7 +302,7 @@ for (iRow in 1:nrow(comps)){
         e = append(e, comparison_matrix[,2])
         r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
       }}}
-sigma_r2 = rsquare(c, e)
+relabun_r2 = rsquare(c, e)
 relabun_rmse = rmse(e, c)
 legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
 
@@ -310,10 +316,20 @@ plot(h$mids, h$counts/114, pch = 19, xlim = c(0,1), ylim = c(0,1), type = 'l', l
 #---------------------------------------------------
 #          Print statments - descriptive 
 #---------------------------------------------------
+print ("--------------- print statments for results ----------------")
+
 #print ranges for values
 print (paste("S ranges", min(CS,ES), "to", max(CS,ES), sep = " "))
 print (paste("N ranges", min(CN,EN), "to", max(CN,EN), sep = " "))
 print (paste("Bray-Curtis on composition ranges", round(min(BCcomp),4), "to", round(max(BCcomp),4), sep = " "))
+print("")
+
+#print r2 values
+print (paste("S R2 = ", S_r2))
+print (paste("N R2 = ", N_r2))
+print (paste("relative abundances R2 = ", relabun_r2))
+print (paste("J R2 = ", J_r2))
+print ("")
 
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
