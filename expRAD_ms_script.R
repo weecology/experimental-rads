@@ -38,6 +38,10 @@ sink("expRAD_results.txt", append=TRUE, split=TRUE)
 #--------------------------------------------------------------
 #          generate values and comparisons between the sites 
 #--------------------------------------------------------------
+#open plotting pdf window
+pdf("allRADs.pdf", 7, 10, paper = "letter", pointsize = 10)
+par(mfrow=c(6,4), mar=c(1,2,3,1), oma=c(1,1,1,1))
+
 
 #descriptive variables
 refID = c()
@@ -74,15 +78,17 @@ for (iRow in 1:nrow(comps)){
       # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
       if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
         # find categorical shapes (logseries vs. lognormal)
-        if(expers[which(expers[,2]==control),10] == 1) {
+        if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
          d = dist.test(a1, a2)
           Cshape = append(Cshape, d$con)
           Eshape = append(Eshape, d$exp)
           }
-        else {
+        else {      #if mean abundance, can't get the data, (needs integers)
           Cshape = append(Cshape, "ERROR")
           Eshape = append(Eshape, "ERROR")
           }
+        #plot the compared data
+        RAD_plot(control, experiment, a1, a2, taxa)
         # get summary statistics from comparisons
         BCrad = append(BCrad, BCdist(abundMerge(relabund(a1), relabund(a2))))
         BCS = append(BCS, BCdist(matrix(c(length(a1), length(a2)), nrow = 1, ncol = 2))) 
@@ -103,6 +109,9 @@ for (iRow in 1:nrow(comps)){
         EN = append(EN, sum(a2))
         Je = append(Je, round(SimpE(comms[which(comms[,2] == experiment),]),2))
       }}}
+
+dev.off()
+
 
 #collapse taxon types into broader categories so there aren't so many factors
 taxon[taxon=='carabid']<-'insect'
