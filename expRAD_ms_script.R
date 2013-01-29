@@ -326,7 +326,8 @@ dev.off()
 
 
 # histogram of R2 values
-hist(r2[r2>0], xlim = c(0,1), ylim = c(0,75), breaks = seq(0,1, by = 0.10), col = "gray40", freq = TRUE)
+par(mfrow=c(2,1))
+hist(r2[r2>0], xlim = c(0,1), ylim = c(0,75), breaks = seq(0,1, by = 0.10), col = "gray40", freq = TRUE, main = "R2 values")
 h = hist(r2[r2>0], xlim = c(0,1), ylim = c(0,1), breaks = seq(0,1, by = 0.10), col = "gray40", freq = FALSE, plot = FALSE)
 plot(h$mids, h$counts/114, pch = 19, xlim = c(0,1), ylim = c(0,1), type = 'l', lwd = 2, 
      bty = "n", xlab = "r2 bins", ylab = "proportion")
