@@ -209,6 +209,26 @@ RAD_plot_and_data = function(siteID1, siteID2, abundance1, abundance2, taxa){
   return (SAD_results)
 }
  
+RAD_plot = function(siteID1, siteID2, abundance1, abundance2, taxa){
+  #Input a numeric site ID, a list of species and a list of nonzero abundance. Makes a relative abundance Rank-abundance
+  #graph labeled with the string idenfier
+
+  #plot relative abundance, rank abunduance distributions
+  relabun1 = relabund(abundance1)
+  relabun2 = relabund(abundance2)
+  plot(NA, NA, xlab = '', ylab = '', xlim = c(0, max(c(length(abundance1), length(abundance2)))), 
+       ylim = c(0,max(c(max(relabun1),max(relabun2)))), cex.axis = 0.75)
+  lines(c(1:length(abundance1)), relabun1, type = 'l', pch = 20, cex = 2, lwd = 2)
+  lines(c(1:length(abundance2)), relabun2, type = 'l', pch = 20, cex = 2, lwd = 2, lty = 2, col = 'deeppink3')
+  legend('topright', c('control', 'experiment'), bty = 'n', lty = c(1,2), lwd = 2, col = c('black', 'deeppink3'), seg.len = 3, cex = 0.75)
+  #legend('topright', c('control', paste('mu, sigma = ', round(cont_par$mu,2), ', ', round(cont_par$sig,2)),
+  #                     'experiment', paste('mu, sigma = ', round(expt_par$mu,2),', ', round(expt_par$sig,2))), 
+  #      bty = 'n', lty = c(1,NA,2,NA), lwd = 2, col = c('black', NA, 'deeppink3', NA), cex = 0.75)
+  mtext('Relative Abundance', side = 2, line = 2, cex = 0.5)
+  mtext('Rank', side = 1, line = 2, cex = 0.5)
+  mtext(paste(taxa, ': ', siteID1, 'vs.', siteID2, sep = ' '), side = 3, line = .5, cex = 0.75)
+}
+
 
 relabund = function(abundances){
   # get relative abundances from a vector of raw abundances, rounded to 3 decimal places and sorted in decreasing order
