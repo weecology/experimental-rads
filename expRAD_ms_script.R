@@ -37,6 +37,10 @@ expers = read.csv("experiments_analysis_data.csv")
 # to existing file. output also sent to terminal. 
 sink("expRAD_results.txt", append=TRUE, split=TRUE)
 
+#--------------------------------------------------------------
+#          generate values and comparisons between the sites 
+#--------------------------------------------------------------
+
 #descriptive variables
 refID = c()
 cID = c()
@@ -111,6 +115,10 @@ taxon[taxon=='orthoptera ']<-'insect'
 taxon[taxon=='beetle']<-'insect'
 taxon[taxon=='microarthropods']<-'microarthropod'
 taxon[taxon=='reptile']<-'herpetofauna'
+
+#--------------------------------------------------------
+#          Variance partitioning analysis and results 
+#--------------------------------------------------------
 
 #### Standardize the variables
 stdz_bc_rad = standardize(BCrad)
@@ -200,6 +208,9 @@ print (paste("full model:", round(r2_full,4), "community variables:", round(r2_c
 print (paste("variance due to commmunity-level vars:", round(r2_full - r2_etype, 4), "variance due to experiment type:", round(r2_full - r2_comm_vars, 4), sep = " "))
 print ("")
 
+#---------------------------------------------------
+#          Print statments - descriptive 
+#---------------------------------------------------
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
 n_rmse = rmse(EN, CN); print (paste("root mean squared error for N: ", round(n_rmse,4)))
@@ -211,10 +222,14 @@ print ("")
 print ("The number of communities for logseries vs. lognormal RADs:")
 count_RAD_shapes(cID, eID, Cshape, Eshape)
 
+#print ranges for values
+
 #close sink file
 sink()
 
-#### Plotting the data
+#---------------------------------------------------
+#          Plot the data
+#---------------------------------------------------
 
 ################## plot histograms of change, Fig 1 ###################################
 binwidth <- 0.2
