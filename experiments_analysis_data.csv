@@ -14,13 +14,13 @@ Cano2010,443,2,fire,"annually burned and non-grazed, C",1,herpetofauna,1,grassla
 Cano2010,444,2,fire_and_grazing,"annually burned and grazed, D",1,herpetofauna,1,grassland,1,0
 Cleary2004,164,0,burning_and_logging,primary landscape in large unburned isolate,16,lepidopteran,1,tropical_forest,1,0
 Cleary2004,165,2,habitat_size,"primary landscape in small, unburned isolate (small habitat size)",16,lepidopteran,1,tropical_forest,1,0
-Cleary2004,166,2,logging,logged landscape in large unburned isolate,16,lepidopteran,1,tropical_forest,1,0
+Cleary2004,166,2,silivcultural_treatment,logged landscape in large unburned isolate,16,lepidopteran,1,tropical_forest,1,0
 Cleary2004,167,2,burning,once-burned forest,16,lepidopteran,1,tropical_forest,1,0
 Cleary2004,168,2,burning,twice-burned forest,21,lepidopteran,1,tropical_forest,1,0
 Cleary2004,169,2,burning,slash and burn agriculture area,16,lepidopteran,1,tropical_forest,1,0
 Cleary2004,170,0,burning_and_logging,primary landscape in large unburned isolate,16,odonate,1,tropical_forest,1,0
 Cleary2004,171,2,habitat_size,"primary landscape in small, unburned isolate (small habitat size)",16,odonate,1,tropical_forest,1,0
-Cleary2004,172,2,logging,logged landscape in large unburned isolate,16,odonate,1,tropical_forest,1,0
+Cleary2004,172,2,silivcultural_treatment,logged landscape in large unburned isolate,16,odonate,1,tropical_forest,1,0
 Cleary2004,173,2,burning,once-burned forest,16,odonate,1,tropical_forest,1,0
 Cleary2004,174,2,burning,twice-burned forest,21,odonate,1,tropical_forest,1,0
 Cleary2004,175,2,burning,slash and burn agriculture area,16,odonate,1,tropical_forest,1,0
@@ -41,9 +41,9 @@ Elek2001,263,2,silvicultural_treatment,5 yr old Norway spruce plantation,1,carab
 Elek2001,264,2,silvicultural_treatment,15 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1,0
 Elek2001,265,2,silvicultural_treatment,30 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1,0
 Elek2001,266,2,silvicultural_treatment,50 yr old Norway spruce plantation,1,carabid,1,evergreen_forest,1,0
-Enge1986,445,1,logging,clearcut pine forest with low-intensity site preparation (leaving a lot of understory vegetation and minimizing soil effects),1,herpetofauna,1,evergreen_forest,1,0
-Enge1986,446,1,logging,clearcut pine forest with high-intensity site preparation (used most-intense management tools and mechanized equipment),1,herpetofauna,1,evergreen_forest,1,0
-Enge1986,447,0,logging,uncut pine forest ,1,herpetofauna,1,evergreen_forest,1,0
+Enge1986,445,1,silivcultural_treatment,clearcut pine forest with low-intensity site preparation (leaving a lot of understory vegetation and minimizing soil effects),1,herpetofauna,1,evergreen_forest,1,0
+Enge1986,446,1,silivcultural_treatment,clearcut pine forest with high-intensity site preparation (used most-intense management tools and mechanized equipment),1,herpetofauna,1,evergreen_forest,1,0
+Enge1986,447,0,silivcultural_treatment,uncut pine forest ,1,herpetofauna,1,evergreen_forest,1,0
 Greenberg1994,417,2,fire,"high-intensity wildfire, salvage logging, and natural regeneration (HIB)",3,reptile,1,evergreen_forest,0,1
 Greenberg1994,418,2,fire,"clearcutting, roller-chopping, and broadcast-seeding (RC)",3,reptile,1,evergreen_forest,0,1
 Greenberg1994,419,2,fire,clearcutting and bracke-seeding (BK),3,reptile,1,evergreen_forest,0,1
