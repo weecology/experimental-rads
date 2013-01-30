@@ -367,7 +367,7 @@ print (paste("root mean squared error for relative abundances at each rank: ", r
 j_rmse = rmse(Je, Jc); print (paste("root mean squared error for J: ", round(j_rmse,4)))
 print ("")
 
-#count the communities displaying various shapes. Note: doesn't take into account unique ID, could be repeats
+#count the communities displaying various shapes. This Does take into account duplicates. Should be correct
 print ("The number of communities for logseries vs. lognormal RADs:")
 count_RAD_shapes(cID, eID, Cshape, Eshape)
 
