@@ -341,10 +341,10 @@ h = hist(r2[r2>0], xlim = c(0,1), ylim = c(0,1), breaks = seq(0,1, by = 0.10), c
 plot(h$mids, h$counts/114, pch = 19, xlim = c(0,1), ylim = c(0,1), type = 'l', lwd = 2, 
      bty = "n", xlab = "r2 bins", ylab = "proportion")
 
-#---------------------------------------------------
-#          Print statments - descriptive 
-#---------------------------------------------------
-print ("--------------- print statments for results ----------------")
+#-------------------------------------------------------------------
+#          Print statments - descriptive info for the txt file
+#-------------------------------------------------------------------
+print ("--------------- summary of results ----------------")
 
 #print ranges for values
 print (paste("S ranges", min(CS,ES), "to", max(CS,ES), sep = " "))
