@@ -364,7 +364,7 @@ return(ranks_data)
 
 
 count_RAD_shapes = function (cID, eID, Cshape, Eshape){
-# return the number of unique shapes across the unique IDs
+# return the number of unique shapes across the unique IDs, still has a few redundancies
   IDs = unique(c(unique(cID), unique(eID)))
   allids = c(cID, eID)
   allshapes = c(Cshape, Eshape)
