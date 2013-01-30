@@ -252,7 +252,7 @@ dev.off()
 
 ################# Figure 2. 1:1 plots of data ##########################################
 pdf("Figure2_scatterplots.pdf", 2, 6, pointsize = 10)
-par(mfrow=c(4,1), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1))
+par(mfrow=c(4,1), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1))     #FIXME: SWAP AXES FOR CONTROL (Y) AND EXPERIMENTS (X) ?
 
 # Fig 2A - plots for N
 plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
