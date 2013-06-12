@@ -20,7 +20,8 @@ library(hydroGOF)
 #---------------------------------------------------------------------------------
 #          setup - select wd, import data, source code,  file to collect results
 #---------------------------------------------------------------------------------
-wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
+#wd = "C://Users//sarah//Documents//GitHub//experimental-rads"
+wd = "/Users/sarah/Documents/GitHub/experimental-rads"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
