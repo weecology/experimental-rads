@@ -328,7 +328,7 @@ for (iRow in 1:nrow(comps)){
       }}}
 relabun_r2 = rsquare(c, e)
 relabun_rmse = rmse(e, c)
-legend('topleft', paste('r2 = ', round(sigma_r2,3), sep = ''), bty = 'n', cex = 0.75)
+legend('topleft', paste('r2 = ', round(relabun_r2,3), sep = ''), bty = 'n', cex = 0.75)
 mtext('Rank Abundance', side = 3, line = -0.25, cex = 0.75)
 
 box("outer", lty = "solid", col = "black")

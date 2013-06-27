@@ -14,7 +14,7 @@ source("ExpRADsFunctions.R")   #Run the code containing the functions
 
 comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
 comps = read.csv("comparison_analysis_data.csv")
-names(comps)<-c('ref', 'controID','expID')
+  names(comps)<-c('ref', 'controID','expID')
 expers = read.csv("experiments_analysis_data.csv")
 
 #--------------------------------------------------------------
@@ -51,6 +51,10 @@ c = as.numeric()
 e = as.numeric()
 r2 = as.numeric()
 
+compc = as.numeric()
+compe = as.numeric()
+compr2 = as.numeric()
+
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
   experiment = comps[iRow,3]  # find experiment in pair
@@ -70,6 +74,15 @@ for (iRow in 1:nrow(comps)){
       c = append(c, comparison_matrix[,1])
       e = append(e, comparison_matrix[,2])
       r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
+      # record all composition-specific values in a comparison matrix
+      comparison = subset(comms[which(comms$siteID == control | comms$siteID == experiment),])
+      comparison = reshape_data(comparison) #table species & abundance in paired communities 
+      comparison = comparison[,c(2:ncol(comparison))]
+      comparison[1,] = comparison[1,]/sum(comparison[1,]) #convert to relabundance
+      comparison[2,] = comparison[2,]/sum(comparison[2,]) #convert to relabundance
+      compc = append(compc, as.numeric(comparison[1,]))
+      compe = append(compe, as.numeric(comparison[2,]))
+      compr2 = append(compr2, rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])))
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
         d = dist.test(a1, a2)
@@ -130,11 +143,13 @@ taxon[taxon=='reptile']<-'herpetofauna'
 #-------------------------------------
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
+comp_rmse = round(rmse(compe, compc),4)
 n_rmse = round(rmse(EN, CN),4)
 s_rmse = round(rmse(ES, CS),4)
 relabun_rmse = round(rmse(e,c),4)
 j_rmse = round(rmse(Je, Jc),4)
 
+comp_r2 = round(rsquare(compc, compe),4)
 n_r2 = round(rsquare(CN,EN),4)
 s_r2 = round(rsquare(CS,ES),4)
 relabun_r2 = round(rsquare(c,e),4)
