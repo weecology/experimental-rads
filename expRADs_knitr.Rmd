@@ -180,12 +180,3 @@ hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = binwidth), ma
 box("outer", lty="solid", col="black")
 
 ```
-
-**Table 1.** Table showing results from variance partitioning analysis. Since we used both Bray-Curtis dissimilarity and absolute percent difference to characterize change in species richness (S) and total abundance (N) between compared sites, we used two models in the variance partitioning analysis: A) We tested the explanatory power of Bray-Curtis dissimilarity of species composition, S, and N, and the interaction between Bray-Curtis dissimilarity in S and N (since they are somewhat related measures) on the observed Bray-Curtis dissimilarity of rank abundance distributions. B) We tested the explanatory power of Bray-Curtis dissimilarity of species composition, absolute percent difference in S, and N, and the interaction between absolute percent difference in S and N on the observed Bray-Curtis dissimilarity of rank abundance distributions. 
-
-
-Model                |  Full Model R2 |  Comp R2     |  S & N R2  |  Comp var.    |  S & N var
--------              |  ------------- |  -------     |  --------  |  ---------    |  ---------
-*BC dissim. model*   |  `r r2_full`   | `r r2_comp`  | `r r2_sn`  | `r var_comp`  | `r var_sn`
-*Perc dissim. model* |  `r r2_pfull`  | `r r2_pcomp` | `r r2_psn` | `r var_pcomp` | `r var_psn`
-
