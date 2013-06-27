@@ -1,5 +1,5 @@
 ```{r, echo=FALSE, results='hide'}
-source('/Users/sarah/Documents/Projects/exp_RADs_md/expRADs_md_script.r')
+source('/Users/sarah/Documents/GitHub/experimental-rads/expRADs_md_script.r')
 ```
 
 **Title:** Assessing the impact of perturbations on taxonomic biodiversity using a cross-community approach
@@ -51,7 +51,7 @@ To compare measures of relative abundance at each rank (a proxy for the shape of
 To determine the explanatory influence of species composition and community-level S and N on observed variation in the form of paired rank abundance distributions, we standardized all the data to make it compatible for statistical analysis and used standardized parameters in a variance-partitioning framework with multiple regression (Legendre and Legendre 2012) to determine the relative importance of composition and of community-level S and N in explaining the observed variation among paired RADs. We analyzed the data using both standardized BC dissimilarity in S and N and standardized absolute percent difference in S and N to avoid bias in the metric of difference chosen, since there is not a well-recognized way to characterize differences in S and N across disparate communities. We performed the analysis using all the data (Table 1), and using a smaller subset of the data including only communities with N >= 300 (n = 53, pairs = 37) to avoid bias by including communities which were more likely to be under sampled (McGill 2003), by including experimental type and taxonomic group as predictors for observed variation in the rank abundance distribution (Appendix C). Data and all necessary code for replicating the results are available online  and in the Supplement. 
 
 **Results**
-All communities experienced compositional differences between compared manipulated and control sites (Fig 2a; BC values ranged `r round(min(BCcomp),3)`-`r round(max(BCcomp),3)`). Many communities experienced a change in total abundance (Fig 1a, Fig 2b; R2=`r n_r2`, `r n_rmse`; BC values ranged `r round(min(BCN),3)`-`r round(max(BCN),3)`). Most communities experienced relatively small magnitude change in species richness (Fig 1b, Fig 2c; R2=`r s_r2`, rmse=`r s_rmse`, BC values ranged `r round(min(BCS),3)`-`r round(max(BCS),3)`). Change in the abundance at each rank for paired RADs (Fig1d, Fig 2d; R2=`r relabun_r2`, rmse=`r relabun_rmse`, BC values ranged `r round(min(BCrad),3)`-`r round(max(BCrad),3)`) and in evenness (Fig1c; R2=`r j_r2`, rmse=`r j_rmse`) were also generally small magnitude. 
+All communities experienced compositional differences between compared manipulated and control sites (Fig 1a, Fig 2a; R2=`r comp_r2`, rmse=`r comp_rmse`, BC values ranged `r round(min(BCcomp),3)`-`r round(max(BCcomp),3)`). Many communities experienced a change in total abundance (Fig 1b, Fig 2b; R2=`r n_r2`, rmse=`r n_rmse`; BC values ranged `r round(min(BCN),3)`-`r round(max(BCN),3)`). Most communities experienced relatively small magnitude change in species richness (Fig 1c, Fig 2c; R2=`r s_r2`, rmse=`r s_rmse`, BC values ranged `r round(min(BCS),3)`-`r round(max(BCS),3)`). Change in the abundance at each rank for paired RADs (Fig1e, Fig 2e; R2=`r relabun_r2`, rmse=`r relabun_rmse`, BC values ranged `r round(min(BCrad),3)`-`r round(max(BCrad),3)`) and in evenness (Fig 1d, Fig 2d; R2=`r j_r2`, rmse=`r j_rmse`, BC values ranged `r round(min(BCJ),3)`-`r round(max(BCJ),3)`) were also generally small magnitude. 
 	
 Although we were not explicitly testing RAD fit to a specific model, we found that nearly all our communities were best described by the log-series (n=`r shapes[3]`), rather than the lognormal, distribution (n=`r shapes[2]`). Communities reporting mean abundance could not be weighted using our function (n=`r shapes[1]`).  Although fit to lognormal distribution may indicate that that a community has been well-sampled (Preston 1948, McGill et al. 2007, Ulrich et al. 2010), other models predict the log-series distribution (Fisher et al. 1943, Harte 2011). Our finding is consistent with White et al. (2012), who also found that log-series was a good descriptor of communities across a wide range of taxonomic groups and ecosystems.  
 
@@ -71,112 +71,82 @@ A major challenge facing biodiversity research is to bridge the existing gap bet
 Figures and Tables:
 -------------------
 
-**Figure 1.** Panel of 1:1 plots with R2 for a) total abundance, b) species richness, c) Simpson’s evenness, and d) relative abundance at each rank of the RAD. Control data is on the x-axis and experimental data is on the y-axis. Fit to the 1:1 line (red-dashed line) suggests no change in the parameter among the paired control-experiment comparison. 
+**Figure 1.** Panel of 1:1 plots with R2 for a) species composition relative abundance b) total abundance, c) species richness, d) rank evenness, and d) relative abundance at each rank of the RAD. Control data is on the x-axis and experimental data is on the y-axis. Fit to the 1:1 line (dashed line) suggests no change in the parameter among the paired control-experiment comparison. 
 
-```{r fig.width=3, fig.height=7, echo=FALSE}
+```{r fig.width=3, fig.height=7.5, echo=FALSE}
 par(mfrow=c(5,1), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1)) 
 
-# Fig 2A - plots for Composition
+# Fig 1A - plots for Composition
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
 abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
-
-for (iRow in 1:nrow(comps)){
-  control = comps[iRow,2]  #find control in pair
-  experiment = comps[iRow,3]  # find experiment in pair
-    #Check that < 10% of individuals are unidentified. If meets criteria, continue
-    if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
-      #Get a vector of all abundances for each species in the control & exp comms
-      abun_control = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) 
-      abun_exprmt = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8]))
-      #Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
-      if (length(abun_control) > 4 & length(abun_exprmt) > 4 & sum(abun_control) > 29 & sum(abun_exprmt) > 29){
-        comparison = subset(comms[which(comms$siteID == control | comms$siteID == experiment),])
-            comparison = reshape_data(comparison) #table species & abundance in paired communities 
-            comparison = comparison[,c(2:ncol(comparison))]
-            comparison[1,] = comparison[1,]/sum(comparison[1,]) #convert to relabundance
-            comparison[2,] = comparison[2,]/sum(comparison[2,]) #convert to relabundance
-        #add points to the open plot window
-        points(comparison[1,], comparison[2,], pch = 19) 
-      }}}
+points(compc, compe, pch = 19)
 mtext('Species Composition Relative Abundance', side = 3, line = -0.25, cex = 0.75)
 
-
-# Fig 2B - plots for N
+# Fig 1B - plots for N
 plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
      xlab = '', ylab = '', bty = 'n')
 abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500), xlab = "", ylab = "", main = ""))
 mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
 
-# Fig 2C - plots for S
+# Fig 1C - plots for S
 plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
      xlab = '', ylab = '', bty = 'n')
 abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CS, ES, pch = 19, xlim = c(5,200), ylim = c(5,200), xlab = 'c', ylab = '', main = '')
 mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
 
-# Fig 2D - plots for evenness
+# Fig 1D - plots for evenness
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty = "n")
 abline(0,1, lty = 2, lwd = 1, col = 'gray20')
 points(Jc, Je, pch = 19, xlim = c(0,1), ylim = c(0,1), xlab = '', ylab = '', main = '')
 mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
 
-#### Fig 2E.  compare relative abundance at each rank in all paired sites
+#### Fig 1E.  compare relative abundance at each rank in all paired sites
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
 abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
-
-for (iRow in 1:nrow(comps)){
-  control = comps[iRow,2]  #find control in pair
-  experiment = comps[iRow,3]  # find experiment in pair
-    #Check that < 10% of individuals are unidentified. If meets criteria, continue
-    if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
-      #Get a vector of all abundances for each species in the control & exp comms
-      abun_control = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) 
-      abun_exprmt = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8]))
-      #Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
-      if (length(abun_control) > 4 & length(abun_exprmt) > 4 & sum(abun_control) > 29 & sum(abun_exprmt) > 29){
-        relcon = relabund(abun_control) #make the lengths the same!
-        relexp = relabund(abun_exprmt)  #make the lengths the same!
-        comparison_matrix = abundMerge(relcon, relexp)
-        #add points to the open plot window
-        points(comparison_matrix[,1], comparison_matrix[,2], pch = 19) 
-      }}}
+points(c, e, pch = 19)
 mtext('Relative Rank Abundance', side = 3, line = -0.25, cex = 0.75)
 
 box("outer", lty = "solid", col = "black")
 ```
 
-**Figure 2.** Panel showing the change in the four parameters among the paired control-experiment sites: a) Bray-Curtis dissimilarity in species composition, b) absolute percent change in total abundance, c) absolute percent change in species richness, d) Bray-Curtis dissimilarity of the relative abundance at each rank for compared RADs. 
+**Figure 2.** Panel showing the change in the four parameters among the paired control-experiment sites: a) Bray-Curtis dissimilarity in species composition, b) absolute percent change in total abundance, c) absolute percent change in species richness, d) Bray-Curtis dissimilarity of rank evenness, and e) Bray-Curtis dissimilarity of the relative abundance at each rank for compared RADs. 
 
-```{r fig.width=3, fig.height=7, echo=FALSE}
+```{r fig.width=3, fig.height=7.5, echo=FALSE}
 par(mfrow=c(5,1), mar=c(3,1.5,2,0.5), oma=c(1.5,2,1,1))
 
 binwidth <- 0.1
 #Bray-Curtis dissimilarity: 0 = the same, 1 = completely different"
+# Fig 2A. Species composition
 hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "",
      col = "gray80", xlab = "", ylab = "")
     mtext('Composition', side = 3, line = -0.75)
     mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
+# Fig 2B. Abundance
 hist(abs(percN), xlim = c(0, 700), ylim = c(0,50), breaks = seq(0, 700, by = 25), main = "",
      col = "gray80", xlab = "", ylab = "")
     mtext('Total Abundance', side = 3, line = -0.75)
     mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
 
+# Fig 2C. Species Richness
 hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "",  
      col = "gray80",  xlab = "", ylab ="")
     mtext('Species Richness', side = 3, line = -0.75)
     mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
 
+# Fig 2D. Rank Evenness
 hist(BCJ, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = binwidth), main = "",
      xlab = "", ylab = "", col = "gray80")
     mtext('Rank Evenness', side = 3, line = -0.75)
     mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
+# Fig 2E. Relative Rank Abundance Dissimilarity
 hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = binwidth), main = "", 
      xlab = "", ylab = "", col = "gray80")
     mtext('Rank Abundance', side = 3, line = -0.75)
     mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
-box("outer", lty="solid", col="black")
 
+box("outer", lty="solid", col="black")
 ```
