@@ -13,15 +13,17 @@ setwd(wd)
 source("ExpRADsFunctions.R")   #Run the code containing the functions
 
 comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
-comps = read.csv("comparison_analysis_data.csv")
+#comps = read.csv("comparison_analysis_data.csv") #this file is unordered. Looks less nice when plotted.
+comps = read.csv("orderedcomparisons.csv")
   names(comps)<-c('ref', 'controID','expID')
 expers = read.csv("experiments_analysis_data.csv")
+
 
 #--------------------------------------------------------------
 #          generate values and comparisons between the sites 
 #--------------------------------------------------------------
 #open plotting pdf window
-pdf("allRADs.pdf", 7, 10, paper = "letter", pointsize = 10)
+pdf("allRADs_orderedbytaxa.pdf", 7, 10, paper = "letter", pointsize = 10)
 par(mfrow=c(5,4), mar=c(1.5,2,3,1), oma=c(1,1,1,1))
 
 #descriptive variables
