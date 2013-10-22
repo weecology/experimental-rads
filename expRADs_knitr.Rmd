@@ -66,40 +66,50 @@ Figures and Tables:
 
 **Figure 1.** Panel of 1:1 plots with R2 for a) species composition relative abundance b) total abundance, c) species richness, d) rank evenness, and d) relative abundance at each rank of the RAD. Control data is on the x-axis and experimental data is on the y-axis. Fit to the 1:1 line (dashed line) suggests no change in the parameter among the paired control-experiment comparison. 
 
-```{r fig.width=3, fig.height=7.5, echo=FALSE}
+```{r fig.width=3, fig.height=10, echo=FALSE}
 par(mfrow=c(5,1), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1)) 
 
 # Fig 1A - plots for Composition
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
 abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
 points(compc, compe, pch = 19)
-mtext('Species Composition Relative Abundance', side = 3, line = -0.25, cex = 0.75)
+#mtext('Species Composition', side = 3, line = -0.25, cex = 0.75)
+mtext('relative abundance', side = 2, line = 2, cex = 0.75)
+mtext('relative abundance', side = 1, line = 2, cex = 0.75)
 
 # Fig 1B - plots for N
 plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
      xlab = '', ylab = '', bty = 'n')
 abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500), xlab = "", ylab = "", main = ""))
-mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
+#mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
+mtext('total abundance', side = 2, line = 2, cex = 0.75)
+mtext('total abundance', side = 1, line = 2, cex = 0.75)
 
 # Fig 1C - plots for S
 plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
      xlab = '', ylab = '', bty = 'n')
 abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
 points(CS, ES, pch = 19, xlim = c(5,200), ylim = c(5,200), xlab = 'c', ylab = '', main = '')
-mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
+#mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
+mtext('species richness', side = 2, line = 2, cex = 0.75)
+mtext('species richness', side = 1, line = 2, cex = 0.75)
 
 # Fig 1D - plots for evenness
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty = "n")
 abline(0,1, lty = 2, lwd = 1, col = 'gray20')
 points(Jc, Je, pch = 19, xlim = c(0,1), ylim = c(0,1), xlab = '', ylab = '', main = '')
-mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
+#mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
+mtext("Simpson's evenness", side = 2, line = 2, cex = 0.75)
+mtext("Simpson's evenness", side = 1, line = 2, cex = 0.75)
 
 #### Fig 1E.  compare relative abundance at each rank in all paired sites
 plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
 abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
 points(c, e, pch = 19)
-mtext('Relative Rank Abundance', side = 3, line = -0.25, cex = 0.75)
+#mtext('Relative Rank Abundance', side = 3, line = -0.25, cex = 0.75)
+mtext('relative abundance', side = 2, line = 2, cex = 0.75)
+mtext('relative abundance', side = 1, line = 2, cex = 0.75)
 
 box("outer", lty = "solid", col = "black")
 ```
@@ -114,32 +124,33 @@ binwidth <- 0.1
 # Fig 2A. Species composition
 hist(BCcomp, xlim = c(0,1), ylim = c(0,50), breaks = seq(0, 1, by = binwidth), main = "",
      col = "gray80", xlab = "", ylab = "")
-    mtext('Composition', side = 3, line = -0.75)
-    mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
+#    mtext('Composition', side = 3, line = -0.75)
+    mtext('composition Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
 # Fig 2B. Abundance
-hist(abs(percN), xlim = c(0, 700), ylim = c(0,50), breaks = seq(0, 700, by = 25), main = "",
+hist(abs(percN), xlim = c(0, 500), ylim = c(0,30), breaks = seq(0, 700, by = 10), main = "",
      col = "gray80", xlab = "", ylab = "")
-    mtext('Total Abundance', side = 3, line = -0.75)
-    mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
+#    mtext('Total Abundance', side = 3, line = -0.75)
+    mtext('total abundance percent difference', side = 1, line = 2, cex = 0.75)
 
 # Fig 2C. Species Richness
 hist(abs(percS), xlim = c(0,120), ylim = c(0,40), breaks = seq(0, 120, by = 10), main = "",  
      col = "gray80",  xlab = "", ylab ="")
-    mtext('Species Richness', side = 3, line = -0.75)
-    mtext('Absolute percent difference', side = 1, line = 2, cex = 0.75)
+#    mtext('Species Richness', side = 3, line = -0.75)
+    mtext('species richness percent difference', side = 1, line = 2, cex = 0.75)
+    mtext('number of paired comparisons', side = 2, line = 2.25, cex = 0.75)
 
 # Fig 2D. Rank Evenness
-hist(BCJ, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = binwidth), main = "",
+hist(BCJ, xlim = c(0,1), ylim = c(0,60), breaks = seq(0, 1, by = binwidth), main = "",
      xlab = "", ylab = "", col = "gray80")
-    mtext('Rank Evenness', side = 3, line = -0.75)
-    mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
+#    mtext('Rank Evenness', side = 3, line = -0.75)
+    mtext('rank evenness Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
 # Fig 2E. Relative Rank Abundance Dissimilarity
-hist(BCrad, xlim = c(0,1), ylim = c(0,70), breaks = seq(0, 1, by = binwidth), main = "", 
+hist(BCrad, xlim = c(0,1), ylim = c(0,60), breaks = seq(0, 1, by = binwidth), main = "", 
      xlab = "", ylab = "", col = "gray80")
-    mtext('Rank Abundance', side = 3, line = -0.75)
-    mtext('Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
+#    mtext('Rank Abundance', side = 3, line = -0.75)
+    mtext('rank abundance Bray-Curtis dissimilarity', side = 1, line = 2, cex = 0.75)
 
 box("outer", lty="solid", col="black")
 ```
