@@ -219,6 +219,44 @@ print (paste("variance due to commmunity-level vars:", round(r2_full - r2_etype,
 print ("")
 
 #---------------------------------------------------
+#          Null modeling for abundance
+#---------------------------------------------------
+Nresult = c()
+ControlID = as.numeric()
+ExperimentID = as.numeric()
+
+for (iRow in 1:nrow(comps)){
+  control = comps[iRow,2]  #find control in pair
+  experiment = comps[iRow,3]  # find experiment in pair
+  taxa = as.character(expers[which(expers[,2]==control),7])# find taxonomic group from experiments table
+  type = as.character(expers[which(expers[,2]==control),4]) # find experiment type from experiments table
+  ref = as.character(comps[iRow,1])
+  # Check that < 10% of individuals are unidentified. If meets criteria, continue
+  if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
+    a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) #vector of control abundances
+    a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8])) #vector of exp abundances
+    # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
+    if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
+      # run null model
+      data = subset(comms[which(comms$siteID == control | comms$siteID == experiment),c(2,5,6,8)])
+      data$spname = paste(data$genus, data$species, sep = ".")
+      data = data[,c(1,4,5)]
+      #transpose data to make siteXsp matrix
+      site_sp <- cast(data, siteID ~ spname, value = "abundance")
+      site_sp <- as.data.frame(site_sp)
+      site_sp[is.na(site_sp)] <- 0
+      #run null test
+      result = NullCommunities(site_sp)
+      Nresult = append(Nresult, result)
+      ControlID = append(ControlID, control)
+      ExperimentID = append(ExperimentID, experiment)
+    }
+  }
+}
+
+nullresults=cbind(Nresult, ControlID, ExperimentID)
+
+#---------------------------------------------------
 #          Plot the data
 #---------------------------------------------------
 
