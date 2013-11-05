@@ -1,17 +1,17 @@
 ##### This is the source code for use with Experimental_RADs.R, the Experiments and Macroecology project
 
-library(vegan)
-library(BiodiversityR)
-library(plotrix)
-library(graphics)
-library(CCA)
-library(VGAM)
-library(nlme)
-library(lme4)
-library(languageR)
-library(poilog)
-library(scatterplot3d)
-library(hydroGOF)
+require(vegan)
+require(BiodiversityR)
+require(plotrix)
+require(graphics)
+require(CCA)
+require(VGAM)
+require(nlme)
+require(lme4)
+require(languageR)
+require(poilog)
+require(scatterplot3d)
+require(hydroGOF)
 
 # All files should be organized as such:
 # RAD: SiteID | experiment/control | year | genus | species | id2species | abundance
