@@ -381,16 +381,16 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 
 #----- Null Modeling Functions, credit to B. Weinstein (SBU)
 
-nullN<-function(siteXspp2){
+nullN<-function(siteXspp){
 # The total N (summed across both sites) remains the same, but total N observed at each site
 # is allowed to differ due to the species-level randomizations.
   
   #Create an output matrix
-  out<-matrix(nrow=nrow(siteXspp2),ncol=ncol(siteXspp2))
+  out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
   
   #Draw new abundance distribution
-  for (x in 1:ncol(siteXspp2)){
-    totalN<-sum(siteXspp2[,x])
+  for (x in 1:ncol(siteXspp)){
+    totalN<-sum(siteXspp[,x])
     N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
     N2<-totalN - N1
     out[,x]<-c(N1,N2)
