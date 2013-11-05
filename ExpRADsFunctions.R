@@ -379,6 +379,44 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 }
 
 
+# Null Modeling Function
+# input paired communities in site x species matrix, run randomization test
+# to determine if difference in N is > than expected by random
+
+NullCommunities<-function(siteXspp){
+  Nboth<-rowSums(siteXspp)
+  Tstar<-Nboth[[1]] - Nboth[[2]]
+  #Get observed data
+  
+  
+  nullN<-function(){
+    #Create an output matrix
+    out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
+    
+    #Draw new abundance distribution
+    for (x in 1:ncol(siteXspp)){
+      totalN<-sum(siteXspp[,x])
+      N1<-sample(1:totalN,1)
+      N2<-totalN - N1
+      out[,x]<-c(N1,N2)
+    }
+    
+    #Compute difference in abundances
+    Nboth<-rowSums(out)
+    Tstar<-Nboth[[1]] - Nboth[[2]]
+    return(Tstar)}
+  
+  #replicate null distribution, decide the number of randomizations n=X
+  nullDistribution<-replicate(n=100,expr=nullN())
+  
+  #Find quantile of the null distribution for the observed test statistic
+  quant<-ecdf(nullDistribution) (Tstar)      
+  
+  #output the quantile
+  if(quant > .95 | quant < .05) {decision<-"Sign."}
+  if(quant < .95 | quant > .05) {decision<-"Random"}
+  
+  return(decision)}
 
 
 
