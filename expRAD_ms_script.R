@@ -222,6 +222,7 @@ print ("")
 #          Null modeling for abundance
 #---------------------------------------------------
 Nresult = c()
+quant = as.numeric()
 ControlID = as.numeric()
 ExperimentID = as.numeric()
 
@@ -247,15 +248,22 @@ for (iRow in 1:nrow(comps)){
       site_sp[is.na(site_sp)] <- 0
       site_sp2 = site_sp[,-1] #take out site column for input to NullCommunities fxn
       #run null test
-      result = NullCommunities(site_sp2)
-      Nresult = append(Nresult, result)
+      result = NullCommunityN(site_sp2)
+      Nresult = append(Nresult, result[[1]])
+      quant = append(quant, result[[2]])
       ControlID = append(ControlID, control)
       ExperimentID = append(ExperimentID, experiment)
     }
   }
 }
 
-nullresults=cbind(Nresult, ControlID, ExperimentID)
+nullresults=cbind(Nresult, quant, ControlID, ExperimentID)
+
+#find CN and EN which were flagged by null model
+nsig = which(Nresult == "Sign.", arr.ind = T)
+csigN = CN[nsig]
+esigN = EN[nsig]
+
 
 #---------------------------------------------------
 #          Plot the data
@@ -302,8 +310,9 @@ plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
 #polygon(x, y, border = NA, col = "lightpink")
 #y2 = c(1.5*(0:8000), (8000:0)/1.5)
 #polygon(x, y2, border = NA, col = "lightgoldenrod1")
-abline(0, 1, lty = 2, lwd = 1, col = 'gray20')
-points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500), xlab = "", ylab = "", main = ""))
+points(CN, EN, pch = 19, col = "gray50")
+points(csigN, esigN, pch = 19, cex = 1.5, col = "black")
+abline(0, 1, lty = 2, lwd = 1, col = 'black')
 N_r2 = rsquare(CN, EN)
 legend('topleft', paste('r2 = ', round(N_r2,3), sep = ''), bty = 'n', cex = 0.75)
 mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)

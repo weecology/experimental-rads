@@ -379,35 +379,39 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 }
 
 
-# Null Modeling Functions, credit to B. Weinstein (SBU)
+#----- Null Modeling Functions, credit to B. Weinstein (SBU)
 
-NullCommunities<-function(siteXspp){
+nullN<-function(siteXspp2){
+# The total N (summed across both sites) remains the same, but total N observed at each site
+# is allowed to differ due to the species-level randomizations.
+  
+  #Create an output matrix
+  out<-matrix(nrow=nrow(siteXspp2),ncol=ncol(siteXspp2))
+  
+  #Draw new abundance distribution
+  for (x in 1:ncol(siteXspp2)){
+    totalN<-sum(siteXspp2[,x])
+    N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
+    N2<-totalN - N1
+    out[,x]<-c(N1,N2)
+  }
+  
+  #Compute difference in abundances
+  Nboth<-rowSums(out)
+  Tstar<-Nboth[[1]] - Nboth[[2]]
+  return(Tstar)
+}
+
+NullCommunityN<-function(siteXspp){
 # input paired communities in site x species matrix, run randomization test
 # to determine if difference in N is > than expected by random
 # randomizes the abundance of each species in the paired communities, while still assuming
 # that the total number of individuals within each species was observed. Note that this may also 
 # change observed S for each site and/or form of abundance distribution (not analyzed here).
-# The total N (summed across both sites) remains the same, but total N observd at each site
-# is allowed to differ due to the species-level randomizations.
-  #Create an output matrix
+
+  #create an output matrix
   Nboth_obs<-rowSums(siteXspp)
   Tstar_obs<-Nboth_obs[[1]] - Nboth_obs[[2]] #OBSERVED: control N - manipulated N
-  
-  nullN<-function(siteXspp2){
-    #Create an output matrix
-    out<-matrix(nrow=nrow(siteXspp2),ncol=ncol(siteXspp2))
-    #Draw new abundance distribution
-    for (x in 1:ncol(siteXspp2)){
-      totalN<-sum(siteXspp2[,x])
-      N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
-      N2<-totalN - N1
-      out[,x]<-c(N1,N2)
-    }
-    #Compute difference in abundances
-    Nboth<-rowSums(out)
-    Tstar<-Nboth[[1]] - Nboth[[2]]
-    return(Tstar)
-  }
   
   #replicate null distribution, decide the number of randomizations n=X
   nullDistribution<-replicate(n=100,expr=nullN(siteXspp))
@@ -417,9 +421,10 @@ NullCommunities<-function(siteXspp){
   
   #output the quantile
   if(quant > .95 | quant < .05) {decision<-"Sign."}
-  if(quant < .95 | quant > .05) {decision<-"Random"}
+  else { decision <- "Random"}
+  #if(quant < .95 & quant > .05) {decision<-"Random"}
   
-  return(decision)
+  return(as.list(c(decision, as.numeric(quant))))
 }
 
 
