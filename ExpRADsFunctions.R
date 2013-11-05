@@ -390,38 +390,36 @@ NullCommunities<-function(siteXspp){
 # The total N (summed across both sites) remains the same, but total N observd at each site
 # is allowed to differ due to the species-level randomizations.
   #Create an output matrix
-  Nboth<-rowSums(siteXspp)
-  Tstar<-Nboth[[1]] - Nboth[[2]]
-  #Get observed data
-  
+  Nboth_obs<-rowSums(siteXspp)
+  Tstar_obs<-Nboth_obs[[1]] - Nboth_obs[[2]] #OBSERVED: control N - manipulated N
   
   nullN<-function(){
     #Create an output matrix
     out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
-    
     #Draw new abundance distribution
     for (x in 1:ncol(siteXspp)){
       totalN<-sum(siteXspp[,x])
-      N1<-sample(1:totalN,1)
+      N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
       N2<-totalN - N1
       out[,x]<-c(N1,N2)
     }
-    
     #Compute difference in abundances
     Nboth<-rowSums(out)
     Tstar<-Nboth[[1]] - Nboth[[2]]
-    return(Tstar)}
+    return(Tstar)
+  }
   
   #replicate null distribution, decide the number of randomizations n=X
   nullDistribution<-replicate(n=100,expr=nullN())
   
   #Find quantile of the null distribution for the observed test statistic
-  quant<-ecdf(nullDistribution) (Tstar)      
+  quant<-ecdf(nullDistribution) (Tstar_obs)      
   
   #output the quantile
   if(quant > .95 | quant < .05) {decision<-"Sign."}
   if(quant < .95 | quant > .05) {decision<-"Random"}
   
-  return(decision)}
+  return(decision)
+}
 
 
