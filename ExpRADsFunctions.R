@@ -379,11 +379,17 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 }
 
 
-# Null Modeling Function
-# input paired communities in site x species matrix, run randomization test
-# to determine if difference in N is > than expected by random
+# Null Modeling Functions, credit to B. Weinstein (SBU)
 
 NullCommunities<-function(siteXspp){
+# input paired communities in site x species matrix, run randomization test
+# to determine if difference in N is > than expected by random
+# randomizes the abundance of each species in the paired communities, while still assuming
+# that the total number of individuals within each species was observed. Note that this may also 
+# change observed S for each site and/or form of abundance distribution (not analyzed here).
+# The total N (summed across both sites) remains the same, but total N observd at each site
+# is allowed to differ due to the species-level randomizations.
+  #Create an output matrix
   Nboth<-rowSums(siteXspp)
   Tstar<-Nboth[[1]] - Nboth[[2]]
   #Get observed data
@@ -417,7 +423,5 @@ NullCommunities<-function(siteXspp){
   if(quant < .95 | quant > .05) {decision<-"Random"}
   
   return(decision)}
-
-
 
 
