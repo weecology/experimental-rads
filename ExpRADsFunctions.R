@@ -393,12 +393,12 @@ NullCommunities<-function(siteXspp){
   Nboth_obs<-rowSums(siteXspp)
   Tstar_obs<-Nboth_obs[[1]] - Nboth_obs[[2]] #OBSERVED: control N - manipulated N
   
-  nullN<-function(){
+  nullN<-function(siteXspp2){
     #Create an output matrix
-    out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
+    out<-matrix(nrow=nrow(siteXspp2),ncol=ncol(siteXspp2))
     #Draw new abundance distribution
-    for (x in 1:ncol(siteXspp)){
-      totalN<-sum(siteXspp[,x])
+    for (x in 1:ncol(siteXspp2)){
+      totalN<-sum(siteXspp2[,x])
       N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
       N2<-totalN - N1
       out[,x]<-c(N1,N2)
@@ -410,7 +410,7 @@ NullCommunities<-function(siteXspp){
   }
   
   #replicate null distribution, decide the number of randomizations n=X
-  nullDistribution<-replicate(n=100,expr=nullN())
+  nullDistribution<-replicate(n=100,expr=nullN(siteXspp))
   
   #Find quantile of the null distribution for the observed test statistic
   quant<-ecdf(nullDistribution) (Tstar_obs)      
