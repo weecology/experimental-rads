@@ -8,6 +8,7 @@
 #---------------------------------------------------------------------------------
 
 wd = "/Users/sarah/Documents/GitHub/experimental-rads"
+wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
