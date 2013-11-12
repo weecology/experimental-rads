@@ -402,6 +402,40 @@ nullN<-function(siteXspp){
   return(Tstar)
 }
 
+
+nullS<-function(siteXspp){
+  # The total N (summed across both sites) remains the same, but total S observed at each site
+  # is allowed to differ due to the species-level randomizations. eg. some species will now be 0.
+  
+  #Create an output matrix
+  out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
+  
+  #Draw new abundance distribution
+  for (x in 1:ncol(siteXspp)){
+    totalN<-sum(siteXspp[,x])
+    N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
+    N2<-totalN - N1
+    out[,x]<-c(N1,N2)
+  }
+  
+  #Compute difference in species richness
+  
+  #count S for each comm, calculate different in S
+  Sboth_sim = c(0,0)
+  for (row in 1:nrow(out)){
+    S = 0
+    for (col in 1:ncol(out)){
+      if (out[row,col] != 0){
+        S = S+1
+      } 
+    }
+    Sboth_sim[row] = S
+  }
+
+  Tstar<-Sboth_sim[[1]] - Sboth_sim[[2]]
+  return(Tstar)
+}
+
 NullCommunityN<-function(siteXspp){
 # input paired communities in site x species matrix, run randomization test
 # to determine if difference in N is > than expected by random
@@ -409,7 +443,7 @@ NullCommunityN<-function(siteXspp){
 # that the total number of individuals within each species was observed. Note that this may also 
 # change observed S for each site and/or form of abundance distribution (not analyzed here).
 
-  #create an output matrix
+  #count N for each comm, calculate different in N
   Nboth_obs<-rowSums(siteXspp)
   Tstar_obs<-Nboth_obs[[1]] - Nboth_obs[[2]] #OBSERVED: control N - manipulated N
   
@@ -427,4 +461,41 @@ NullCommunityN<-function(siteXspp){
   return(as.list(c(decision, as.numeric(quant))))
 }
 
+
+NullCommunityS<-function(siteXspp){
+  # input paired communities in site x species matrix, run randomization test
+  # to determine if difference in S is > than expected by random
+  # randomizes the abundance of each species in the paired communities, while still assuming
+  # that the total number of individuals within each species was observed. This method is the same
+  # as for NullCommunityN, but we are focusing on difference in S since this randomization
+  # also randomly changes S in the simulated communities. Note that this may also 
+  # change observed form of abundance distribution (not analyzed here).
+  
+  #count S for each comm, calculate different in S
+Sboth_obs = c(0,0)
+  for (row in 1:nrow(siteXspp)){
+    S = 0
+    for (col in 1:ncol(siteXspp)){
+      if (siteXspp[row,col] != 0){
+        S = S+1
+      } 
+    }
+  Sboth_obs[row] = S
+  }
+
+  Tstar_obs<-Sboth_obs[[1]] - Sboth_obs[[2]] #OBSERVED: control S - manipulated S
+  
+  #replicate null distribution, decide the number of randomizations n=X
+  nullDistribution<-replicate(n=100,expr=nullS(siteXspp))
+  
+  #Find quantile of the null distribution for the observed test statistic
+  quant<-ecdf(nullDistribution) (Tstar_obs)      
+  
+  #output the quantile
+  if(quant > .95 | quant < .05) {decision<-"Sign."}
+  else { decision <- "Random"}
+  #if(quant < .95 & quant > .05) {decision<-"Random"}
+  
+  return(decision)
+}
 
