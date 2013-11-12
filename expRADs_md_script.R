@@ -18,7 +18,7 @@ comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
 comps = read.csv("orderedcomparisons.csv")
   names(comps)<-c('ref', 'controID','expID')
 expers = read.csv("experiments_analysis_data.csv")
-
+sites = read.csv("sites_analysis_data.csv")
 
 #--------------------------------------------------------------
 #          generate values and comparisons between the sites 
@@ -41,6 +41,7 @@ EN = as.numeric()
 Je = as.numeric()
 taxon = c()
 etype = c()
+m2 = as.numeric()
 # comparison variables
 BCJ = as.numeric()
 BCrad = as.numeric()
@@ -63,6 +64,7 @@ for (iRow in 1:nrow(comps)){
   experiment = comps[iRow,3]  # find experiment in pair
   taxa = as.character(expers[which(expers[,2]==control),7])# find taxonomic group from experiments table
   type = as.character(expers[which(expers[,2]==control),4]) # find experiment type from experiments table
+  extent = sites[which(sites[,2]==control),11]
   ref = as.character(comps[iRow,1])
   # Check that < 10% of individuals are unidentified. If meets criteria, continue
   if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
@@ -125,6 +127,7 @@ for (iRow in 1:nrow(comps)){
       ES = append(ES, exp_s)
       EN = append(EN, exp_n)
       Je = append(Je, round(exp_j,4))
+      m2 = append(m2, extent)
     }}}
 
 dev.off()
