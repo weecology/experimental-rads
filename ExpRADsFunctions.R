@@ -381,6 +381,28 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 
 #----- Null Modeling Functions, credit to B. Weinstein (SBU)
 
+nullBCcomp<-function(siteXspp){
+  # The total N (summed across both sites) remains the same, but total N observed at each site
+  # is allowed to differ due to the species-level randomizations.
+  
+  #Create an output matrix
+  out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
+  
+  #Draw new abundance distribution
+  for (x in 1:ncol(siteXspp)){
+    totalN<-sum(siteXspp[,x])
+    N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
+    N2<-totalN - N1
+    out[,x]<-c(N1,N2)
+  }
+  
+  #Compute difference in abundances
+  Tstar<- vegdist(out, method = 'bray')
+  return(Tstar)
+}
+
+
+
 nullN<-function(siteXspp){
 # The total N (summed across both sites) remains the same, but total N observed at each site
 # is allowed to differ due to the species-level randomizations.
@@ -437,6 +459,33 @@ nullS<-function(siteXspp){
   Tstar<-Sboth_sim[[1]] - Sboth_sim[[2]]
   return(Tstar)
 }
+
+
+NullCommunityBC<-function(siteXspp){
+  # input paired communities in site x species matrix, run randomization test
+  # to determine if difference in N is > than expected by random
+  # randomizes the abundance of each species in the paired communities, while still assuming
+  # that the total number of individuals within each specis was observed. Note that this may also 
+  # change observed S for each site and/or form of abundance distribution (not analyzed here).
+  
+  #count N for each comm, calculate different in N
+  Tstar_obs <- vdaegdist(siteXspp, method = "bray") #OBSERVED: bray-curtis similarity sitionin composition
+  
+  #replicate null distribution, decide the number of randomizations n=X
+  nullDistribution<-replicate(n=100,expr=nullN(siteXspp))
+  
+  #Find quantile of the null distribution for the observed test statistic
+  quant<-ecdf(nullDistribution) (Tstar_obs)      
+  
+  #output the quantile
+  if(quant > .95 | quant < .05) {decision<-"Sign."}
+  else { decision <- "Random"}
+  #if(quant < .95 & quant > .05) {decision<-"Random"}
+  
+  return(decision)
+}
+
+
 
 NullCommunityN<-function(siteXspp){
 # input paired communities in site x species matrix, run randomization test
@@ -503,7 +552,16 @@ Sboth_obs = c(0,0)
 #---- log series simulator code
 # from http://www.stats.ox.ac.uk/~dlunn/BS1_05/BS1_Rcode.pdf
 
+mleseries <- function(y1,y2,iter,start){
+  #maximum likelihood estimate of theta, given the data
+  xb <- sum(y1*y2)/sum(y2)
+  th <- start
+  for (j in 1:iter){
+    th <- th - (xb*th*log(th)-th+1)/(xb-1/th)}
+  th}
+
 lssim <- function(thet) {
+  #simulate value from logseries distribution, given theta
   u <- runif(1)
   k <- 1
   P <- -(1-thet)/log(thet)
@@ -513,6 +571,7 @@ lssim <- function(thet) {
   k}
 
 lssimsample <- function(size,thet) {
+  #simulate a dataset of values given sample size (N) and theta
   sam <- c(1:size)
   for (j in 1:size) {
     lssim(thet) -> sam[j]}
@@ -522,3 +581,5 @@ lssimsample <- function(size,thet) {
     y2[i] <- sum(sam==i)}
   y <- cbind(y1,y2)
   y}
+
+
