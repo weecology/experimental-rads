@@ -411,12 +411,14 @@ nullS<-function(siteXspp){
   out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
   
   #Draw new abundance distribution
-  for (x in 1:ncol(siteXspp)){
-    totalN<-sum(siteXspp[,x])
-    N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
-    N2<-totalN - N1
-    out[,x]<-c(N1,N2)
-  }
+  totalN = rowSums(siteXspp)
+  for (row in 1:nrow(siteXspp)){
+    rowN = totalN[row]
+    for (col in 1:ncol(siteXspp)){
+      N1 = sample (0:rowN, 1)
+      out [row, col] = N1
+      rowN = rowN - N1
+    }}
   
   #Compute difference in species richness
   
@@ -458,7 +460,7 @@ NullCommunityN<-function(siteXspp){
   else { decision <- "Random"}
   #if(quant < .95 & quant > .05) {decision<-"Random"}
   
-  return(as.list(c(decision, as.numeric(quant))))
+  return(decision)
 }
 
 
@@ -466,10 +468,8 @@ NullCommunityS<-function(siteXspp){
   # input paired communities in site x species matrix, run randomization test
   # to determine if difference in S is > than expected by random
   # randomizes the abundance of each species in the paired communities, while still assuming
-  # that the total number of individuals within each species was observed. This method is the same
-  # as for NullCommunityN, but we are focusing on difference in S since this randomization
-  # also randomly changes S in the simulated communities. Note that this may also 
-  # change observed form of abundance distribution (not analyzed here).
+  # that the total number of individuals within each community was observed.  
+  # Note that this may also change observed form of abundance distribution (not analyzed here).
   
   #count S for each comm, calculate different in S
 Sboth_obs = c(0,0)
@@ -499,3 +499,26 @@ Sboth_obs = c(0,0)
   return(decision)
 }
 
+
+#---- log series simulator code
+# from http://www.stats.ox.ac.uk/~dlunn/BS1_05/BS1_Rcode.pdf
+
+lssim <- function(thet) {
+  u <- runif(1)
+  k <- 1
+  P <- -(1-thet)/log(thet)
+  F <- P
+  while (u>=F) {
+    P <- P*k*(1-thet)/(k+1); k<-k+1; F <- F+P}
+  k}
+
+lssimsample <- function(size,thet) {
+  sam <- c(1:size)
+  for (j in 1:size) {
+    lssim(thet) -> sam[j]}
+  y1 <- c(1:max(sam)) 
+  y2 <- y1
+  for (i in 1:max(sam)) {
+    y2[i] <- sum(sam==i)}
+  y <- cbind(y1,y2)
+  y}

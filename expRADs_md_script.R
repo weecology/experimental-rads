@@ -175,6 +175,34 @@ plot(BCJ, m2, pch=19)
 plot(BCrad, m2, pch=19)
 
 
-#null modeling results
+#------null modeling results
+BCnull = c()
+Nnull = c()
+Snull = c()
+Jnull = c()
+RADnull = c()
 
+for (iRow in 1:nrow(comps)){
+  control = comps[iRow,2]  #find control in pair
+  experiment = comps[iRow,3]  # find experiment in pair
+  # Check that < 10% of individuals are unidentified. If meets criteria, continue
+  if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
+    a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) #vector of control abundances
+    a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8])) #vector of exp abundances
+    # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
+    if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
+      comparison = subset(comms[which(comms$siteID == control | comms$siteID == experiment),])
+      comparison$spname = paste(comparison$genus, comparison$species, sep="_")
+      comparison$grp = as.numeric(comparison$siteID==control) #control site == 1, make sure to order comparisons, control[1,], experiment[2,]
+      data = comparison[,c(2,8,9,10)]
+      sitexsp <- cast(data, grp + siteID  ~ spname, value = "abundance", fun = mean)
+        sitexsp[is.na(sitexsp)] <- 0
+        sitexsp = arrange(sitexsp, desc(grp))
+      Nresult = NullCommunityN(sitexsp[,-c(1,2)])
+        Nnull = append(Nnull, Nresult)
+      Sresult = NullCommunityS(sitexsp[,-c(1,2)])
+        Snull = append(Snull, Sresult)
+    }}}
 
+Nindex = Nnull=="Sign." 
+Sindex = Snull=="Sign."
