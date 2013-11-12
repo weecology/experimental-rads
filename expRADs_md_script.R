@@ -166,11 +166,15 @@ shapes = count_RAD_shapes(cID, eID, Cshape, Eshape)
 
 
 #fiddle plots to see if small-scale sites pick up more variability
-par(mfrow=c(1,1))
+par(mfrow=c(3,2))
 
 plot(BCcomp, m2, pch=19)
 plot(abs(percS), m2, pch=19, xlim=c(0,150))
 plot(abs(percN), m2, pch=19, xlim=c(0,300))
 plot(BCJ, m2, pch=19)
 plot(BCrad, m2, pch=19)
+
+
+#null modeling results
+
 
