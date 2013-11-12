@@ -198,11 +198,16 @@ for (iRow in 1:nrow(comps)){
       sitexsp <- cast(data, grp + siteID  ~ spname, value = "abundance", fun = mean)
         sitexsp[is.na(sitexsp)] <- 0
         sitexsp = arrange(sitexsp, desc(grp))
-      Nresult = NullCommunityN(sitexsp[,-c(1,2)])
+      BCresult = NullCommunityBC(sitexsp[,-c(1,2)], 100)
+        BCnull = append(BCnull, BCresult)
+      Nresult = NullCommunityN(sitexsp[,-c(1,2)], 100)
         Nnull = append(Nnull, Nresult)
-      Sresult = NullCommunityS(sitexsp[,-c(1,2)])
+      Sresult = NullCommunityS(sitexsp[,-c(1,2)], 100)
         Snull = append(Snull, Sresult)
+      Jresult = NullCommunityJ(sitexsp[,-c(1,2)], 100)
+        Jnull = append(Jnull, Jresult)
     }}}
 
 Nindex = Nnull=="Sign." 
 Sindex = Snull=="Sign."
+BCindex = BCnull=="Sign."

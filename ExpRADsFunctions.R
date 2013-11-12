@@ -12,6 +12,7 @@ require(lme4)
 require(poilog)
 require(scatterplot3d)
 require(hydroGOF)
+library(reshape)
 
 # All files should be organized as such:
 # RAD: SiteID | experiment/control | year | genus | species | id2species | abundance
@@ -379,7 +380,8 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
 }
 
 
-#----- Null Modeling Functions, credit to B. Weinstein (SBU)
+#----- Null Modeling Functions, credit to B. Weinstein (SBU) for getting me started
+#-------------------------------------------------------------
 
 nullBCcomp<-function(siteXspp){
   # The total N (summed across both sites) remains the same, but total N observed at each site
@@ -432,36 +434,53 @@ nullS<-function(siteXspp){
   #Create an output matrix
   out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
   
-  #Draw new abundance distribution
+  #Draw new abundance distribution    #FIXME, too many zeroes in the data
+  # keeps site-level N the same, but allows S to differ 
   totalN = rowSums(siteXspp)
   for (row in 1:nrow(siteXspp)){
     rowN = totalN[row]
     for (col in 1:ncol(siteXspp)){
-      N1 = sample (0:rowN, 1)
+      N1 = sample (1:rowN, 1)
       out [row, col] = N1
       rowN = rowN - N1
     }}
   
   #Compute difference in species richness
-  
   #count S for each comm, calculate different in S
-  Sboth_sim = c(0,0)
-  for (row in 1:nrow(out)){
-    S = 0
-    for (col in 1:ncol(out)){
-      if (out[row,col] != 0){
-        S = S+1
-      } 
-    }
-    Sboth_sim[row] = S
-  }
+  Sboth_sim = specnumber(out)
 
   Tstar<-Sboth_sim[[1]] - Sboth_sim[[2]]
   return(Tstar)
 }
 
 
-NullCommunityBC<-function(siteXspp){
+nullJ<-function(siteXspp){
+  # The total N (summed across both sites) remains the same, but total S observed at each site
+  # is allowed to differ due to the species-level randomizations. eg. some species will now be 0.
+  
+  #Create an output matrix
+  out<-matrix(nrow=nrow(siteXspp),ncol=ncol(siteXspp))
+  
+  #Draw new abundance distribution
+  for (x in 1:ncol(siteXspp)){
+    totalN<-sum(siteXspp[,x])
+    N1<-sample(0:totalN,1)    #changed 0:totalN, instead of 1:totalN
+    N2<-totalN - N1
+    out[,x]<-c(N1,N2)
+  }
+  
+  #Compute difference in evenness
+  #calculate J for each community, and the bray-curtis dissimilarity among the simulated sites
+  Dboth = diversity(out, index = 'invsimpson') 
+  Jboth_sim = Dboth / specnumber(out)
+  
+  Tstar<-BCdist(matrix(c(Jboth_sim[1], Jboth_sim[2]), nrow = 1, ncol = 2)) #OBSERVED: Bray-curtis difference in Simpson's evenness (J)
+  return(Tstar)
+}
+
+
+
+NullCommunityBC<-function(siteXspp, num){
   # input paired communities in site x species matrix, run randomization test
   # to determine if difference in N is > than expected by random
   # randomizes the abundance of each species in the paired communities, while still assuming
@@ -469,10 +488,10 @@ NullCommunityBC<-function(siteXspp){
   # change observed S for each site and/or form of abundance distribution (not analyzed here).
   
   #count N for each comm, calculate different in N
-  Tstar_obs <- vdaegdist(siteXspp, method = "bray") #OBSERVED: bray-curtis similarity sitionin composition
+  Tstar_obs <- vegdist(siteXspp, method = "bray") #OBSERVED: bray-curtis similarity sitionin composition
   
   #replicate null distribution, decide the number of randomizations n=X
-  nullDistribution<-replicate(n=100,expr=nullN(siteXspp))
+  nullDistribution<-replicate(n=num,expr=nullBCcomp(siteXspp))
   
   #Find quantile of the null distribution for the observed test statistic
   quant<-ecdf(nullDistribution) (Tstar_obs)      
@@ -487,7 +506,7 @@ NullCommunityBC<-function(siteXspp){
 
 
 
-NullCommunityN<-function(siteXspp){
+NullCommunityN<-function(siteXspp, num){
 # input paired communities in site x species matrix, run randomization test
 # to determine if difference in N is > than expected by random
 # randomizes the abundance of each species in the paired communities, while still assuming
@@ -499,7 +518,7 @@ NullCommunityN<-function(siteXspp){
   Tstar_obs<-Nboth_obs[[1]] - Nboth_obs[[2]] #OBSERVED: control N - manipulated N
   
   #replicate null distribution, decide the number of randomizations n=X
-  nullDistribution<-replicate(n=100,expr=nullN(siteXspp))
+  nullDistribution<-replicate(n=num,expr=nullN(siteXspp))
   
   #Find quantile of the null distribution for the observed test statistic
   quant<-ecdf(nullDistribution) (Tstar_obs)      
@@ -513,7 +532,7 @@ NullCommunityN<-function(siteXspp){
 }
 
 
-NullCommunityS<-function(siteXspp){
+NullCommunityS<-function(siteXspp, num){
   # input paired communities in site x species matrix, run randomization test
   # to determine if difference in S is > than expected by random
   # randomizes the abundance of each species in the paired communities, while still assuming
@@ -521,21 +540,12 @@ NullCommunityS<-function(siteXspp){
   # Note that this may also change observed form of abundance distribution (not analyzed here).
   
   #count S for each comm, calculate different in S
-Sboth_obs = c(0,0)
-  for (row in 1:nrow(siteXspp)){
-    S = 0
-    for (col in 1:ncol(siteXspp)){
-      if (siteXspp[row,col] != 0){
-        S = S+1
-      } 
-    }
-  Sboth_obs[row] = S
-  }
+Sboth_obs = specnumber(siteXspp)
 
   Tstar_obs<-Sboth_obs[[1]] - Sboth_obs[[2]] #OBSERVED: control S - manipulated S
   
   #replicate null distribution, decide the number of randomizations n=X
-  nullDistribution<-replicate(n=100,expr=nullS(siteXspp))
+  nullDistribution<-replicate(n=num,expr=nullS(siteXspp))
   
   #Find quantile of the null distribution for the observed test statistic
   quant<-ecdf(nullDistribution) (Tstar_obs)      
@@ -547,6 +557,35 @@ Sboth_obs = c(0,0)
   
   return(decision)
 }
+
+
+NullCommunityJ<-function(siteXspp, num){
+  # input paired communities in site x species matrix, run randomization test
+  # to determine if difference in S is > than expected by random
+  # randomizes the abundance of each species in the paired communities, while still assuming
+  # that the total number of individuals within each community was observed.  
+  # Note that this may also change observed form of abundance distribution (not analyzed here).
+  
+  #get evenness for both communities, calculate difference in evenness
+  Dboth = diversity(siteXspp, index = 'invsimpson') 
+  Jboth_obs = Dboth / specnumber(siteXspp)
+  
+  Tstar_obs<-BCdist(matrix(c(Jboth_obs[1], Jboth_obs[2]), nrow = 1, ncol = 2)) #OBSERVED: Bray-curtis difference in Simpson's evenness (J)
+  
+  #replicate null distribution, decide the number of randomizations n=X
+  nullDistribution<-replicate(n=num,expr=nullJ(siteXspp))
+  
+  #Find quantile of the null distribution for the observed test statistic
+  quant<-ecdf(nullDistribution) (Tstar_obs)      
+  
+  #output the quantile
+  if(quant > .95 | quant < .05) {decision<-"Sign."}
+  else { decision <- "Random"}
+  #if(quant < .95 & quant > .05) {decision<-"Random"}
+  
+  return(decision)
+}
+
 
 
 #---- log series simulator code
@@ -581,5 +620,4 @@ lssimsample <- function(size,thet) {
     y2[i] <- sum(sam==i)}
   y <- cbind(y1,y2)
   y}
-
 
