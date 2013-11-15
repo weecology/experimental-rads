@@ -14,8 +14,9 @@ Requirements: R 3.x,
 R packages vegan, BiodiversityR, plotrix, graphics, CCA, VGAM, nlme, lme4, languageR, poilog, scatterplot3d, hydroGOF, and 
 VennDiagram, knitr, ggplot2,  and the file containing functions specific to this code, expRADsFunctions.R.
 
-The analyses can be replicated by changing the working directory at the top of the file `expRAD_ms_script.R` to the location on 
+The analyses can be replicated by changing the working directory at the top of the file `expRAD_md_script.R` to the location on 
 your computer where you have stored the .R and .csv files.
+If you wish to make your own version of the manuscript, change the pathname also at the top of the expRAD_knitr.Rmd and run.
 
 Code should take less than 5 minutes to run start to finish. 
 Figures should output as pdfs to your working directory.
@@ -23,10 +24,13 @@ Figures should output as pdfs to your working directory.
 Data use: Data is provided in this supplement for the purposes of replication. 
 If you wish to use the data for additional research, they should be obtained from Sarah R. Supp (sarah@weecology.org).
 
-Included Files 
-`expRAD_ms_script.R` script -- cleans up the data, runs the statistical analyses, and outputs figures. 
-`ExpRADsFunctions.R` script -- holds the relevant functions for executing the script. 
-`data.csv` -- DATA TO BE ADDED
+Included Files: 
+* `expRAD_md_script.R` script -- cleans up the data, runs the statistical analyses, and outputs figures.
+* `ExpRADsFunctions.R` script -- holds the relevant functions for executing the script.
+* `ExpRADs_knitr.Rmd` markdown doc -- used to recreate the manuscript and figures. Sources the previous two functions.
+* `expRAD_dev.R` script -- holds some earlier code that I wanted to keep, not necessary for replicating the published project.
+* `data` folder -- holds the 5 data tables described in the appendix to the paper (references, sites, experiments, communities, and comparisons)
+
 
 License This code is available under a BSD 2-Clause License.
 
