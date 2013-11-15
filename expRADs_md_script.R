@@ -9,8 +9,8 @@ library(ggplot2)
 #          setup - select wd, import data, source code,  file to collect results
 #---------------------------------------------------------------------------------
 
-#wd = "/Users/sarah/Documents/GitHub/experimental-rads"
-wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
+#wd = "/Users/sarah/Documents/GitHub/experimental-rads/data"
+wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads\\data"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
