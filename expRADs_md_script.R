@@ -180,18 +180,6 @@ plot(BCrad, m2, pch=19)
 #------------------------------------------------------------- 
 #                 map site locations, color coded by taxa
 #-------------------------------------------------------------
-wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
-setwd(wd)
-
-
-comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
-comps = read.csv("orderedcomparisons.csv")
-names(comps)<-c('ref', 'controID','expID')
-sites = read.csv("sites_analysis_data.csv", na.strings = 'NULL', colClasses = "character")
-expers = read.csv("experiments_analysis_data.csv")
-
-
-#---------------------------
 #Just grab loc, taxa and experiment type from data used in the study
 taxa = c()
 type = c()
@@ -230,10 +218,8 @@ taxa[taxa=='beetle']<-'insect'
 taxa[taxa=='microarthropods']<-'microarthropod'
 taxa[taxa=='reptile']<-'herpetofauna'
 
+  data = as.data.frame(cbind(lon, lat))
 
-data = as.data.frame(cbind(lon, lat))
-
-#-------------------------------------------------
 #Get world map info
 world_map <- map_data("world")
 
@@ -241,8 +227,9 @@ world_map <- map_data("world")
 p <- ggplot() + coord_fixed()
 
 #Add map to base plot
-base_world <- p + geom_polygon(data=world_map,aes(x=long, y=lat,group=group), fill = "white", col = "black") + theme_bw()
+base_world <- p + geom_polygon(data=world_map,aes(x=long, y=lat,group=group), 
+                               fill = "white", col = "black") + theme_bw()
 
 #add points to map
 site_map <- base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa), alpha = 0.5, cex = 5) +
-  theme(legend.position = "right") + element_blank()
+                          theme(legend.position = "right") + element_blank()
