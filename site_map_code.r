@@ -74,7 +74,7 @@ p <- ggplot() + coord_fixed()
 #Add map to base plot
 base_world <- p + geom_polygon(data=world_map,aes(x=long, y=lat,group=group), fill = "white", col = "black") + theme_bw()
 
-base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa), alpha = 0.5, cex = 5) +
+site_map <- base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa), alpha = 0.5, cex = 5) +
               theme(legend.position = "right") + element_blank()
 
 
