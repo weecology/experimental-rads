@@ -11,12 +11,12 @@ local-scale database of maniuplated community data.
 The project and code in this repository are still under development. 
 
 Requirements: R 3.x, 
-R packages vegan, BiodiversityR, plotrix, graphics, CCA, VGAM, nlme, lme4, languageR, poilog, scatterplot3d, hydroGOF, and 
-VennDiagram, knitr, ggplot2,  and the file containing functions specific to this code, expRADsFunctions.R.
+R packages `vegan`, `BiodiversityR`, `plotrix`, `graphics`, `CCA`, `VGAM`, `nlme`, `lme4`, `languageR`, `poilog`, `scatterplot3d`, `hydroGOF`, and 
+`VennDiagram`, `knitr`, `ggplot2`,  and the file containing functions specific to this code, `expRADsFunctions.R`.
 
 The analyses can be replicated by changing the working directory at the top of the file `expRAD_md_script.R` to the location on 
-your computer where you have stored the .R and .csv files.
-If you wish to make your own version of the manuscript, change the pathname also at the top of the expRAD_knitr.Rmd and run.
+your computer where you have stored the `.R` and `.csv` files.
+If you wish to make your own version of the manuscript, change the pathname also at the top of the `expRAD_knitr.Rmd` and run.
 
 Code should take less than 5 minutes to run start to finish. 
 Figures should output as pdfs to your working directory.
