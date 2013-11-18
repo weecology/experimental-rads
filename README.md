@@ -27,9 +27,14 @@ If you wish to use the data for additional research, they should be obtained fro
 Included Files: 
 * `expRAD_md_script.R` script -- cleans up the data, runs the statistical analyses, and outputs figures.
 * `ExpRADsFunctions.R` script -- holds the relevant functions for executing the script.
-* `ExpRADs_knitr.Rmd` markdown doc -- used to recreate the manuscript and figures. Sources the previous two functions.
+* `ExpRADs_knitr.Rmd` markdown doc -- used to recreate the manuscript and figures. Sources the previous two functions. Note that this is not the most updated version of the manuscript.
 * `expRAD_dev.R` script -- holds some earlier code that I wanted to keep, not necessary for replicating the published project.
 * `data` folder -- holds the 5 data tables described in the appendix to the paper (references, sites, experiments, communities, and comparisons)
+    * `ref_analsyis_data.csv` - table with references for the data
+    * `sites_analysis_data.csv` - table with site-level information
+    * `experiments_analysis_data.csv` - table with experimental details for each site
+    * `community_analysis_data.csv` - table with the species abundance community-level data for each site
+    * `orderedcomparisons.csv` - table that shows which sites can be compared (as paired control-manipulation) based on the original references for each study
 
 
 License This code is available under a BSD 2-Clause License.
