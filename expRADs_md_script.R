@@ -57,10 +57,12 @@ percN = as.numeric()
 c = as.numeric()
 e = as.numeric()
 r2 = as.numeric()
+ranklr = as.numeric()
 
 compc = as.numeric()
 compe = as.numeric()
 compr2 = as.numeric()
+complr = as.numeric()
 
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
@@ -69,28 +71,37 @@ for (iRow in 1:nrow(comps)){
   type = as.character(expers[which(expers[,2]==control),4]) # find experiment type from experiments table
   extent = sites[which(sites[,2]==control),11]
   ref = as.character(comps[iRow,1])
+  
   # Check that < 10% of individuals are unidentified. If meets criteria, continue
   if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
     a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) #vector of control abundances
     a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8])) #vector of exp abundances
+    
     # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
     if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
       # record all values in a comparison matrix
       relcon = relabund(a1) #make the lengths the same!
       relexp = relabund(a2)  #make the lengths the same!
       comparison_matrix = abundMerge(relcon, relexp)
+        tr = as.data.frame(t(comparison_matrix))
+      rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       c = append(c, comparison_matrix[,1])
       e = append(e, comparison_matrix[,2])
       r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
+      ranklr = append(ranklr, mean(rlr, na.rm=TRUE))
+      
       # record all composition-specific values in a comparison matrix
       comparison = subset(comms[which(comms$siteID == control | comms$siteID == experiment),])
       comparison = reshape_data(comparison) #table species & abundance in paired communities 
       comparison = comparison[,c(2:ncol(comparison))]
       comparison[1,] = comparison[1,]/sum(comparison[1,]) #convert to relabundance
       comparison[2,] = comparison[2,]/sum(comparison[2,]) #convert to relabundance
+        lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
+        complr = append(complr, mean(lr, na.rm=TRUE))
       compc = append(compc, as.numeric(comparison[1,]))
       compe = append(compe, as.numeric(comparison[2,]))
       compr2 = append(compr2, rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])))
+     
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
         d = dist.test(a1, a2)
@@ -101,6 +112,7 @@ for (iRow in 1:nrow(comps)){
         Cshape = append(Cshape, "ERROR")
         Eshape = append(Eshape, "ERROR")
       }
+     
       #plot the compared data
       RAD_plot(control, experiment, a1, a2, taxa)
       # descriptors
@@ -110,6 +122,7 @@ for (iRow in 1:nrow(comps)){
       exp_s = length(a2)
       exp_n = sum(a2)
       exp_j = SimpE(comms[which(comms[,2]==experiment),])
+      
       # get summary statistics from comparisons
       BCJ = append(BCJ, BCdist(matrix(c(con_j, exp_j), nrow = 1, ncol = 2)))
       BCrad = append(BCrad, BCdist(abundMerge(relabund(a1), relabund(a2))))
@@ -120,6 +133,7 @@ for (iRow in 1:nrow(comps)){
       percN = append(percN, ((exp_n - con_n)/con_n)*100)
       taxon = append(taxon, taxa)
       etype = append(etype, type)
+      
       # record summary descriptive variables
       refID = append(refID, ref)
       cID = append(cID, control)
@@ -164,6 +178,16 @@ s_r2 = round(rsquare(CS,ES),4)
 relabun_r2 = round(rsquare(c,e),4)
 j_r2 = round(rsquare(Jc,Je),4)
 
+
+#log ratio differences between values
+s_df = as.data.frame(t(cbind(CS,ES)))
+n_df = as.data.frame(t(cbind(CN,EN)))
+e_df = as.data.frame(t(cbind(Jc, Je)))
+
+Slr = sapply(s_df, function(x) LogRatio(x[2], x[1]) )
+Nlr = sapply(n_df, function(x) LogRatio(x[2], x[1]) )
+Elr = sapply(e_df, function(x) LogRatio(x[2], x[1]) )
+
 #count the communities displaying various shapes. This does take into account duplicates. Should be correct
 shapes = count_RAD_shapes(cID, eID, Cshape, Eshape)
 
@@ -177,6 +201,10 @@ plot(abs(percN), m2, pch=19, xlim=c(0,300))
 plot(BCJ, m2, pch=19)
 plot(BCrad, m2, pch=19)
 
+#put the results together for later plotting and comparison
+diversity = data.frame(taxa, etype, CS, ES, CN, EN, Je, Jc)
+composition = data.frame(compc, compe)
+relabundance = data.frame(c,e)
 
 #----------------------------------------------------------------------- 
 #                 FIGURE 1. map site locations, color coded by taxa
@@ -241,9 +269,6 @@ site_map
 #                 FIGURE 2. compare control and manipulated data
 #-----------------------------------------------------------------------
 #plot results along 1:1 line
-diversity = data.frame(taxa, etype, CS, ES, CN, EN, Je, Jc)
-composition = data.frame(compc, compe)
-relabundance = data.frame(c,e)
 
 #Fig 2A - plots for composition
 compchange = ggplot(data=composition, aes(compc, compe)) + geom_point(alpha=0.5, size=3) + 
@@ -288,8 +313,11 @@ rankabunchange = ggplot(data=relabundance, aes(c, e)) + geom_point(alpha=0.5, si
 grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2)
 
 
-#----------------------------------------------------------------------- 
-#                 FIGURE 2. map site locations, color coded by taxa
-#-----------------------------------------------------------------------
+#------------------------------------------------------------------------------------------- 
+#                 FIGURE 3. histograms of log-ratio difference in treatment vs. controls
+#-------------------------------------------------------------------------------------------
+
+logratio = data.frame()
+
 
 
