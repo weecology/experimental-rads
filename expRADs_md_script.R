@@ -9,18 +9,18 @@ library(ggplot2)
 #          setup - select wd, import data, source code,  file to collect results
 #---------------------------------------------------------------------------------
 
-#wd = "/Users/sarah/Documents/GitHub/experimental-rads/data"
-wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads\\data"
+#"wd = "/Users/sarah/Documents/GitHub/experimental-rads/"
+wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
 
-comms = read.csv("community_analysis_data.csv", na.strings = 'NULL')
+comms = read.csv("data/community_analysis_data.csv", na.strings = 'NULL')
 #comps = read.csv("comparison_analysis_data.csv") #this file is unordered. Looks less nice when plotted.
-comps = read.csv("orderedcomparisons.csv")
+comps = read.csv("data/orderedcomparisons.csv")
   names(comps)<-c('ref', 'controID','expID')
-expers = read.csv("experiments_analysis_data.csv")
-sites = read.csv("sites_analysis_data.csv")
+expers = read.csv("data/experiments_analysis_data.csv")
+sites = read.csv("data/sites_analysis_data.csv")
 
 #--------------------------------------------------------------
 #          generate values and comparisons between the sites 
