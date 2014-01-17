@@ -238,68 +238,58 @@ site_map
 
 
 #----------------------------------------------------------------------- 
-#                 FIGURE 2. map site locations, color coded by taxa
+#                 FIGURE 2. compare control and manipulated data
 #-----------------------------------------------------------------------
 #plot results along 1:1 line
 diversity = data.frame(taxa, etype, CS, ES, CN, EN, Je, Jc)
 composition = data.frame(compc, compe)
 relabundance = data.frame(c,e)
 
-#Fig 1A - plots for composition
+#Fig 2A - plots for composition
 compchange = ggplot(data=composition, aes(compc, compe)) + geom_point(alpha=0.5, size=3) + 
   xlab("species relative abundance") + ylab("species relative abundance") + 
-  scale_x_continuous(breaks = seq(0, 1, by=0.1), limits = c(0,1)) +
-  scale_y_continuous(breaks = seq(0, 1, by=0.1), limits = c(0,1)) + theme_bw() +
-  theme(text = element_text(size=20))
+  scale_x_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) +
+  scale_y_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) + theme_bw() +
+  theme(text = element_text(size=20)) + 
+  geom_abline(intercept = 0, slope = 1) + ggtitle("A")
 
-grid.arrange(n,n,n,n,n,n,n, nrow=3)
+#Fig 2B - plots for abundance
+abunchange = ggplot(data=diversity, aes(CN, EN)) + geom_point(alpha=0.5, size=3) + 
+  xlab("total abundance") + ylab("total abundance") + 
+  scale_x_log10(breaks = c(30, 100, 500, 2500, 6500), limits = c(30,6500)) +
+  scale_y_log10(breaks = c(30, 100, 500, 2500, 6500), limits = c(30,6500)) + theme_bw() +
+  theme(text = element_text(size=20)) + 
+  geom_abline(intercept = 0, slope = 1) + ggtitle("B")
 
-
-
-par(mfrow=c(2,3), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1)) 
-
-# Fig 1A - plots for Composition
-plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
-abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
-points(compc, compe, pch = 19)
-#mtext('Species Composition', side = 3, line = -0.25, cex = 0.75)
-mtext('relative abundance', side = 2, line = 2, cex = 0.75)
-mtext('relative abundance', side = 1, line = 2, cex = 0.75)
-
-# Fig 1B - plots for N
-plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
-     xlab = '', ylab = '', bty = 'n')
-points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500)))
-abline(0, 1, lty = 2, lwd = 1)
-#mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
-mtext('total abundance', side = 2, line = 2, cex = 0.75)
-mtext('total abundance', side = 1, line = 2, cex = 0.75)
-
-# Fig 1C - plots for S
-plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
-     xlab = '', ylab = '', bty = 'n')
-points(CS, ES, pch = 19, xlim = c(5,200), ylim = c(5,200))
-abline(0, 1, lty = 2, lwd = 1)
-#mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
-mtext('species richness', side = 2, line = 2, cex = 0.75)
-mtext('species richness', side = 1, line = 2, cex = 0.75)
+# Fig 2C - plots for S
+schange = ggplot(data=diversity, aes(CS, ES)) + geom_point(alpha=0.5, size=3) + 
+  xlab("species richness") + ylab("species richness") + 
+  scale_x_log10(breaks = c(5, 10, 25, 50, 100, 200), limits = c(5, 200)) +
+  scale_y_log10(breaks = c(5, 10, 25, 50, 100, 200), limits = c(5, 200)) + theme_bw() +
+  theme(text = element_text(size=20)) + 
+  geom_abline(intercept = 0, slope = 1) + ggtitle("C")
 
 # Fig 1D - plots for evenness
-plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty = "n")
-abline(0,1, lty = 2, lwd = 1, col = 'gray20')
-points(Jc, Je, pch = 19, xlim = c(0,1), ylim = c(0,1), xlab = '', ylab = '', main = '')
-#mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
-mtext("Simpson's evenness", side = 2, line = 2, cex = 0.75)
-mtext("Simpson's evenness", side = 1, line = 2, cex = 0.75)
+evenchange = ggplot(data=diversity, aes(Jc, Je)) + geom_point(alpha=0.5, size=3) + 
+  xlab("Simpson's evenness") + ylab("Simpson's evenness") + 
+  scale_x_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) +
+  scale_y_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) + theme_bw() +
+  theme(text = element_text(size=20)) + 
+  geom_abline(intercept = 0, slope = 1) + ggtitle("D")
 
-#### Fig 1E.  compare relative abundance at each rank in all paired sites
-plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
-abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
-points(c, e, pch = 19)
-#mtext('Relative Rank Abundance', side = 3, line = -0.25, cex = 0.75)
-mtext('relative abundance', side = 2, line = 2, cex = 0.75)
-mtext('relative abundance', side = 1, line = 2, cex = 0.75)
+# Fig 1E.  compare relative abundance at each rank in all paired sites
+rankabunchange = ggplot(data=relabundance, aes(c, e)) + geom_point(alpha=0.5, size=3) + 
+  xlab("rank relative abundance") + ylab("rank relative abundance") + 
+  scale_x_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) +
+  scale_y_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) + theme_bw() +
+  theme(text = element_text(size=20)) + 
+  geom_abline(intercept = 0, slope = 1) + ggtitle("E")
+  
+grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2)
 
-box("outer", lty = "solid", col = "black")
+
+#----------------------------------------------------------------------- 
+#                 FIGURE 2. map site locations, color coded by taxa
+#-----------------------------------------------------------------------
 
 
