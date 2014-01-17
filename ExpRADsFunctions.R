@@ -379,4 +379,9 @@ count_RAD_shapes = function (cID, eID, Cshape, Eshape){
   return (nums)
 }
 
+LogRatio = function(manip_val, control_val) {
+  #calculates the log ratio of two values
+  lr = log(manip_val/control_val)
+  return(lr)
+}
 
