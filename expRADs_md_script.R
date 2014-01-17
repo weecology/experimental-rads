@@ -226,6 +226,11 @@ mapWorld <- borders("world", fill="gray65", col="gray65")
 
 base_world = ggplot() + mapWorld + theme_bw()
 
-site_map = base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa, fille = taxa, shape = taxa), cex = 5) +
+site_map = base_world + 
+  geom_point(data=data, aes(x=lon, y=lat, col = taxa, fille = taxa, shape = taxa), cex = 5) +
   theme(legend.position = "right") + element_blank() + xlab("Longitude") + ylab("Latitude") +
-  scale_colour_grey(start=0, end=0.3) + scale_shape_manual(values=c(17, 18, 19, 15, 25))
+  scale_colour_grey(start=0, end=0.3) + scale_shape_discrete(solid=F) + 
+  scale_x_continuous(breaks = seq(-180, 180, by=25)) +
+  scale_y_continuous(breaks = seq(-90, 90, by = 25)) +
+  theme(text = element_text(size=20))
+site_map
