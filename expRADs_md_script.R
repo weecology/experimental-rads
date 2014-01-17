@@ -4,6 +4,7 @@
 # output and compare RADs, parameters for each treatment at each site.
 
 library(ggplot2)
+library(gridExtra)
 
 #---------------------------------------------------------------------------------
 #          setup - select wd, import data, source code,  file to collect results
@@ -177,9 +178,9 @@ plot(BCJ, m2, pch=19)
 plot(BCrad, m2, pch=19)
 
 
-#------------------------------------------------------------- 
-#                 map site locations, color coded by taxa
-#-------------------------------------------------------------
+#----------------------------------------------------------------------- 
+#                 FIGURE 1. map site locations, color coded by taxa
+#-----------------------------------------------------------------------
 #Just grab loc, taxa and experiment type from data used in the study
 taxa = c()
 type = c()
@@ -234,3 +235,71 @@ site_map = base_world +
   scale_y_continuous(breaks = seq(-90, 90, by = 15)) +
   theme(text = element_text(size=20))
 site_map
+
+
+#----------------------------------------------------------------------- 
+#                 FIGURE 2. map site locations, color coded by taxa
+#-----------------------------------------------------------------------
+#plot results along 1:1 line
+diversity = data.frame(taxa, etype, CS, ES, CN, EN, Je, Jc)
+composition = data.frame(compc, compe)
+relabundance = data.frame(c,e)
+
+#Fig 1A - plots for composition
+compchange = ggplot(data=composition, aes(compc, compe)) + geom_point(alpha=0.5, size=3) + 
+  xlab("species relative abundance") + ylab("species relative abundance") + 
+  scale_x_continuous(breaks = seq(0, 1, by=0.1), limits = c(0,1)) +
+  scale_y_continuous(breaks = seq(0, 1, by=0.1), limits = c(0,1)) + theme_bw() +
+  theme(text = element_text(size=20))
+
+grid.arrange(n,n,n,n,n,n,n, nrow=3)
+
+
+
+par(mfrow=c(2,3), mar=c(1.5,1.5,2,0.5), oma=c(1.5,2,1,1)) 
+
+# Fig 1A - plots for Composition
+plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
+abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
+points(compc, compe, pch = 19)
+#mtext('Species Composition', side = 3, line = -0.25, cex = 0.75)
+mtext('relative abundance', side = 2, line = 2, cex = 0.75)
+mtext('relative abundance', side = 1, line = 2, cex = 0.75)
+
+# Fig 1B - plots for N
+plot(NA, NA, pch = 19, log = 'xy', xlim = c(1,6500), ylim = c(1,6500),
+     xlab = '', ylab = '', bty = 'n')
+points(CN, EN, pch = 19, xlim = c(30, 6500, ylim = c(30,6500)))
+abline(0, 1, lty = 2, lwd = 1)
+#mtext('Total Abundance', side = 3, line = -0.25, cex = 0.75)
+mtext('total abundance', side = 2, line = 2, cex = 0.75)
+mtext('total abundance', side = 1, line = 2, cex = 0.75)
+
+# Fig 1C - plots for S
+plot(NA, NA, log = 'xy', pch = 19, xlim = c(1,200), ylim = c(1,200),
+     xlab = '', ylab = '', bty = 'n')
+points(CS, ES, pch = 19, xlim = c(5,200), ylim = c(5,200))
+abline(0, 1, lty = 2, lwd = 1)
+#mtext('Species Richness', side = 3, line = -0.25, cex = 0.75)
+mtext('species richness', side = 2, line = 2, cex = 0.75)
+mtext('species richness', side = 1, line = 2, cex = 0.75)
+
+# Fig 1D - plots for evenness
+plot(NA, NA, xlim = c(0,1), ylim = c(0,1), pch = 19, xlab = '', ylab = '', bty = "n")
+abline(0,1, lty = 2, lwd = 1, col = 'gray20')
+points(Jc, Je, pch = 19, xlim = c(0,1), ylim = c(0,1), xlab = '', ylab = '', main = '')
+#mtext('Evenness', side = 3, line = -0.25, cex = 0.75)
+mtext("Simpson's evenness", side = 2, line = 2, cex = 0.75)
+mtext("Simpson's evenness", side = 1, line = 2, cex = 0.75)
+
+#### Fig 1E.  compare relative abundance at each rank in all paired sites
+plot(NA, NA, xlim = c(0,1), ylim = c(0,1), xlab = "", ylab = "", bty = "n") 
+abline(0, 1, lty = 2, col = 'gray20', lwd = 1)
+points(c, e, pch = 19)
+#mtext('Relative Rank Abundance', side = 3, line = -0.25, cex = 0.75)
+mtext('relative abundance', side = 2, line = 2, cex = 0.75)
+mtext('relative abundance', side = 1, line = 2, cex = 0.75)
+
+box("outer", lty = "solid", col = "black")
+
+
