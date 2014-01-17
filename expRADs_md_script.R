@@ -219,17 +219,13 @@ taxa[taxa=='microarthropods']<-'microarthropod'
 taxa[taxa=='reptile']<-'herpetofauna'
 
   data = as.data.frame(cbind(lon, lat))
+  data = cbind(data, taxa = as.factor(taxa))
 
 #Get world map info
-world_map <- map_data("world")
+mapWorld <- borders("world", fill="gray65", col="gray65")
 
-#Creat a base plot
-p <- ggplot() + coord_fixed()
+base_world = ggplot() + mapWorld + theme_bw()
 
-#Add map to base plot
-base_world <- p + geom_polygon(data=world_map,aes(x=long, y=lat,group=group), 
-                               fill = "white", col = "black") + theme_bw()
-
-#add points to map
-site_map <- base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa), alpha = 0.5, cex = 5) +
-                          theme(legend.position = "right") + element_blank()
+site_map = base_world + geom_point(data=data, aes(x=lon, y=lat, col = taxa, fille = taxa, shape = taxa), cex = 5) +
+  theme(legend.position = "right") + element_blank() + xlab("Longitude") + ylab("Latitude") +
+  scale_colour_grey(start=0, end=0.3) + scale_shape_manual(values=c(17, 18, 19, 15, 25))
