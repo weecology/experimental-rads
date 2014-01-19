@@ -5,13 +5,14 @@
 
 library(ggplot2)
 library(gridExtra)
+library(GGally)
 
 #---------------------------------------------------------------------------------
 #          setup - select wd, import data, source code,  file to collect results
 #---------------------------------------------------------------------------------
 
-#"wd = "/Users/sarah/Documents/GitHub/experimental-rads/"
-wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
+wd = "/Users/sarah/Documents/GitHub/experimental-rads/"
+#wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
@@ -30,39 +31,17 @@ sites = read.csv("data/sites_analysis_data.csv")
 pdf("allRADs_orderedbytaxa.pdf", 7, 10, paper = "letter", pointsize = 10)
 par(mfrow=c(5,4), mar=c(1.5,2,3,1), oma=c(1,1,1,1))
 
-#descriptive variables
-refID = c()
-cID = c()
-eID = c()
-Cshape = c()
-Eshape = c()
-CS = as.numeric()
-CN = as.numeric()
-Jc = as.numeric()
-ES = as.numeric()
-EN = as.numeric()
-Je = as.numeric()
-taxon = c()
-etype = c()
-m2 = as.numeric()
-# comparison variables
-BCJ = as.numeric()
-BCrad = as.numeric()
-BCS = as.numeric()
-BCN = as.numeric()
-BCcomp = as.numeric()
-percS = as.numeric()
-percN = as.numeric()
-
-c = as.numeric()
-e = as.numeric()
-r2 = as.numeric()
-ranklr = as.numeric()
-
-compc = as.numeric()
-compe = as.numeric()
-compr2 = as.numeric()
-complr = as.numeric()
+#build up dataframe
+desc = data.frame(refID = 0, cID = 0, eID = 0, CS = 0, ES = 0, CN = 0, EN = 0, Jc = 0, Je = 0, m2 = 0)
+charvars = data.frame(Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
+compvals = data.frame(BCcomp = 0, BCN = 0, BCS = 0, BCJ = 0, BCrad = 0, percS = 0, percN = 0)
+rankvals = data.frame(r2 = 0, ranklr = 0)
+compositionvals = data.frame(compr2 = 0, complr = 0)
+outcount = 1
+c = NULL
+e = NULL
+compc = NULL
+compe = NULL
 
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
@@ -79,38 +58,38 @@ for (iRow in 1:nrow(comps)){
     
     # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
     if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
-      # record all values in a comparison matrix
-      relcon = relabund(a1) #make the lengths the same!
-      relexp = relabund(a2)  #make the lengths the same!
-      comparison_matrix = abundMerge(relcon, relexp)
-        tr = as.data.frame(t(comparison_matrix))
+      # record all values in a comparison matrix - to compare relative abundance at each rank
+      a1 = sort(a1, decreasing = TRUE)
+      a2 = sort(a2, decreasing = TRUE)
+      relcon = relabund(a1) 
+      relexp = relabund(a2)  
+      comparison_matrix = abundMerge(relcon, relexp) #makes the lengths the same
+        tr = as.data.frame(t(comparison_matrix))  #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
+      rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), mean(rlr))
       c = append(c, comparison_matrix[,1])
       e = append(e, comparison_matrix[,2])
-      r2 = append(r2, rsquare(comparison_matrix[,1], comparison_matrix[,2]))
-      ranklr = append(ranklr, mean(rlr, na.rm=TRUE))
       
-      # record all composition-specific values in a comparison matrix
-      comparison = subset(comms[which(comms$siteID == control | comms$siteID == experiment),])
-      comparison = reshape_data(comparison) #table species & abundance in paired communities 
-      comparison = comparison[,c(2:ncol(comparison))]
-      comparison[1,] = comparison[1,]/sum(comparison[1,]) #convert to relabundance
-      comparison[2,] = comparison[2,]/sum(comparison[2,]) #convert to relabundance
+      # record all composition-specific values in a comparison matrix, reshape into siteXspecies matrix
+      comparison = reshape_data(subset(comms[which(comms$siteID == control | comms$siteID == experiment),]))
+      #make sure dataframe is ordered control (row 1), experiment (row 2)
+      cntrl = comparison[which(comparison$siteID == control),c(2:ncol(comparison))]
+      exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
+      comparison = rbind(cntrl, exprm) #make sure control is row 1
+      #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
-        complr = append(complr, mean(lr, na.rm=TRUE))
+      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), mean(lr))
+        complr = append(complr, mean(lr))
       compc = append(compc, as.numeric(comparison[1,]))
       compe = append(compe, as.numeric(comparison[2,]))
-      compr2 = append(compr2, rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])))
      
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
         d = dist.test(a1, a2)
-        Cshape = append(Cshape, d$con)
-        Eshape = append(Eshape, d$exp)
+        charvars[outcount,] = c(d$con, d$exp, taxa, type)
       }
       else {      #if mean abundance, can't get the data, (needs integers)
-        Cshape = append(Cshape, "ERROR")
-        Eshape = append(Eshape, "ERROR")
+        charvars[outcount,] = c("ERROR", "ERROR", taxa, type)
       }
      
       #plot the compared data
@@ -123,28 +102,19 @@ for (iRow in 1:nrow(comps)){
       exp_n = sum(a2)
       exp_j = SimpE(comms[which(comms[,2]==experiment),])
       
-      # get summary statistics from comparisons
-      BCJ = append(BCJ, BCdist(matrix(c(con_j, exp_j), nrow = 1, ncol = 2)))
-      BCrad = append(BCrad, BCdist(abundMerge(relabund(a1), relabund(a2))))
-      BCS = append(BCS, BCdist(matrix(c(con_s, exp_s), nrow = 1, ncol = 2))) 
-      BCN = append(BCN, BCdist(matrix(c(con_n, exp_n), nrow = 1, ncol = 2)))
-      BCcomp = append(BCcomp, BCdist(subset(comms[which(comms$siteID == control | comms$siteID == experiment),])))
-      percS = append(percS, ((exp_s - con_s)/con_s)*100) 
-      percN = append(percN, ((exp_n - con_n)/con_n)*100)
-      taxon = append(taxon, taxa)
-      etype = append(etype, type)
-      
+      BCJ = BCdist(matrix(c(con_j, exp_j), nrow = 1, ncol = 2))
+      BCrad = BCdist(abundMerge(relabund(a1), relabund(a2)))
+      BCS = BCdist(matrix(c(con_s, exp_s), nrow = 1, ncol = 2)) 
+      BCN = BCdist(matrix(c(con_n, exp_n), nrow = 1, ncol = 2))
+      BCcomp = BCdist(subset(comms[which(comms$siteID == control | comms$siteID == experiment),]))
+      percS = ((exp_s - con_s)/con_s)*100
+      percN = ((exp_n - con_n)/con_n)*100
+
       # record summary descriptive variables
-      refID = append(refID, ref)
-      cID = append(cID, control)
-      eID = append(eID, experiment)
-      CS = append(CS, con_s)
-      CN = append(CN, con_n)
-      Jc = append(Jc, round(con_j,4))
-      ES = append(ES, exp_s)
-      EN = append(EN, exp_n)
-      Je = append(Je, round(exp_j,4))
-      m2 = append(m2, extent)
+      desc[outcount,] = c(ref, control, experiment, con_s, exp_s, con_n, exp_n, con_j, exp_j, extent)
+      # get summary statistics from comparisons
+      compvals[outcount,] = c(BCcomp, BCN, BCS, BCJ, BCrad, percS, percN)
+      outcount = outcount + 1
     }}}
 
 dev.off()
@@ -178,10 +148,9 @@ s_r2 = round(rsquare(CS,ES),4)
 relabun_r2 = round(rsquare(c,e),4)
 j_r2 = round(rsquare(Jc,Je),4)
 
-
 #log ratio differences between values
-s_df = as.data.frame(t(cbind(CS,ES)))
-n_df = as.data.frame(t(cbind(CN,EN)))
+s_df = as.data.frame(t(cbind(CS, ES)))
+n_df = as.data.frame(t(cbind(CN, EN)))
 e_df = as.data.frame(t(cbind(Jc, Je)))
 
 Slr = sapply(s_df, function(x) LogRatio(x[2], x[1]) )
@@ -265,6 +234,7 @@ site_map = base_world +
   theme(text = element_text(size=20))
 site_map
 
+ggsave(site_map, file = "site_map.jpeg", dpi = 300, width = 9, height = 4.5)
 
 #----------------------------------------------------------------------- 
 #                 FIGURE 2. compare control and manipulated data
@@ -349,9 +319,10 @@ grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
 
 
 #------------------------------------------------------------------------------------------- 
-#                 FIGURE 4. pairs plots of the log-ratios for the 5 variables (NA.rm = TRUE) #FIXME: skews results?
+#                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
-ggpairs(lograt[,c(1:5)])
+logratios = lograt[,c(1,3,4,5,2)]
+ggpairs(logratios, upper = "blank", diag = list(continuous = "density"))
 
 
 
