@@ -32,11 +32,11 @@ pdf("allRADs_orderedbytaxa.pdf", 7, 10, paper = "letter", pointsize = 10)
 par(mfrow=c(5,4), mar=c(1.5,2,3,1), oma=c(1,1,1,1))
 
 #build up dataframe
-desc = data.frame(refID = 0, cID = 0, eID = 0, CS = 0, ES = 0, CN = 0, EN = 0, Jc = 0, Je = 0, m2 = 0)
-charvars = data.frame(Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
-compvals = data.frame(BCcomp = 0, BCN = 0, BCS = 0, BCJ = 0, BCrad = 0, percS = 0, percN = 0)
-rankvals = data.frame(r2 = 0, ranklr = 0)
-compositionvals = data.frame(compr2 = 0, complr = 0)
+desc = data.frame(cID = 1, eID = 1, CS = 1, ES = 1, CN = 1, EN = 1, Jc = 1, Je = 1, m2 = 1)
+charvars = data.frame(refID = NA, Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
+compvals = data.frame(BCcomp = 1, BCN = 1, BCS = 1, BCJ = 1, BCrad = 1, percS = 1, percN = 1)
+rankvals = data.frame(r2 = 1, ranklr = 1)
+compositionvals = data.frame(compr2 = 1, complr = 1)
 outcount = 1
 c = NULL
 e = NULL
@@ -86,10 +86,10 @@ for (iRow in 1:nrow(comps)){
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
         d = dist.test(a1, a2)
-        charvars[outcount,] = c(d$con, d$exp, taxa, type)
+        charvars[outcount,] = c(ref, d$con, d$exp, taxa, type)
       }
       else {      #if mean abundance, can't get the data, (needs integers)
-        charvars[outcount,] = c("ERROR", "ERROR", taxa, type)
+        charvars[outcount,] = c(ref, "ERROR", "ERROR", taxa, type)
       }
      
       #plot the compared data
@@ -111,7 +111,7 @@ for (iRow in 1:nrow(comps)){
       percN = ((exp_n - con_n)/con_n)*100
 
       # record summary descriptive variables
-      desc[outcount,] = c(ref, control, experiment, con_s, exp_s, con_n, exp_n, con_j, exp_j, extent)
+      desc[outcount,] = c(control, experiment, con_s, exp_s, con_n, exp_n, con_j, exp_j, extent)
       # get summary statistics from comparisons
       compvals[outcount,] = c(BCcomp, BCN, BCS, BCJ, BCrad, percS, percN)
       outcount = outcount + 1
@@ -121,14 +121,14 @@ dev.off()
 
 
 #collapse taxon types into broader categories so there aren't so many factors
-taxon[taxon=='carabid']<-'insect'
-taxon[taxon=='lepidopteran']<- 'insect'
-taxon[taxon=='odonate']<- 'insect'
-taxon[taxon=='orthoptera']<-'insect'
-taxon[taxon=='orthoptera ']<-'insect'
-taxon[taxon=='beetle']<-'insect'
-taxon[taxon=='microarthropods']<-'microarthropod'
-taxon[taxon=='reptile']<-'herpetofauna'
+charvars$taxon[charvars$taxon=='carabid']<-'insect'
+charvars$taxon[charvars$taxon=='lepidopteran']<- 'insect'
+charvars$taxon[charvars$taxon=='odonate']<- 'insect'
+charvars$taxon[charvars$taxon=='orthoptera']<-'insect'
+charvars$taxon[charvars$taxon=='orthoptera ']<-'insect'
+charvars$taxon[charvars$taxon=='beetle']<-'insect'
+charvars$taxon[charvars$taxon=='microarthropods']<-'microarthropod'
+charvars$taxon[charvars$taxon=='reptile']<-'herpetofauna'
 
 
 #------------------------------------- 
@@ -137,43 +137,47 @@ taxon[taxon=='reptile']<-'herpetofauna'
 #root mean squared error for the variables. Usually used as standard deviation of model prediction error, but can be
 # used as an indicator of the degree of change between control (obs) and the experiment (sim)
 comp_rmse = round(rmse(compe, compc),4)
-n_rmse = round(rmse(EN, CN),4)
-s_rmse = round(rmse(ES, CS),4)
+n_rmse = round(rmse(desc$EN, desc$CN),4)
+s_rmse = round(rmsegdesc$ES, desy78CS),4)
 relabun_rmse = round(rmse(e,c),4)
-j_rmse = round(rmse(Je, Jc),4)
+j_rmse = round(rmse(desc$Je, desc$Jc),4)
 
 comp_r2 = round(rsquare(compc, compe),4)
-n_r2 = round(rsquare(CN,EN),4)
-s_r2 = round(rsquare(CS,ES),4)
+n_r2 = round(rsquare(desc$CN,desc$EN),4)
+s_r2 = round(rsquare(desc$CS,desc$ES),4)
 relabun_r2 = round(rsquare(c,e),4)
-j_r2 = round(rsquare(Jc,Je),4)
+j_r2 = round(rsquare(desc$Jc,desc$Je),4)
 
 #log ratio differences between values
-s_df = as.data.frame(t(cbind(CS, ES)))
-n_df = as.data.frame(t(cbind(CN, EN)))
-e_df = as.data.frame(t(cbind(Jc, Je)))
+s_df = as.data.frame(t(cbind(desc$CS, desc$ES)))
+n_df = as.data.frame(t(cbind(desc$CN, desc$EN)))
+e_df = as.data.frame(t(cbind(desc$Jc, desc$Je)))
 
 Slr = sapply(s_df, function(x) LogRatio(x[2], x[1]) )
 Nlr = sapply(n_df, function(x) LogRatio(x[2], x[1]) )
 Elr = sapply(e_df, function(x) LogRatio(x[2], x[1]) )
 
 #count the communities displaying various shapes. This does take into account duplicates. Should be correct
-shapes = count_RAD_shapes(cID, eID, Cshape, Eshape)
+shapes = count_RAD_shapes(desc$cID, desc$eID, charvars$Cshape, charvars$Eshape)
 
 #fiddle plots to see if small-scale sites pick up more variability
 par(mfrow=c(3,2))
 
-plot(BCcomp, m2, pch=19)
-plot(abs(percS), m2, pch=19, xlim=c(0,150))
-plot(abs(percN), m2, pch=19, xlim=c(0,300))
-plot(BCJ, m2, pch=19)
-plot(BCrad, m2, pch=19)
+plot(compvals$BCcomp, desc$m2, pch=19)
+plot(abs(compvals$percS), desc$m2, pch=19, xlim=c(0,150))
+plot(abs(compvals$percN), desc$m2, pch=19, xlim=c(0,300))
+plot(compvals$BCJ, desc$m2, pch=19)
+plot(compvals$BCrad, desc$m2, pch=19)
 
 #put the results together for later plotting and comparison
-diversity = data.frame(taxa, etype, CS, ES, CN, EN, Je, Jc)
+diversity = cbind(charvars[,c(4:5)], desc)
 composition = data.frame(compc, compe)
 relabundance = data.frame(c,e)
 
+taxa = diversity$taxon
+etype = diversity$etype
+complr = compositionvals$complr
+ranklr = rankvals$ranklr
 lograt = data.frame(complr, ranklr, Nlr, Slr, Elr, taxon, etype)
 
 #----------------------------------------------------------------------- 
@@ -292,27 +296,32 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #Fig 3A - plots for composition
 comphist = ggplot(data=lograt, aes(complr)) + geom_histogram() + 
   xlab("mean log-ratio of species relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1, 1, by=0.5), limits = c(-1,1)) + theme_bw() +
+  scale_x_continuous(breaks = seq(-3.5,3.5, by=0.5), limits = c(-3.5,3.5)) + theme_bw() +  
+  scale_y_continuous(breaks = seq(0,50, by=10), limits = c(0,50)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
 nhist = ggplot(data=lograt, aes(Nlr)) + geom_histogram() + 
   xlab("log-ratio of total abundance") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1, 1, by=0.5), limits = c(-1,1)) + theme_bw() +
+  scale_x_continuous(breaks = seq(-3.5,3.5, by=0.5), limits = c(-3.5,3.5)) + theme_bw() + 
+  scale_y_continuous(breaks = seq(0,50, by=10), limits = c(0,50)) +
   theme(text = element_text(size=20)) + ggtitle("B")
 
 shist = ggplot(data=lograt, aes(Slr)) + geom_histogram() + 
   xlab("log-ratio of species richness") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1, 1, by=0.5), limits = c(-1,1)) + theme_bw() +
+  scale_x_continuous(breaks = seq(-3.5,3.5, by=0.5), limits = c(-3.5,3.5)) + theme_bw() + 
+  scale_y_continuous(breaks = seq(0,50, by=10), limits = c(0,50)) +
   theme(text = element_text(size=20)) + ggtitle("C")
 
 ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram() + 
   xlab("log-ratio of Simpson's evenness") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1, 1, by=0.5), limits = c(-1,1)) + theme_bw() +
+  scale_x_continuous(breaks = seq(-3.5,3.5, by=0.5), limits = c(-3.5,3.5)) + theme_bw() + 
+  scale_y_continuous(breaks = seq(0,50, by=10), limits = c(0,50)) +
   theme(text = element_text(size=20)) + ggtitle("D")
 
 rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() + 
   xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1, 1, by=0.5), limits = c(-1,1)) + theme_bw() +
+  scale_x_continuous(breaks = seq(-3.5,3.5, by=0.5), limits = c(-3.5,3.5)) + theme_bw() + 
+  scale_y_continuous(breaks = seq(0,50, by=10), limits = c(0,50)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
 grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
@@ -322,7 +331,7 @@ grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
 #                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
 logratios = lograt[,c(1,3,4,5,2)]
-ggpairs(logratios, upper = "blank", diag = list(continuous = "density"))
+ggpairs(logratios)
 
 
 
