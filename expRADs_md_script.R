@@ -337,31 +337,32 @@ grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
 #                 plot the standard deviations of the log-ratios for composition and rank
 #                   and the raw log-ratio values from them - mean is maybe not representative?
 #-------------------------------------------------------------------------------------------
-ranksd = ggplot(data=results, aes(sdrlr)) + geom_histogram() + 
-  xlab("sd of mean log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,3, by=0.5), limits = c(0,3)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
 compossd = ggplot(data=results, aes(sdlr)) + geom_histogram() + 
   xlab("sd of mean log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,3, by=0.5), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
   theme(text = element_text(size=20)) + ggtitle("A")
+
+ranksd = ggplot(data=results, aes(sdrlr)) + geom_histogram() + 
+  xlab("sd of mean log-ratio of rank relative abundances") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
+  theme(text = element_text(size=20)) + ggtitle("B")
 
 grid.arrange(compossd, ranksd, nrow = 1)
 
 # raw vals:
-composrawlr = ggplot(data=data.frame(complrvals), aes(complrvals)) + geom_histogram() + 
+composrawlr = ggplot(data=data.frame(complrvals), aes(complrvals)) + geom_histogram(binwidth=0.5) + 
   xlab("all log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-4,4, by=1), limits = c(-4,4)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,1200, by=100), limits = c(0,1100)) +
+  scale_x_continuous(breaks = seq(-9,9, by=1), limits = c(-9,9)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,1000, by=100), limits = c(0,1000)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
-rankrawlr = ggplot(data=data.frame(ranklrvals), aes(ranklrvals)) + geom_histogram() + 
-  xlab("all log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-4,4, by=1), limits = c(-4,4)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,1200, by=100), limits = c(0,1100)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
+rankrawlr = ggplot(data=data.frame(ranklrvals), aes(ranklrvals)) + geom_histogram(binwidth=0.5) + 
+  xlab("all log-ratio of rank relative abundances") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(-9,9, by=1), limits = c(-9,9)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,1000, by=100), limits = c(0,1000)) +
+  theme(text = element_text(size=20)) + ggtitle("B")
 
 grid.arrange(composrawlr, rankrawlr, nrow = 1)
 
@@ -372,4 +373,6 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2,6)])
 
 ggpairs(logratios, colour = "taxa")
+
+logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)], results$sdlr, results$sdrlr)
 pairs(logratios, pch = 19)
