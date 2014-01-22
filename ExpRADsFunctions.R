@@ -384,7 +384,7 @@ LogRatio = function(manip_val, control_val) {
   # adds a small constant (0.0001) to each value, so we can deal with zeroes
   manip_val = manip_val + 0.0001
   control_val = control_val + 0.0001
-  lr = log10(manip_val/control_val)
+  lr = log(manip_val/control_val)
   return(lr)
 }
 
