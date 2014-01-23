@@ -302,31 +302,31 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #Fig 3A - plots for composition
 comphist = ggplot(data=lograt, aes(complr)) + geom_histogram() + 
   xlab("mean log-ratio of species relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1.5,1.5, by=0.5), limits = c(-1.5,1.5)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
 nhist = ggplot(data=lograt, aes(Nlr)) + geom_histogram() + 
   xlab("log-ratio of total abundance") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1.5,1.5, by=0.5), limits = c(-1.5,1.5)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("B")
 
 shist = ggplot(data=lograt, aes(Slr)) + geom_histogram() + 
   xlab("log-ratio of species richness") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1.5,1.5, by=0.5), limits = c(-1.5,1.5)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("C")
 
 ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram() + 
   xlab("log-ratio of Simpson's evenness") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1.5,1.5, by=0.5), limits = c(-1.5,1.5)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("D")
 
 rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() + 
   xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-1.5,1.5, by=0.5), limits = c(-1.5,1.5)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
