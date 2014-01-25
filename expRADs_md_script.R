@@ -376,9 +376,9 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 #------------------------------------------------------------------------------------------- 
 #                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
-logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2,6)])
+logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)])
 
-ggpairs(logratios, colour = "taxa")
+ggpairs(logratios)
 
 logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)], results$sdlr, results$sdrlr)
 pairs(logratios, pch = 19)
