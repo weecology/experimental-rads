@@ -420,8 +420,27 @@ logratios = lograt[,c(3,5,6,7,4)]
 logratios$Nlr = abs(logratios$Nlr)
 logratios$Slr = abs(logratios$Slr)
 logratios$Elr = abs(logratios$Elr)
+names(logratios) = c("composition", "abundance", "richness", "evenness", "rank")
 
 ggpairs(logratios)
 pairs(logratios, pch = 19)
 
 
+#----------------------------------------------------------------------------------
+#                 RESULTS - mean, standard deviation, and correlation 
+#----------------------------------------------------------------------------------
+
+for (col in 1:ncol(logratios)){
+  m = round(mean(logratios[,col]),3)
+  stdev = round(sd(logratios[,col]),3)
+  print(paste(names(logratios[col]), ": mean - ", m, " sd - ", stdev))
+}
+
+#TODO: not normally distributed - transform before taking cor?
+print(cor.test(logratios$composition, logratios$richness))
+print(cor.test(logratios$composition, logratios$evenness))
+print(cor.test(logratios$composition, logratios$rank))
+
+print(cor.test(logratios$abundance, logratios$richness))
+print(cor.test(logratios$abundance, logratios$evenness))
+print(cor.test(logratios$abundance, logratios$rank))
