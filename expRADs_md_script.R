@@ -330,9 +330,15 @@ rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() +
   xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
+  theme(text = element_text(size=20)) + ggtitle("E")
 
-grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
+BChist = ggplot(data=results, aes(BCcomp)) + geom_histogram() + 
+  xlab("Bray-Curtis dissimilarity") + ylab("frequency") +
+  scale_x_continuous(breaks = seq(0,1, by=0.2), limits = c(0,1)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("F")
+
+grid.arrange(comphist, BChist, nhist, shist, ehist, rankhist, nrow=2)
 
 
 #------------------------------------------------------------------------------------------- 
@@ -372,9 +378,9 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 #------------------------------------------------------------------------------------------- 
 #                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
-logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2,6)])
+logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)])
 
-ggpairs(logratios, colour = "taxa")
+ggpairs(logratios)
 
 logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)], results$sdlr, results$sdrlr)
 pairs(logratios, pch = 19)
