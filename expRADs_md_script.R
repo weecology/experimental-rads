@@ -35,8 +35,8 @@ par(mfrow=c(5,4), mar=c(1.5,2,3,1), oma=c(1,1,1,1))
 desc = data.frame(cID = 1, eID = 1, CS = 1, ES = 1, CN = 1, EN = 1, Jc = 1, Je = 1, m2 = 1)
 charvars = data.frame(refID = NA, Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
 compvals = data.frame(BCcomp = 1, BCN = 1, BCS = 1, BCJ = 1, BCrad = 1, percS = 1, percN = 1)
-rankvals = data.frame(r2 = 1, ranklr = 1, sdrlr=1)
-compositionvals = data.frame(compr2 = 1, complr = 1, sdlr = 1)
+rankvals = data.frame(r2 = 1, ranklr = 1, sdrlr = 1, absranklr = 1, abssdrlr = 1)
+compositionvals = data.frame(compr2 = 1, complr = 1, sdlr = 1, abscomplr = 1, abssdlr = 1)
 outcount = 1
 c = NULL
 e = NULL
@@ -69,7 +69,7 @@ for (iRow in 1:nrow(comps)){
         tr = as.data.frame(t(comparison_matrix))  #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals = append(ranklrvals, rlr)
-      rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), mean(rlr), sd(rlr))
+      rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), mean(rlr), sd(rlr), mean(abs(rlr)), sd(abs(rlr)))
       c = append(c, comparison_matrix[,1])
       e = append(e, comparison_matrix[,2])
       
@@ -84,7 +84,7 @@ for (iRow in 1:nrow(comps)){
       #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
       complrvals = append(complrvals, lr)
-      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), mean(lr), sd(lr))
+      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), mean(lr), sd(lr), mean(abs(lr)), sd(abs(lr)))
       compc = append(compc, as.numeric(comparison[1,]))
       compe = append(compe, as.numeric(comparison[2,]))
      
@@ -165,14 +165,14 @@ Elr = sapply(e_df, function(x) LogRatio(x[2], x[1]) )
 #count the communities displaying various shapes. This does take into account duplicates. Should be correct
 shapes = count_RAD_shapes(results$cID, results$eID, results$Cshape, results$Eshape)
 
-#fiddle plots to see if small-scale sites pick up more variability
-par(mfrow=c(3,2))
-
-plot(results$BCcomp, desc$m2, pch=19)
-plot(abs(results$percS), desc$m2, pch=19, xlim=c(0,150))
-plot(abs(results$percN), desc$m2, pch=19, xlim=c(0,300))
-plot(results$BCJ, desc$m2, pch=19)
-plot(results$BCrad, desc$m2, pch=19)
+# #fiddle plots to see if small-scale sites pick up more variability
+# par(mfrow=c(3,2))
+# 
+# plot(results$BCcomp, desc$m2, pch=19)
+# plot(abs(results$percS), desc$m2, pch=19, xlim=c(0,150))
+# plot(abs(results$percN), desc$m2, pch=19, xlim=c(0,300))
+# plot(results$BCJ, desc$m2, pch=19)
+# plot(results$BCrad, desc$m2, pch=19)
 
 #put the results together for later plotting and comparison
 diversity = cbind(charvars[,c(4:5)], desc)
@@ -182,8 +182,10 @@ relabundance = data.frame(c,e)
 taxa = diversity$taxon
 etype = diversity$etype
 complr = compositionvals$complr
+abscomplr = compositionvals$abscomplr
 ranklr = rankvals$ranklr
-lograt = data.frame(complr, ranklr, Nlr, Slr, Elr, taxa, etype)
+absranklr = rankvals$absranklr
+lograt = data.frame(complr, ranklr, abscomplr, absranklr, Nlr, Slr, Elr, taxa, etype)
 
 #----------------------------------------------------------------------- 
 #                 FIGURE 1. map site locations, color coded by taxa
