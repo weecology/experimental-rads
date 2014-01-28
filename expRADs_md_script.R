@@ -299,47 +299,85 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #------------------------------------------------------------------------------------------- 
 #                 FIGURE 3. histograms of log-ratio difference in treatment vs. controls
 #-------------------------------------------------------------------------------------------
-#plot histograms of the log-ratio results
+#plot histograms of the log-ratio results, ABSOLUTE VALUE
 
 #Fig 3A - plots for composition
+abscomp = ggplot(data=results, aes(abscomplr)) + geom_histogram() + 
+  xlab("mean log ratio of composition") + ylab("frequency") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("A")
+
+nhist = ggplot(data=lograt, aes(abs(Nlr))) + geom_histogram() + 
+  xlab("log-ratio of total abundance") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("B")
+
+shist = ggplot(data=lograt, aes(abs(Slr))) + geom_histogram() + 
+  xlab("log-ratio of species richness") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("C")
+
+ehist = ggplot(data=lograt, aes(abs(Elr))) + geom_histogram() + 
+  xlab("log-ratio of evenness") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("D")
+
+absrank = ggplot(data=results, aes(absranklr)) + geom_histogram() + 
+  xlab("mean log ratio of rank") + ylab("frequency") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("E")
+
+grid.arrange(abscomp, nhist, shist, ehist, absrank, nrow=2)
+
+
+#------------------------------------------------------------------------------------------- 
+#                 APPENDIX FIGURE. similar to Fig 3, but with directional data, histograms of log-ratio difference in treatment vs. controls
+#-------------------------------------------------------------------------------------------
+#plot histograms of the log-ratio results + Bray-Curtis
+
+#Appendix Panel figures - plots for composition
+BChist = ggplot(data=results, aes(BCcomp)) + geom_histogram() + 
+  xlab("Bray-Curtis dissimilarity") + ylab("frequency") +
+  scale_x_continuous(breaks = seq(0,1, by=0.2), limits = c(0,1)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("A")
+
 comphist = ggplot(data=lograt, aes(complr)) + geom_histogram() + 
   xlab("mean log-ratio of species relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
+  theme(text = element_text(size=20)) + ggtitle("B")
 
 nhist = ggplot(data=lograt, aes(Nlr)) + geom_histogram() + 
   xlab("log-ratio of total abundance") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("B")
+  theme(text = element_text(size=20)) + ggtitle("C")
 
 shist = ggplot(data=lograt, aes(Slr)) + geom_histogram() + 
   xlab("log-ratio of species richness") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("C")
+  theme(text = element_text(size=20)) + ggtitle("D")
 
 ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram() + 
   xlab("log-ratio of Simpson's evenness") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("D")
+  theme(text = element_text(size=20)) + ggtitle("E")
 
 rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() + 
   xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("E")
-
-BChist = ggplot(data=results, aes(BCcomp)) + geom_histogram() + 
-  xlab("Bray-Curtis dissimilarity") + ylab("frequency") +
-  scale_x_continuous(breaks = seq(0,1, by=0.2), limits = c(0,1)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("F")
 
-grid.arrange(comphist, BChist, nhist, shist, ehist, rankhist, nrow=2)
-
+grid.arrange(BChist, comphist, nhist, shist, ehist, rankhist, nrow=2)
 
 #------------------------------------------------------------------------------------------- 
 #                 plot the standard deviations of the log-ratios for composition and rank
@@ -378,9 +416,12 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 #------------------------------------------------------------------------------------------- 
 #                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
-logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)])
+logratios = lograt[,c(3,5,6,7,4)]
+logratios$Nlr = abs(logratios$Nlr)
+logratios$Slr = abs(logratios$Slr)
+logratios$Elr = abs(logratios$Elr)
 
 ggpairs(logratios)
-
-logratios = cbind(BC=results$BCcomp, lograt[,c(1,3,4,5,2)], results$sdlr, results$sdrlr)
 pairs(logratios, pch = 19)
+
+
