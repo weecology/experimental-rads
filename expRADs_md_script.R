@@ -414,7 +414,7 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 
 
 #------------------------------------------------------------------------------------------- 
-#                 FIGURE 4. pairs plots of the log-ratios for the 5 variables 
+#                 APPENDIX D, FIGURE 1D. pairs plots of the log-ratios for the 5 variables 
 #-------------------------------------------------------------------------------------------
 logratios = lograt[,c(3,5,6,7,4)]
 logratios$Nlr = abs(logratios$Nlr)
@@ -422,9 +422,26 @@ logratios$Slr = abs(logratios$Slr)
 logratios$Elr = abs(logratios$Elr)
 names(logratios) = c("composition", "abundance", "richness", "evenness", "rank")
 
-ggpairs(logratios)
-pairs(logratios, pch = 19)
+sqrtlogs = sqrt(logratios)
 
+ggpairs(logratios, diag=list(continuous="density", discrete="bar"), axisLabels="show")
+pairs(logratios, pch = 19)
+#ggpairs(sqrtlogs, diag=list(continuous="density", discrete="bar"), axisLabels="show")
+pairs(sqrtlogs, pch=19)
+
+#plot the qnorm plots
+par(mfrow=c(3,2))
+for (i in 1:ncol(logratios)){
+  qqnorm(logratios[,i], pch=19, main = names(logratios[i]))
+  qqline(logratios[,i], col = "indianred", lwd=2)
+}
+
+#plot the qnorm plots after square root transformation
+par(mfrow=c(3,2))
+for (i in 1:ncol(logratios)){
+  qqnorm(sqrt(logratios[,i]), pch=19, main = names(logratios[i]))
+  qqline(sqrt(logratios[,i]), col = "indianred", lwd=2)
+}
 
 #----------------------------------------------------------------------------------
 #                 RESULTS - mean, standard deviation, and correlation 
