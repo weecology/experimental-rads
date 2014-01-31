@@ -443,6 +443,16 @@ for (i in 1:ncol(logratios)){
   qqline(sqrt(logratios[,i]), col = "indianred", lwd=2)
 }
 
+# get the r2 value of the relationship between the variables and composition and abundance
+comp_lm = NULL
+abun_lm = NULL
+for (i in (3:5)){
+  mod1 = lm(logratios[,i] ~ logratios[,1])
+  mod2 = lm(logratios[,i] ~ logratios[,2])
+  comp_lm = append(comp_lm, summary(mod1)$adj.r.squared)
+  abun_lm = append(abun_lm, summary(mod2)$adj.r.squared)
+}
+
 #----------------------------------------------------------------------------------
 #                 RESULTS - mean, standard deviation, and correlation 
 #----------------------------------------------------------------------------------
