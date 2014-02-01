@@ -463,7 +463,7 @@ for (col in 1:ncol(logratios)){
   print(paste(names(logratios[col]), ": mean - ", m, " sd - ", stdev))
 }
 
-#TODO: not normally distributed - transform before taking cor?
+# Print Pearson's correlation values
 print(cor.test(logratios$composition, logratios$richness))
 print(cor.test(logratios$composition, logratios$evenness))
 print(cor.test(logratios$composition, logratios$rank))
@@ -471,3 +471,9 @@ print(cor.test(logratios$composition, logratios$rank))
 print(cor.test(logratios$abundance, logratios$richness))
 print(cor.test(logratios$abundance, logratios$evenness))
 print(cor.test(logratios$abundance, logratios$rank))
+
+quantile(logratios$composition, c(0.05,0.95))
+quantile(logratios$abundance, c(0.05,0.95))
+quantile(logratios$richness, c(0.05,0.95))
+quantile(logratios$evenness, c(0.05,0.95))
+quantile(logratios$rank, c(0.05,0.95))
