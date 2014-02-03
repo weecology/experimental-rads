@@ -477,3 +477,10 @@ quantile(logratios$abundance, c(0.05,0.95))
 quantile(logratios$richness, c(0.05,0.95))
 quantile(logratios$evenness, c(0.05,0.95))
 quantile(logratios$rank, c(0.05,0.95))
+
+for (col in 1:ncol(logratios)){
+  print (quantile(logratios[,col], c(0.05,0.95)))
+  print(mean(logratios[,col]))
+  print(median(logratios[,col]))
+  print(sd(logratios[,col]))
+}
