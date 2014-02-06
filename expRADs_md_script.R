@@ -467,3 +467,17 @@ for (col in 1:ncol(logratios)){
   print(median(logratios[,col]))
   print(sd(logratios[,col]))
 }
+
+#the mean and median value when composition includes species that were present in both communities
+print (mean(compositionvals$abscomplrzero))
+print (median(compositionvals$abscomplrzero))
+ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram(binwidth = 0.15, col="white") + theme_classic() + 
+  theme(text = element_text(size=20)) + ggtitle("Only for species present in both") + xlab("mean composition log ratio")
+
+# mean rank log ratio for communities where species richness change was zero
+rankzero = logratios[which(logratios$richness == 0),]
+mean(rankzero$rank)
+median(rankzero$rank)
+hist(rankzero$rank)
+ggplot(rankzero, aes(rank)) + geom_histogram(binwidth=0.15, col = "white") + theme_classic() + 
+  theme(text = element_text(size=20)) + ggtitle("when S change = zero") + xlab("rank log ratio")
