@@ -423,26 +423,8 @@ logratios$Slr = abs(logratios$Slr)
 logratios$Elr = abs(logratios$Elr)
 names(logratios) = c("composition", "abundance", "richness", "evenness", "rank")
 
-sqrtlogs = sqrt(logratios)
-
 ggpairs(logratios, diag=list(continuous="density", discrete="bar"), axisLabels="show")
 pairs(logratios, pch = 19)
-#ggpairs(sqrtlogs, diag=list(continuous="density", discrete="bar"), axisLabels="show")
-pairs(sqrtlogs, pch=19)
-
-#plot the qnorm plots
-par(mfrow=c(3,2))
-for (i in 1:ncol(logratios)){
-  qqnorm(logratios[,i], pch=19, main = names(logratios[i]))
-  qqline(logratios[,i], col = "indianred", lwd=2)
-}
-
-#plot the qnorm plots after square root transformation
-par(mfrow=c(3,2))
-for (i in 1:ncol(logratios)){
-  qqnorm(sqrt(logratios[,i]), pch=19, main = names(logratios[i]))
-  qqline(sqrt(logratios[,i]), col = "indianred", lwd=2)
-}
 
 # get the r2 value of the relationship between the variables and composition and abundance
 comp_lm = NULL
