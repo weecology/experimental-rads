@@ -36,7 +36,7 @@ desc = data.frame(cID = 1, eID = 1, CS = 1, ES = 1, CN = 1, EN = 1, Jc = 1, Je =
 charvars = data.frame(refID = NA, Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
 compvals = data.frame(BCcomp = 1, BCN = 1, BCS = 1, BCJ = 1, BCrad = 1, percS = 1, percN = 1)
 rankvals = data.frame(r2 = 1, ranklr = 1, sdrlr = 1, absranklr = 1, abssdrlr = 1)
-compositionvals = data.frame(compr2 = 1, complr = 1, sdlr = 1, abscomplr = 1, abssdlr = 1)
+compositionvals = data.frame(compr2 = 1, complr = 1, sdlr = 1, abscomplr = 1, abssdlr = 1, abscomplrzero = 1)
 outcount = 1
 c = NULL
 e = NULL
@@ -83,8 +83,9 @@ for (iRow in 1:nrow(comps)){
       comparison = rbind(cntrl, exprm) #make sure control is row 1
       #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
+        lr_nz = sapply(comparison, function(x) LogRatio_noZero(x[2], x[1]))
       complrvals = append(complrvals, lr)
-      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), mean(lr), sd(lr), mean(abs(lr)), sd(abs(lr)))
+      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), mean(lr), sd(lr), mean(abs(lr)), sd(abs(lr)), mean(abs(lr_nz),na.rm=TRUE))
       compc = append(compc, as.numeric(comparison[1,]))
       compe = append(compe, as.numeric(comparison[2,]))
      

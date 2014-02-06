@@ -388,3 +388,11 @@ LogRatio = function(manip_val, control_val) {
   return(lr)
 }
 
+LogRatio_noZero = function(manip_val, control_val) {
+  #calculates the log ratio of two values
+  lr = log(manip_val/control_val)
+  if (lr == Inf | lr == -Inf){
+    lr = NA
+  }
+  return(lr)
+}
