@@ -397,10 +397,8 @@ pairs = putPlot(pairs, p10, 5, 4)
 pairs
 
 
-
-
 #------------------------------------------------------------------------------------------- 
-#                 APPENDIX FIGURE. similar to Fig 2, but with directional data, histograms of log-ratio difference in treatment vs. controls
+#                 APPENDIX FIGURE C1. Results from previous version of the ms
 #-------------------------------------------------------------------------------------------
 
 #-----------------------------------------------------------------------------------------------
@@ -463,7 +461,6 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 #            APPENDIX FIGURE C-4. compare control and manipulated data
 #-----------------------------------------------------------------------
 #plot results along 1:1 line
-
 #Fig A - plots for composition
 compchange = ggplot(data=composition, aes(compc, compe)) + geom_point(alpha=0.5, size=3) + 
   xlab("species relative abundance") + ylab("species relative abundance") + 
@@ -510,7 +507,6 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #----------------------------------------------------------------------------------
 #             APPENDIX FIGURE C-5. Compare species population response
 #----------------------------------------------------------------------------------
-
 #considering all species
 all = ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
@@ -527,7 +523,6 @@ grid.arrange(all, nonzero, nrow = 1)
 #----------------------------------------------------------------------------------
 #             APPENDIX FIGURE C-6. Compare rank abundance distribution response
 #----------------------------------------------------------------------------------
-
 #considering all species
 all = ggplot(logratios, aes(rank)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
