@@ -218,7 +218,15 @@ print(paste("abundance vs. richness:", round(cor.test(logratios$abundance, logra
 print(paste("abundance vs. evenness:", round(cor.test(logratios$abundance, logratios$evenness)$estimate[[1]],3)))
 print(paste("abundance vs. rank:", round(cor.test(logratios$abundance, logratios$rank)$estimate[[1]],3)))
 
+print(paste(length(logratios$abundance[logratios$abundance==0]), "pairs did not have a change in abundance"))
+print(paste(length(logratios$richness[logratios$richness==0]), "pairs did not have a change in richness"))
+print(paste(length(logratios$evenness[logratios$evenness==0]), "pairs did not have a change in evenness"))
 
+print(paste(length(logratios$abundance[logratios$abundance >= 0.6931472]), "pairs at least doubled or halved abundance"))
+print(paste(length(logratios$richness[logratios$richness >= 0.6931472]), "pairs at least doubled or halved richness"))
+print(paste(length(logratios$evenness[logratios$evenness >= 0.6931472]), "pairs at least doubled or halved evenness"))
+
+      
 #----------------------------------------------------------------------- 
 #                 FIGURE 1. map site locations, color coded by taxa
 #-----------------------------------------------------------------------
@@ -385,6 +393,8 @@ pairs = putPlot(pairs, p9, 5, 3)
 pairs = putPlot(pairs, p10, 5, 4)
 
 pairs
+
+
 
 
 #------------------------------------------------------------------------------------------- 
