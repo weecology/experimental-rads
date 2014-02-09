@@ -81,11 +81,11 @@ for (iRow in 1:nrow(comps)){
         cntrl = cntrl/sum(cntrl)
       exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
         exprm = exprm/sum(exprm)
-      comparison = rbind(cntrl, exprm) #make sure control is row 1
-      comparison = comparison + 0.0001  #a a small constant to account for zeroes in the data
+      comparison_nz = rbind(cntrl, exprm) #make sure control is row 1
+      comparison = comparison_nz + 0.0001  #a a small constant to account for zeroes in the data
       #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
-        lr_nz = sapply(comparison, function(x) LogRatio_noZero(x[2], x[1]))
+        lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
       complrvals = append(complrvals, lr)
       compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), median(lr), sd(lr), median(abs(lr)), sd(abs(lr)), median(abs(lr_nz),na.rm=TRUE))
       compc = append(compc, as.numeric(comparison[1,]))
@@ -225,6 +225,8 @@ print(paste(length(logratios$evenness[logratios$evenness==0]), "pairs did not ha
 print(paste(length(logratios$abundance[logratios$abundance >= 0.6931472]), "pairs at least doubled or halved abundance"))
 print(paste(length(logratios$richness[logratios$richness >= 0.6931472]), "pairs at least doubled or halved richness"))
 print(paste(length(logratios$evenness[logratios$evenness >= 0.6931472]), "pairs at least doubled or halved evenness"))
+
+lm1 = lm(Slr + Elr + Nlr + abscomplr + absranklr ~ taxa, logratios)
 
       
 #----------------------------------------------------------------------- 
@@ -400,66 +402,48 @@ pairs
 #------------------------------------------------------------------------------------------- 
 #                 APPENDIX FIGURE. similar to Fig 2, but with directional data, histograms of log-ratio difference in treatment vs. controls
 #-------------------------------------------------------------------------------------------
-#plot histograms of the log-ratio results + Bray-Curtis
 
+#-----------------------------------------------------------------------------------------------
+#            APPENDIX FIGURE C2. plot log ratio values before taking absolute value
+#-----------------------------------------------------------------------------------------------
+#plot histograms of the log-ratio results
 #Appendix Panel figures - plots for composition
-BChist = ggplot(data=results, aes(BCcomp)) + geom_histogram() + 
-  xlab("Bray-Curtis dissimilarity") + ylab("frequency") +
-  scale_x_continuous(breaks = seq(0,1, by=0.2), limits = c(0,1)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
-
 comphist = ggplot(data=lograt, aes(complr)) + geom_histogram() + 
   xlab("mean log-ratio of species relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("B")
+  theme(text = element_text(size=20)) + ggtitle("A")
 
 nhist = ggplot(data=lograt, aes(Nlr)) + geom_histogram() + 
   xlab("log-ratio of total abundance") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("C")
+  theme(text = element_text(size=20)) + ggtitle("B")
 
 shist = ggplot(data=lograt, aes(Slr)) + geom_histogram() + 
   xlab("log-ratio of species richness") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("D")
+  theme(text = element_text(size=20)) + ggtitle("C")
 
 ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram() + 
   xlab("log-ratio of Simpson's evenness") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("E")
+  theme(text = element_text(size=20)) + ggtitle("D")
 
 rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() + 
   xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
-  theme(text = element_text(size=20)) + ggtitle("F")
+  theme(text = element_text(size=20)) + ggtitle("E")
 
-grid.arrange(BChist, comphist, nhist, shist, ehist, rankhist, nrow=2)
+grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
 
-#------------------------------------------------------------------------------------------- 
-#                 plot the standard deviations of the log-ratios for composition and rank
-#                   and the raw log-ratio values from them - mean is maybe not representative?
-#-------------------------------------------------------------------------------------------
-compossd = ggplot(data=results, aes(sdlr)) + geom_histogram() + 
-  xlab("sd of mean log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
 
-ranksd = ggplot(data=results, aes(sdrlr)) + geom_histogram() + 
-  xlab("sd of mean log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
-  theme(text = element_text(size=20)) + ggtitle("B")
-
-grid.arrange(compossd, ranksd, nrow = 1)
-
-# raw vals:
+#-----------------------------------------------------------------------------------------------
+#            APPENDIX FIGURE C3. plot all of the raw log ratio values for compostion and rank
+#-----------------------------------------------------------------------------------------------
 composrawlr = ggplot(data=data.frame(complrvals), aes(complrvals)) + geom_histogram(binwidth=0.5) + 
   xlab("all log-ratio of composition relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-9,9, by=1), limits = c(-9,9)) + theme_classic() + 
@@ -473,17 +457,6 @@ rankrawlr = ggplot(data=data.frame(ranklrvals), aes(ranklrvals)) + geom_histogra
   theme(text = element_text(size=20)) + ggtitle("B")
 
 grid.arrange(composrawlr, rankrawlr, nrow = 1)
-
-
-
-#----------------------------------------------------------------------------------
-#                 RESULTS - mean, standard deviation, and correlation 
-#----------------------------------------------------------------------------------
-
-
-
-
-
 
 
 #----------------------------------------------------------------------- 
@@ -532,3 +505,56 @@ rankabunchange = ggplot(data=relabundance, aes(c, e)) + geom_point(alpha=0.5, si
   geom_abline(intercept = 0, slope = 1) + ggtitle("E")
 
 grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2)
+
+
+#----------------------------------------------------------------------------------
+#             APPENDIX FIGURE C-5. Compare species population response
+#----------------------------------------------------------------------------------
+
+#considering all species
+all = ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram() + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
+
+#considering only species present in both control and experiment plots
+nonzero = ggplot(compositionvals, aes(abscomplr)) + geom_histogram() + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6))
+
+grid.arrange(all, nonzero, nrow = 1)
+
+
+#----------------------------------------------------------------------------------
+#             APPENDIX FIGURE C-6. Compare rank abundance distribution response
+#----------------------------------------------------------------------------------
+
+#considering all species
+all = ggplot(logratios, aes(rank)) + geom_histogram() + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
+  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
+
+#considering only species present in both control and experiment plots
+zerochange = ggplot(rankzero, aes(rank)) + geom_histogram() + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
+  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
+
+grid.arrange(all, zerochange, nrow = 1)
+
+
+#------------------------------------------------------------------------------------------- 
+#      plot the standard deviations of the log-ratios for composition and rank
+#-------------------------------------------------------------------------------------------
+compossd = ggplot(data=results, aes(sdlr)) + geom_histogram() + 
+  xlab("sd of mean log-ratio of composition relative abundances") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
+  theme(text = element_text(size=20)) + ggtitle("A")
+
+ranksd = ggplot(data=results, aes(sdrlr)) + geom_histogram() + 
+  xlab("sd of mean log-ratio of rank relative abundances") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
+  theme(text = element_text(size=20)) + ggtitle("B")
+
+grid.arrange(compossd, ranksd, nrow = 1)
+
