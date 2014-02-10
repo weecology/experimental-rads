@@ -296,31 +296,31 @@ ggsave(site_map, file = "site_map.jpeg", dpi = 300, width = 9, height = 4.5)
 #plot histograms of the log-ratio results, ABSOLUTE VALUE
 
 abscomp = ggplot(data=results, aes(abscomplr)) + geom_histogram() + 
-  xlab("composition median absolute log ratio") + ylab("frequency") +
+  xlab("median population-level |log ratio|") + ylab("frequency") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("A")
 
 nhist = ggplot(data=lograt, aes(abs(Nlr))) + geom_histogram() + 
-  xlab("total abundance absolute log ratio") + ylab("frequency") + 
+  xlab("total abundance |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("B")
 
 shist = ggplot(data=lograt, aes(abs(Slr))) + geom_histogram() + 
-  xlab("species richness absolute log ratio") + ylab("frequency") + 
+  xlab("species richness |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("C")
 
 ehist = ggplot(data=lograt, aes(abs(Elr))) + geom_histogram() + 
-  xlab("Simpson's evenness absolute log ratio") + ylab("frequency") + 
+  xlab("Simpson's evenness |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("D")
 
 absrank = ggplot(data=results, aes(absranklr)) + geom_histogram() + 
-  xlab("rank median absolute log ratio") + ylab("frequency") +
+  xlab("median rank |log ratio|") + ylab("frequency") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("E")
