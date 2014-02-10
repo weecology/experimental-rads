@@ -400,6 +400,39 @@ pairs
 #------------------------------------------------------------------------------------------- 
 #                 APPENDIX FIGURE C1. Results from previous version of the ms
 #-------------------------------------------------------------------------------------------
+#plot histograms of the results
+#Appendix Panel figures - plots for composition
+bchist = ggplot(data=compvals, aes(BCcomp)) + geom_histogram() + 
+  xlab("Bray-Curtis dissimilarity") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,1, by=0.1), limits = c(0,1)) + theme_classic() +  
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("A")
+
+percnhist = ggplot(data=compvals, aes(abs(percN))) + geom_histogram() + 
+  xlab("absolute percent change total abundance") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,500, by=50), limits = c(0,500)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("B")
+
+percshist = ggplot(data=compvals, aes(abs(percS))) + geom_histogram() + 
+  xlab("absolute percent change species richness") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,500, by=50), limits = c(0,500)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("C")
+
+bcjhist = ggplot(data=compvals, aes(abs(BCJ))) + geom_histogram() + 
+  xlab("Bray-Curtis dissimilarity of evenness") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,1, by=0.1), limits = c(0,1)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("D")
+
+bcradhist = ggplot(data=compvals, aes(abs(BCrad))) + geom_histogram() + 
+  xlab("Bray-Curtis dissimilarity on RAD") + ylab("frequency") + 
+  scale_x_continuous(breaks = seq(0,1, by=0.1), limits = c(0,1)) + theme_classic() + 
+  scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
+  theme(text = element_text(size=20)) + ggtitle("E")
+
+grid.arrange(bchist, percnhist, percshist, bcjhist, bcradhist, nrow=2)
 
 #-----------------------------------------------------------------------------------------------
 #            APPENDIX FIGURE C2. plot log ratio values before taking absolute value
@@ -407,7 +440,7 @@ pairs
 #plot histograms of the log-ratio results
 #Appendix Panel figures - plots for composition
 comphist = ggplot(data=lograt, aes(complr)) + geom_histogram() + 
-  xlab("mean log-ratio of species relative abundances") + ylab("frequency") + 
+  xlab("median log-ratio of species relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("A")
@@ -431,7 +464,7 @@ ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram() +
   theme(text = element_text(size=20)) + ggtitle("D")
 
 rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram() + 
-  xlab("mean log-ratio of rank relative abundances") + ylab("frequency") + 
+  xlab("median log-ratio of rank relative abundances") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("E")
@@ -508,12 +541,12 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #             APPENDIX FIGURE C-5. Compare species population response
 #----------------------------------------------------------------------------------
 #considering all species
-all = ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram() + theme_classic() +
+all = ggplot(compositionvals, aes(abscomplr)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
 #considering only species present in both control and experiment plots
-nonzero = ggplot(compositionvals, aes(abscomplr)) + geom_histogram() + theme_classic() +
+nonzero = ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6))
 
