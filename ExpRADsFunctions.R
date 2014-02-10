@@ -328,7 +328,6 @@ plot1to1 = function (type, controldata, experimentdata, maxpolygon, lolim, uplim
 }
 
 
-
 spp_dat = function(genus, species, dat) { 
   #get ranks of top 5 species, to use inside function "top_control_spp"
   if(nrow(dat)>0){
