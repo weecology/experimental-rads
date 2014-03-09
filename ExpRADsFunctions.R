@@ -392,3 +392,4 @@ LogRatio_noZero = function(manip_val, control_val) {
   }
   return(lr)
 }
+

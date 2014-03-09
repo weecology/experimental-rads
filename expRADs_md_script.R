@@ -67,7 +67,8 @@ for (iRow in 1:nrow(comps)){
       relexp = relabund(a2)  
       comparison_matrix = abundMerge(relcon, relexp) #makes the lengths the same
         tr = as.data.frame(t(comparison_matrix))  #row 1 is control, row 2 is experiment
-        tr = tr + 0.0001 #a a small constant to account for zeroes in the data
+        #tr = tr + 0.0001 #add a small constant to account for zeroes in the data
+        tr = tr + 1 #add a constant one to account for zeroes in the data
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals = append(ranklrvals, rlr)
       rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
@@ -82,7 +83,8 @@ for (iRow in 1:nrow(comps)){
       exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
         exprm = exprm/sum(exprm)
       comparison_nz = rbind(cntrl, exprm) #make sure control is row 1
-      comparison = comparison_nz + 0.0001  #a a small constant to account for zeroes in the data
+      #comparison = comparison_nz + 0.0001  #add a small constant to account for zeroes in the data
+      comparison = comparison_nz + 1 #add a one constant to account for zeroes in the data
       #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
         lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
