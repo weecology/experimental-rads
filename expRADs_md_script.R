@@ -63,12 +63,12 @@ for (iRow in 1:nrow(comps)){
       # record all values in a comparison matrix - to compare relative abundance at each rank
       a1 = sort(a1, decreasing = TRUE)
       a2 = sort(a2, decreasing = TRUE)
-      relcon = relabund(a1) 
-      relexp = relabund(a2)  
-      comparison_matrix = abundMerge(relcon, relexp) #makes the lengths the same
+      comparison_matrix = abundMerge(a1, a2) #makes the lengths the same
+      comparison_matrix = comparison_matrix + 1 #add a constant 1 before taking relative abundance FIXME
+      relcon = relabund(comparison_matrix[,1]) 
+      relexp = relabund(comparison_matrix[,2])  
         tr = as.data.frame(t(comparison_matrix))  #row 1 is control, row 2 is experiment
-        tr = tr + 0.0001 #add a small constant to account for zeroes in the data
-        #---# tr = tr + 1 #add a constant one to account for zeroes in the data
+      #---# tr = tr + 0.0001 #add a small constant to account for zeroes in the data #FIXME
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals = append(ranklrvals, rlr)
       rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
@@ -76,15 +76,14 @@ for (iRow in 1:nrow(comps)){
       e = append(e, comparison_matrix[,2])
       
       # record all composition-specific values in a comparison matrix, reshape into siteXspecies matrix
-      comparison = reshape_data(subset(comms[which(comms$siteID == control | comms$siteID == experiment),]))
+      comparison = reshape_data(subset(comms[which(comms$siteID == control | comms$siteID == experiment),])) 
       #make sure dataframe is ordered control (row 1), experiment (row 2)
-      cntrl = comparison[which(comparison$siteID == control),c(2:ncol(comparison))]
+      cntrl = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] + 1 #add a one constant to account for zeroes in the data #FIXME
         cntrl = cntrl/sum(cntrl)
-      exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
+      exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))] + 1 #add a one constant to account for zeroes in the data #FIXME
         exprm = exprm/sum(exprm)
       comparison_nz = rbind(cntrl, exprm) #make sure control is row 1
-      comparison = comparison_nz + 0.0001  #add a small constant to account for zeroes in the data
-      #---# comparison = comparison_nz + 1 #add a one constant to account for zeroes in the data
+      #---# comparison = comparison_nz + 0.0001  #add a small constant to account for zeroes in the data FIXME
       #take the log ratio of raw abundance
         lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
         lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
