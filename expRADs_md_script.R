@@ -68,10 +68,10 @@ for (iRow in 1:nrow(comps)){
       comparison_p1 = comparison_matrix + 1
       relcon = relabund(comparison_p1[,1]) 
       relexp = relabund(comparison_p1[,2])  
-      tr = rbind(relcon,relexp) #row 1 is control, row 2 is experiment
+      tr = data.frame(rbind(relcon,relexp),row.names=NULL) #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals = append(ranklrvals, rlr)
-      rankvals[outcount,] = c(rsquare(tr[1,], tr[2,]), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
+      rankvals[outcount,] = c(rsquare(as.numeric(tr[1,]), as.numeric(tr[2,])), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
       c = append(c, tr[1,])
       e = append(e, tr[2,])
       
