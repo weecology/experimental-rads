@@ -12,7 +12,7 @@ library(GGally)
 #---------------------------------------------------------------------------------
 
 wd = "/Users/sarah/Documents/GitHub/experimental-rads/"
-wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
+#wd = "C:\\Users\\sarah\\Documents\\GitHub\\experimental-rads"
 setwd(wd)
 
 source("ExpRADsFunctions.R")   #Run the code containing the functions
@@ -65,37 +65,37 @@ for (iRow in 1:nrow(comps)){
       a2 = sort(a2, decreasing = TRUE)
       comparison_matrix = abundMerge(a1, a2) #makes the lengths the same
       #add a constant 1 to all values before taking relative abundance
-      comparison_matrix = comparison_matrix + 1 
-      relcon = relabund(comparison_matrix[,1]) 
-      relexp = relabund(comparison_matrix[,2])  
-        tr = as.data.frame(t(comparison_matrix))  #row 1 is control, row 2 is experiment
+      comparison_p1 = comparison_matrix + 1
+      relcon = relabund(comparison_p1[,1]) 
+      relexp = relabund(comparison_p1[,2])  
+      tr = rbind(relcon,relexp) #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals = append(ranklrvals, rlr)
-      rankvals[outcount,] = c(rsquare(comparison_matrix[,1], comparison_matrix[,2]), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
-      c = append(c, comparison_matrix[,1])
-      e = append(e, comparison_matrix[,2])
+      rankvals[outcount,] = c(rsquare(tr[1,], tr[2,]), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
+      c = append(c, tr[1,])
+      e = append(e, tr[2,])
       
       # record all composition-specific values in a comparison matrix, reshape into siteXspecies matrix
       comparison = reshape_data(subset(comms[which(comms$siteID == control | comms$siteID == experiment),])) 
-      #make sure dataframe is ordered control (row 1), experiment (row 2), add a constant 1, to account for zeroes
-      cntrl = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] + 1 
-        cntrl = cntrl/sum(cntrl)
-      exprm = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))] + 1 
-        exprm = exprm/sum(exprm)
+      #make sure dataframe is ordered control (row 1), experiment (row 2), add a constant 1, to account for zeroes before taking the relative abundance
+      cntrl_p1 = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] + 1 
+        cntrl_p1 = cntrl_p1/sum(cntrl_p1)
+      exprm_p1 = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))] + 1 
+        exprm_p1 = exprm_p1/sum(exprm_p1)
       #make sure dataframe is ordered control (row 1), experiment (row 2)
       cntrl_nz = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] 
         cntrl_nz = cntrl_nz/sum(cntrl_nz)
       exprm_nz = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
         exprm_nz = exprm_nz/sum(exprm_nz)
-      comparison = rbind(cntrl, exprm) # with constant added
+      comparison_p1 = rbind(cntrl_p1, exprm_p1) # with constant=1 added
       comparison_nz = rbind(cntrl_nz, exprm_nz) # to compare only species in common
       #take the log ratio of raw abundance
-        lr = sapply(comparison, function(x) LogRatio(x[2], x[1]) )
+        lr = sapply(comparison_p1, function(x) LogRatio(x[2], x[1]) )
         lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
       complrvals = append(complrvals, lr)
-      compositionvals[outcount,] = c(rsquare(as.numeric(comparison[1,]), as.numeric(comparison[2,])), median(lr), sd(lr), median(abs(lr)), sd(abs(lr)), median(abs(lr_nz),na.rm=TRUE))
-      compc = append(compc, as.numeric(comparison[1,]))
-      compe = append(compe, as.numeric(comparison[2,]))
+      compositionvals[outcount,] = c(rsquare(as.numeric(comparison_p1[1,]), as.numeric(comparison_p1[2,])), median(lr), sd(lr), median(abs(lr)), sd(abs(lr)), median(abs(lr_nz),na.rm=TRUE))
+      compc = append(compc, as.numeric(comparison_p1[1,]))
+      compe = append(compe, as.numeric(comparison_p1[2,]))
      
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
