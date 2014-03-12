@@ -464,31 +464,31 @@ pairs
 #-------------------------------------------------------------------------------------------
 #plot histograms of the results
 #Appendix Panel figures - plots for composition
-bchist = ggplot(data=compvals, aes(BCcomp)) + geom_histogram() + 
+bchist = ggplot(data=compvals, aes(BCcomp)) + geom_histogram(binwidth=0.05) + 
   xlab("species composition Bray-Curtis") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,1, by=0.25), limits = c(0,1)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
-percnhist = ggplot(data=compvals, aes(abs(percN))) + geom_histogram() + 
+percnhist = ggplot(data=compvals, aes(abs(percN))) + geom_histogram(binwidth=25) + 
   xlab("|percent change| abundance") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,500, by=100), limits = c(0,500)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("B")
 
-percshist = ggplot(data=compvals, aes(abs(percS))) + geom_histogram() + 
+percshist = ggplot(data=compvals, aes(abs(percS))) + geom_histogram(binwidth=25) + 
   xlab("|percent change| richness") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,500, by=100), limits = c(0,500)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("C")
 
-bcjhist = ggplot(data=compvals, aes(abs(BCJ))) + geom_histogram() + 
+bcjhist = ggplot(data=compvals, aes(abs(BCJ))) + geom_histogram(binwidth=0.05) + 
   xlab("Simpson's evenness Bray-Curtis") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,1, by=0.25), limits = c(0,1)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("D")
 
-bcradhist = ggplot(data=compvals, aes(abs(BCrad))) + geom_histogram() + 
+bcradhist = ggplot(data=compvals, aes(abs(BCrad))) + geom_histogram(binwidth=0.05) + 
   xlab("rank Bray-Curtis") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,1, by=0.25), limits = c(0,1)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
@@ -501,33 +501,33 @@ grid.arrange(bchist, percnhist, percshist, bcjhist, bcradhist, nrow=2)
 #-----------------------------------------------------------------------------------------------
 #plot histograms of the log-ratio results
 #Appendix Panel figures - plots for composition
-comphist = ggplot(data=lograt, aes(complr)) + geom_histogram(binwidth=0.25) + 
+comphist = ggplot(data=lograt, aes(complr_p01)) + geom_histogram(binwidth=0.25) + 
   xlab("median population-level log ratio") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() +  
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
 nhist = ggplot(data=lograt, aes(Nlr)) + geom_histogram(binwidth=0.25) + 
   xlab("total abundance log ratio") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("B")
 
 shist = ggplot(data=lograt, aes(Slr)) + geom_histogram(binwidth=0.25) + 
   xlab("species richness log ratio") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("C")
 
 ehist = ggplot(data=lograt, aes(Elr)) + geom_histogram(binwidth=0.25) + 
   xlab("Simpson's evenness log ratio") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("D")
 
-rankhist = ggplot(data=lograt, aes(ranklr)) + geom_histogram(binwidth=0.25) + 
+rankhist = ggplot(data=lograt, aes(ranklr_p01)) + geom_histogram(binwidth=0.25) + 
   xlab("median rank log-ratio") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-3,3, by=1), limits = c(-3,3)) + theme_classic() +  
+  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=20)) + ggtitle("E")
 
@@ -537,15 +537,15 @@ grid.arrange(comphist, nhist, shist, ehist, rankhist, nrow=2)
 #-----------------------------------------------------------------------------------------------
 #            APPENDIX FIGURE C3. plot all of the raw log ratio values for compostion and rank
 #-----------------------------------------------------------------------------------------------
-composrawlr = ggplot(data=data.frame(complrvals), aes(complrvals)) + geom_histogram(binwidth=0.25) + 
+composrawlr = ggplot(data=data.frame(complrvals_p01), aes(complrvals_p01)) + geom_histogram(binwidth=0.5) + 
   xlab("all log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-12,12, by=2), limits = c(-12,12)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,1000, by=100), limits = c(0,1000)) +
   theme(text = element_text(size=20)) + ggtitle("A")
 
-rankrawlr = ggplot(data=data.frame(ranklrvals), aes(ranklrvals)) + geom_histogram(binwidth=0.25) + 
+rankrawlr = ggplot(data=data.frame(ranklrvals_p01), aes(ranklrvals_p01)) + geom_histogram(binwidth=0.5) + 
   xlab("all log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(-6,6, by=1), limits = c(-6,6)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(-12,12, by=2), limits = c(-12,12)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,1000, by=100), limits = c(0,1000)) +
   theme(text = element_text(size=20)) + ggtitle("B")
 
@@ -557,7 +557,7 @@ grid.arrange(composrawlr, rankrawlr, nrow = 1)
 #-----------------------------------------------------------------------
 #plot results along 1:1 line
 #Fig A - plots for composition
-compchange = ggplot(data=composition, aes(compc, compe)) + geom_point(alpha=0.5, size=3) + 
+compchange = ggplot(data=composition, aes(compc_p01, compe_p01)) + geom_point(alpha=0.5, size=3) + 
   xlab("species relative abundance") + ylab("species relative abundance") + 
   scale_x_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) +
   scale_y_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) + theme_classic() +
@@ -589,7 +589,7 @@ evenchange = ggplot(data=diversity, aes(Jc, Je)) + geom_point(alpha=0.5, size=3)
   geom_abline(intercept = 0, slope = 1) + ggtitle("D")
 
 # Fig E - compare relative abundance at each rank in all paired sites
-rankabunchange = ggplot(data=relabundance, aes(c, e)) + geom_point(alpha=0.5, size=3) + 
+rankabunchange = ggplot(data=relabundance, aes(c_p01, e_p01)) + geom_point(alpha=0.5, size=3) + 
   xlab("rank relative abundance") + ylab("rank relative abundance") + 
   scale_x_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) +
   scale_y_continuous(breaks = seq(0, 1, by=0.2), limits = c(0,1)) + theme_classic() +
@@ -602,23 +602,28 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #----------------------------------------------------------------------------------
 #             APPENDIX FIGURE C-5. Compare species population response
 #----------------------------------------------------------------------------------
-#considering all species
-all = ggplot(compositionvals, aes(abscomplr)) + geom_histogram() + theme_classic() +
+#considering all species + 0.01
+all = ggplot(compositionvals_p01, aes(abscomplr)) + geom_histogram(binwidth=0.5) + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
 #considering only species present in both control and experiment plots
-nonzero = ggplot(compositionvals, aes(abscomplrzero)) + geom_histogram() + theme_classic() +
+nonzero = ggplot(compositionvals_p01, aes(abscomplrzero)) + geom_histogram(binwidth=0.5) + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6))
 
-grid.arrange(all, nonzero, nrow = 1)
+#considering all species + 1
+allP1 = ggplot(compositionvals_p1, aes(abscomplr_p1)) + geom_histogram(binwidth=0.5) + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("C") + xlab("median absolute log ratio") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
+
+grid.arrange(all, nonzero, allP1, nrow = 1)
 
 
 #----------------------------------------------------------------------------------
 #             APPENDIX FIGURE C-6. Compare rank abundance distribution response
 #----------------------------------------------------------------------------------
-#considering all species
+#considering all species + 0.01
 all = ggplot(logratios, aes(rank)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
   scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
@@ -628,7 +633,12 @@ zerochange = ggplot(rankzero, aes(rank)) + geom_histogram() + theme_classic() +
   theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
   scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
 
-grid.arrange(all, zerochange, nrow = 1)
+#considering all species + 1
+allP1 = ggplot(logratios, aes(rank_p1)) + geom_histogram() + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("C") + xlab("median absolute log ratio") +
+  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4))
+
+grid.arrange(all, zerochange, allP1, nrow = 1)
 
 
 #------------------------------------------------------------------------------------------- 
