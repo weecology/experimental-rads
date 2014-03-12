@@ -35,15 +35,23 @@ par(mfrow=c(5,4), mar=c(1.5,2,3,1), oma=c(1,1,1,1))
 desc = data.frame(cID = 1, eID = 1, CS = 1, ES = 1, CN = 1, EN = 1, Jc = 1, Je = 1, m2 = 1)
 charvars = data.frame(refID = NA, Cshape = NA, Eshape = NA, taxon = NA, etype = NA)
 compvals = data.frame(BCcomp = 1, BCN = 1, BCS = 1, BCJ = 1, BCrad = 1, percS = 1, percN = 1)
-rankvals = data.frame(r2 = 1, ranklr = 1, sdrlr = 1, absranklr = 1, abssdrlr = 1)
-compositionvals = data.frame(compr2 = 1, complr = 1, sdlr = 1, abscomplr = 1, abssdlr = 1, abscomplrzero = 1)
+rankvals_p1 = data.frame(r2_p1 = 1, ranklr_p1 = 1, sdrlr_p1 = 1, absranklr_p1 = 1, abssdrlr_p1 = 1)
+rankvals_p01 = data.frame(r2 = 1, ranklr = 1, sdrlr = 1, absranklr = 1, abssdrlr =1)
+compositionvals_p1 = data.frame(compr2_p1 = 1, complr_p1 = 1, sdlr_p1 = 1, abscomplr_p1 = 1, abssdlr_p1 = 1, abscomplrzero_p1 = 1)
+compositionvals_p01 = data.frame(compr2 = 1, complr = 1, sdlr = 1, abscomplr = 1, abssdlr = 1, abscomplrzero = 1)
 outcount = 1
-c = NULL
-e = NULL
-compc = NULL
-compe = NULL
-complrvals = NULL
-ranklrvals = NULL
+c_p01 = NULL
+e_p01 = NULL
+c_p1 = NULL
+e_p1 = NULL
+compc_p1 = NULL
+compe_p1 = NULL
+compc_p01 = NULL
+compe_p01 = NULL
+complrvals_p01 = NULL
+ranklrvals_p01 = NULL
+complrvals_p1 = NULL
+ranklrvals_p1 = NULL
 
 for (iRow in 1:nrow(comps)){
   control = comps[iRow,2]  #find control in pair
@@ -55,47 +63,77 @@ for (iRow in 1:nrow(comps)){
   
   # Check that < 10% of individuals are unidentified. If meets criteria, continue
   if (percent_unidSpp(control, comms) == "OK" & percent_unidSpp(experiment, comms) == "OK"){
-    a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8])) #vector of control abundances
-    a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8])) #vector of exp abundances
+    a1 = sort(as.numeric(comms[which(comms[,2] == control & comms[,7] != 0), 8]), decreasing = TRUE) #control abundances
+    a2 = sort(as.numeric(comms[which(comms[,2] == experiment & comms[,7] != 0), 8]), decreasing = TRUE) #exp abundances
     
     # Check that there are at least 5 species and 30 individuals in each community, If yes, proceed.
     if (length(a1) > 4 & length(a2) > 4 & sum(a1) > 29 & sum(a2) > 29){
-      # record all values in a comparison matrix - to compare relative abundance at each rank
-      a1 = sort(a1, decreasing = TRUE)
-      a2 = sort(a2, decreasing = TRUE)
-      comparison_matrix = abundMerge(a1, a2) #makes the lengths the same
-      #add a constant 1 to all values before taking relative abundance
+      # Sort the abundances
+      #record all values in a comparison matrix - to compare relative abundance at each RANK
+      comparison_matrix = abundMerge(a1, a2) #makes the lengths the same, fills with zeroes
+      
+      #add a constant 1 to all values before taking relative abundance at each RANK
       comparison_p1 = comparison_matrix + 1
       relcon = relabund(comparison_p1[,1]) 
       relexp = relabund(comparison_p1[,2])  
       tr = data.frame(rbind(relcon,relexp),row.names=NULL) #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
-      ranklrvals = append(ranklrvals, rlr)
-      rankvals[outcount,] = c(rsquare(as.numeric(tr[1,]), as.numeric(tr[2,])), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
-      c = append(c, tr[1,])
-      e = append(e, tr[2,])
+      ranklrvals_p1 = append(ranklrvals_p1, rlr)
+      rankvals_p1[outcount,] = c(rsquare(as.numeric(tr[1,]), as.numeric(tr[2,])), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
+      c_p1 = append(c_p1, relcon)
+      e_p1 = append(e_p1, relexp)
       
-      # record all composition-specific values in a comparison matrix, reshape into siteXspecies matrix
+      #add a constant 0.01 to all values before taking relative abundance at each RANK
+      comparison = comparison_matrix + 0.01
+      relcon = relabund(comparison[,1]) 
+      relexp = relabund(comparison[,2])  
+      tr = data.frame(rbind(relcon,relexp),row.names=NULL) #row 1 is control, row 2 is experiment
+      rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
+      ranklrvals_p01 = append(ranklrvals_p01, as.numeric(rlr))
+      rankvals_p01[outcount,] = c(rsquare(as.numeric(tr[1,]), as.numeric(tr[2,])), median(rlr), sd(rlr), median(abs(rlr)), sd(abs(rlr)))
+      c_p01 = append(c_p01, relcon)
+      e_p01 = append(e_p01, relexp)
+      
+      # record all COMPOSITION-specific values in a comparison matrix, reshape into siteXspecies matrix
       comparison = reshape_data(subset(comms[which(comms$siteID == control | comms$siteID == experiment),])) 
-      #make sure dataframe is ordered control (row 1), experiment (row 2), add a constant 1, to account for zeroes before taking the relative abundance
+      #dataframe is ordered control (r1), experiment (r2)
+      
+      #add a constant 1, to account for zeroes and take the relative abundance
       cntrl_p1 = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] + 1 
         cntrl_p1 = cntrl_p1/sum(cntrl_p1)
       exprm_p1 = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))] + 1 
         exprm_p1 = exprm_p1/sum(exprm_p1)
-      #make sure dataframe is ordered control (row 1), experiment (row 2)
+      
+      #add a constant 0.01, to account for zeroes and take the relative abundance
+      cntrl_p01 = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] + 0.01 
+        cntrl_p01 = cntrl_p01/sum(cntrl_p01)
+      exprm_p01 = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))] + 0.01 
+        exprm_p01 = exprm_p01/sum(exprm_p01)
+      
+      #Keep the zeroes and take the relative abundance, to compare only species in common
       cntrl_nz = comparison[which(comparison$siteID == control),c(2:ncol(comparison))] 
         cntrl_nz = cntrl_nz/sum(cntrl_nz)
       exprm_nz = comparison[which(comparison$siteID == experiment),c(2:ncol(comparison))]
         exprm_nz = exprm_nz/sum(exprm_nz)
-      comparison_p1 = rbind(cntrl_p1, exprm_p1) # with constant=1 added
-      comparison_nz = rbind(cntrl_nz, exprm_nz) # to compare only species in common
-      #take the log ratio of raw abundance
-        lr = sapply(comparison_p1, function(x) LogRatio(x[2], x[1]) )
-        lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
-      complrvals = append(complrvals, lr)
-      compositionvals[outcount,] = c(rsquare(as.numeric(comparison_p1[1,]), as.numeric(comparison_p1[2,])), median(lr), sd(lr), median(abs(lr)), sd(abs(lr)), median(abs(lr_nz),na.rm=TRUE))
-      compc = append(compc, as.numeric(comparison_p1[1,]))
-      compe = append(compe, as.numeric(comparison_p1[2,]))
+      
+      comparison_p1 = rbind(cntrl_p1, exprm_p1) 
+      comparison_p01 = rbind(cntrl_p01, exprm_p01)
+      comparison_nz = rbind(cntrl_nz, exprm_nz)
+      
+      #take the log ratio of raw abundance and record the results
+      lr_p1 = sapply(comparison_p1, function(x) LogRatio(x[2], x[1]) )
+      lr_p01 = sapply(comparison_p01, function(x) LogRatio(x[2], x[1]) )     
+      lr_nz = sapply(comparison_nz, function(x) LogRatio_noZero(x[2], x[1]))
+      
+      complrvals_p1 = append(complrvals_p1, as.numeric(lr_p1))
+      compositionvals_p1[outcount,] = c(rsquare(as.numeric(comparison_p1[1,]), as.numeric(comparison_p1[2,])), median(lr_p1), sd(lr_p1), median(abs(lr_p1)), sd(abs(lr_p1)), median(abs(lr_nz),na.rm=TRUE))
+      compc_p1 = append(compc_p1, as.numeric(comparison_p1[1,]))
+      compe_p1 = append(compe_p1, as.numeric(comparison_p1[2,]))
+      
+      complrvals_p01 = append(complrvals_p01, as.numeric(lr_p01))
+      compositionvals_p01[outcount,] = c(rsquare(as.numeric(comparison_p01[1,]), as.numeric(comparison_p01[2,])), median(lr_p01), sd(lr_p01), median(abs(lr_p01)), sd(abs(lr_p01)), median(abs(lr_nz),na.rm=TRUE))
+      compc_p01 = append(compc_p01, as.numeric(comparison_p01[1,]))
+      compe_p01 = append(compe_p01, as.numeric(comparison_p01[2,]))
      
       # find categorical shapes (logseries vs. lognormal)
       if(expers[which(expers[,2]==control),10] == 1) { #is it raw abundance data?
@@ -144,7 +182,7 @@ charvars$taxon[charvars$taxon=='beetle']<-'insect'
 charvars$taxon[charvars$taxon=='microarthropods']<-'microarthropod'
 charvars$taxon[charvars$taxon=='reptile']<-'herpetofauna'
 
-results = cbind(charvars, desc, compvals, rankvals, compositionvals)
+results = cbind(charvars, desc, compvals, rankvals_p01, compositionvals_p01, rankvals_p1, compositionvals_p1)
 
 # calculate the log ratio differences between values
 s_df = as.data.frame(t(cbind(results$CS, results$ES)))
@@ -157,23 +195,30 @@ Elr = sapply(e_df, function(x) LogRatio(x[2], x[1]) )
 
 #put the results together for later plotting and comparison
 diversity = cbind(charvars[,c(4:5)], desc)
-composition = data.frame(compc, compe)
-relabundance = data.frame(c,e)
+#composition relative abundance
+composition = data.frame(compc_p01, compe_p01, compc_p1, compe_p1)
+#rank relative abundance
+relabundance = data.frame(c_p01, e_p01, c_p1, e_p1)
 
 taxa = diversity$taxon
 etype = diversity$etype
-complr = compositionvals$complr
-abscomplr = compositionvals$abscomplr
-ranklr = rankvals$ranklr
-absranklr = rankvals$absranklr
-lograt = data.frame(complr, ranklr, abscomplr, absranklr, Nlr, Slr, Elr, taxa, etype)
+complr_p01 = compositionvals_p01$complr
+abscomplr_p01 = compositionvals_p01$abscomplr
+ranklr_p01 = rankvals_p01$ranklr
+absranklr_p01 = rankvals_p01$absranklr
+complr_p1 = compositionvals_p1$complr_p1
+abscomplr_p1 = compositionvals_p1$abscomplr_p1
+ranklr_p1 = rankvals_p1$ranklr_p1
+absranklr_p1 = rankvals_p1$absranklr_p1
+lograt = data.frame(complr_p01, ranklr_p01, abscomplr_p01, absranklr_p01, Nlr, Slr, Elr, taxa, etype, 
+                    complr_p1, ranklr_p1, abscomplr_p1, absranklr_p1)
 
 # for pairs plot
-logratios = lograt[,c(3,5,6,7,4)]
+logratios = lograt[,c(3,5,6,7,4,12,13)]
 logratios$Nlr = abs(logratios$Nlr)
 logratios$Slr = abs(logratios$Slr)
 logratios$Elr = abs(logratios$Elr)
-names(logratios) = c("composition", "abundance", "richness", "evenness", "rank")
+names(logratios) = c("composition", "abundance", "richness", "evenness", "rank", "composition_p1", "rank_p1")
 
 
 #------------------------------------- 
@@ -181,10 +226,12 @@ names(logratios) = c("composition", "abundance", "richness", "evenness", "rank")
 #-------------------------------------
 
 # Find the R2 values for the paired data
-comp_r2 = round(rsquare(compc, compe),4)
+comp_r2 = round(rsquare(compc_p01, compe_p01),4)
+comp_p1_r2 = round(rsquare(compc_p1, compe_p1),4)
 n_r2 = round(rsquare(results$CN,results$EN),4)
 s_r2 = round(rsquare(results$CS,results$ES),4)
-relabun_r2 = round(rsquare(c,e),4)
+rank_r2 = round(rsquare(c_p01,e_p01),4)
+rank_p1_r2 = round(rsquare(c_p1,e_p1),4)
 j_r2 = round(rsquare(results$Jc,results$Je),4)
 
 # count the communities displaying various shapes. This does take into account duplicates. Should be correct
@@ -192,7 +239,7 @@ shapes = count_RAD_shapes(results$cID, results$eID, results$Cshape, results$Esha
 
 # Print the range of values
 for (col in 1:ncol(logratios)){
-  print(paste(names(logratios[col]), ":", range(logratios[,col]), sep = " "))
+  print(paste(names(logratios[col]), ":", max(logratios[,col]), "-", min(logratios[,col]), sep = " "))
 }
 
 
@@ -208,17 +255,19 @@ for (col in 1:ncol(logratios)){
 }
 
 #the mean and median value when composition includes only species that were present in both communities
-mn = round(mean(compositionvals$abscomplrzero),3)
-md = round(median(compositionvals$abscomplrzero),3)
+mn = round(mean(compositionvals_p01$abscomplrzero),3)
+md = round(median(compositionvals_p01$abscomplrzero),3)
+std = round(sd(compositionvals_p01$abscomplrzero),3)
 print(paste("when only consider species that were present in both communities, composition log ratio is median = ",
-            md, "and mean =", mn))
+            md, "sd =", std, "and mean =", mn))
 
 # mean rank log ratio for communities where species richness change was zero
 rankzero = logratios[which(logratios$richness == 0),]
 mn = round(mean(rankzero$rank),3)
 md = round(median(rankzero$rank),3)
+std = round(sd(rankzero$rank),3)
 print(paste("When richness doesn't change, rank log ratio drops to median =", md,
-            "and mean =", mn))
+            "sd =", std, "and mean =", mn))
 
 # Print Pearson's correlation coefficients
 print ("Pearson's correlation coefficients")
@@ -239,7 +288,7 @@ print(paste(length(logratios$abundance[logratios$abundance >= 0.6931472]), "pair
 print(paste(length(logratios$richness[logratios$richness >= 0.6931472]), "pairs at least doubled or halved richness"))
 print(paste(length(logratios$evenness[logratios$evenness >= 0.6931472]), "pairs at least doubled or halved evenness"))
 
-lm1 = lm(Slr + Elr + Nlr + abscomplr + absranklr ~ taxa, logratios)
+lm1 = lm(Slr + Elr + Nlr + abscomplr_p01 + absranklr_p01 ~ taxa, logratios)
 summary(lm1)
       
 #----------------------------------------------------------------------- 
@@ -306,35 +355,35 @@ ggsave(site_map, file = "site_map.jpeg", dpi = 300, width = 9, height = 4.5)
 #------------------------------------------------------------------------------------------- 
 #                 FIGURE 2. histograms of log-ratio difference in treatment vs. controls
 #-------------------------------------------------------------------------------------------
-#plot histograms of the log-ratio results, ABSOLUTE VALUE
+#plot histograms of the log-ratio results for constant=-0.01, ABSOLUTE VALUE
 
-abscomp = ggplot(data=results, aes(abscomplr)) + geom_histogram() + 
+abscomp = ggplot(data=results, aes(abscomplr_p01)) + geom_histogram(binwidth=0.25) + 
   xlab("median population-level |log ratio|") + ylab("frequency") +
-  scale_x_continuous(breaks = seq(0,3, by=1), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("A")
 
-nhist = ggplot(data=lograt, aes(abs(Nlr))) + geom_histogram() + 
+nhist = ggplot(data=lograt, aes(abs(Nlr))) + geom_histogram(binwidth=0.25) + 
   xlab("total abundance |log ratio|") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,3, by=1), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("B")
 
-shist = ggplot(data=lograt, aes(abs(Slr))) + geom_histogram() + 
+shist = ggplot(data=lograt, aes(abs(Slr))) + geom_histogram(binwidth=0.25) + 
   xlab("species richness |log ratio|") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,3, by=1), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("C")
 
-ehist = ggplot(data=lograt, aes(abs(Elr))) + geom_histogram() + 
+ehist = ggplot(data=lograt, aes(abs(Elr))) + geom_histogram(binwidth=0.25) + 
   xlab("Simpson's evenness |log ratio|") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,3, by=1), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("D")
 
-absrank = ggplot(data=results, aes(absranklr)) + geom_histogram() + 
+absrank = ggplot(data=results, aes(absranklr_p01)) + geom_histogram(binwidth=0.25) + 
   xlab("median rank |log ratio|") + ylab("frequency") +
-  scale_x_continuous(breaks = seq(0,3, by=1), limits = c(0,3)) + theme_classic() + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("E")
 
@@ -345,7 +394,7 @@ grid.arrange(abscomp, nhist, shist, ehist, absrank, nrow=2)
 #                 FIGURE 3 - pairs plots of the log-ratios and correlatin coefficients
 #-------------------------------------------------------------------------------------------
 #this is a hack to ggpairs to get a white background on plots
-pairs = ggpairs(logratios, upper = "blank")
+pairs = ggpairs(logratios[,c(1:5)], upper = "blank")
 text1 = ggally_text("composition", size = 6) + theme_classic()
 text2 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$abundance)$estimate[[1]],3)), size=6) + theme_classic()
 text3 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$richness)$estimate[[1]],3)), size=6) + theme_classic()
