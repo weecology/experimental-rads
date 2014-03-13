@@ -88,9 +88,9 @@ for (iRow in 1:nrow(comps)){
       e_p1 = append(e_p1, relexp)
       
       #add a constant 0.01 to all values before taking relative abundance at each RANK
-      comparison = comparison_matrix + 0.01
-      relcon = relabund(comparison[,1]) 
-      relexp = relabund(comparison[,2])  
+      comparison_p01 = comparison_matrix + 0.01
+      relcon = relabund(comparison_p01[,1]) 
+      relexp = relabund(comparison_p01[,2])  
       tr = data.frame(rbind(relcon,relexp),row.names=NULL) #row 1 is control, row 2 is experiment
       rlr = sapply(tr, function(x) LogRatio(x[2],x[1]) )
       ranklrvals_p01 = append(ranklrvals_p01, as.numeric(rlr))
@@ -379,31 +379,31 @@ ggsave(site_map, file = "site_map.jpeg", dpi = 300, width = 9, height = 4.5)
 #-------------------------------------------------------------------------------------------
 #plot histograms of the log-ratio results for constant=-0.01, ABSOLUTE VALUE
 
-abscomp = ggplot(data=results, aes(abscomplr_p01)) + geom_histogram(binwidth=0.25) + 
+abscomp = ggplot(data=logratios, aes(composition)) + geom_histogram(binwidth=0.25) + 
   xlab("median population-level |log ratio|") + ylab("frequency") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("A")
 
-nhist = ggplot(data=lograt, aes(abs(Nlr))) + geom_histogram(binwidth=0.25) + 
+nhist = ggplot(data=logratios, aes(abundance)) + geom_histogram(binwidth=0.25) + 
   xlab("total abundance |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("B")
 
-shist = ggplot(data=lograt, aes(abs(Slr))) + geom_histogram(binwidth=0.25) + 
+shist = ggplot(data=logratios, aes(richness)) + geom_histogram(binwidth=0.25) + 
   xlab("species richness |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("C")
 
-ehist = ggplot(data=lograt, aes(abs(Elr))) + geom_histogram(binwidth=0.25) + 
+ehist = ggplot(data=logratios, aes(evenness)) + geom_histogram(binwidth=0.25) + 
   xlab("Simpson's evenness |log ratio|") + ylab("frequency") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
   theme(text = element_text(size=16)) + ggtitle("D")
 
-absrank = ggplot(data=results, aes(absranklr_p01)) + geom_histogram(binwidth=0.25) + 
+absrank = ggplot(data=logratios, aes(rank)) + geom_histogram(binwidth=0.25) + 
   xlab("median rank |log ratio|") + ylab("frequency") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + theme_classic() + 
   scale_y_continuous(breaks = seq(0,40, by=10), limits = c(0,40)) +
