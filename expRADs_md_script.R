@@ -281,7 +281,14 @@ rankzero = logratios[which(logratios$richness == 0),]
 mn = round(mean(rankzero$rank),3)
 md = round(median(rankzero$rank),3)
 std = round(sd(rankzero$rank),3)
-print(paste("When richness doesn't change, rank log ratio drops to median =", md,
+print(paste("When richness doesn't change, rank log ratio (constant = 0.01) drops to median =", md,
+            "sd =", std, "and mean =", mn))
+
+# mean rank log ratio for communities where species richness change was zero
+mn = round(mean(rankzero$rank_p1),3)
+md = round(median(rankzero$rank_p1),3)
+std = round(sd(rankzero$rank_p1),3)
+print(paste("When richness doesn't change, rank log ratio (constant = 1) is: median =", md,
             "sd =", std, "and mean =", mn))
 
 # Print Pearson's correlation coefficients
@@ -643,57 +650,45 @@ grid.arrange(compchange, abunchange, schange, evenchange, rankabunchange, nrow=2
 #----------------------------------------------------------------------------------
 #considering all species + 0.01
 all = ggplot(compositionvals_p01, aes(abscomplr)) + geom_histogram(binwidth=0.5) + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
+  theme(text = element_text(size=20)) + ggtitle("A") + xlab("median |log ratio|") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
 #considering only species present in both control and experiment plots
 nonzero = ggplot(compositionvals_p01, aes(abscomplrzero)) + geom_histogram(binwidth=0.5) + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
+  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median |log ratio|") + 
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6))
 
 #considering all species + 1
 allP1 = ggplot(compositionvals_p1, aes(abscomplr_p1)) + geom_histogram(binwidth=0.5) + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("C") + xlab("median absolute log ratio") +
+  theme(text = element_text(size=20)) + ggtitle("C") + xlab("median |log ratio|") +
   scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
-grid.arrange(all, nonzero, allP1, nrow = 1)
+grid.arrange(all, allP1, nonzero, nrow = 1)
 
 
 #----------------------------------------------------------------------------------
 #             APPENDIX FIGURE C-6. Compare rank abundance distribution response
 #----------------------------------------------------------------------------------
 #considering all species + 0.01
-all = ggplot(logratios, aes(rank)) + geom_histogram() + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("A") + xlab("median absolute log ratio") +
-  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
+all = ggplot(logratios, aes(rank)) + geom_histogram(binwidth=0.25) + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("A") + xlab("rank median |log ratio|") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
-#considering only species present in both control and experiment plots
-zerochange = ggplot(rankzero, aes(rank)) + geom_histogram() + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("median absolute log ratio") + 
-  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4)) 
+#considering only species present in both control and experiment plots + 0.01
+zerochange = ggplot(rankzero, aes(rank)) + geom_histogram(binwidth=0.25) + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("B")  + xlab("rank median |log ratio|") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
 #considering all species + 1
-allP1 = ggplot(logratios, aes(rank_p1)) + geom_histogram() + theme_classic() +
-  theme(text = element_text(size=20)) + ggtitle("C") + xlab("median absolute log ratio") +
-  scale_x_continuous(breaks = seq(0,4, by=1), limits = c(0,4))
+allP1 = ggplot(logratios, aes(rank_p1)) + geom_histogram(binwidth=0.25) + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("C") + xlab("rank median |log ratio|") +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6))
 
-grid.arrange(all, zerochange, allP1, nrow = 1)
+#considering only species present in both control and experiment plots + 1
+zerochangeP1 = ggplot(rankzero_p1, aes(rank_p1)) + geom_histogram(binwidth=0.25) + theme_classic() +
+  theme(text = element_text(size=20)) + ggtitle("D")  + xlab("rank median |log ratio|") + 
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) 
 
+grid.arrange(all, zerochange, allP1, zerochangeP1, nrow = 2)
 
-#------------------------------------------------------------------------------------------- 
-#      plot the standard deviations of the log-ratios for composition and rank
-#-------------------------------------------------------------------------------------------
-compossd = ggplot(data=results, aes(sdlr)) + geom_histogram() + 
-  xlab("sd of mean log-ratio of composition relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
-  theme(text = element_text(size=20)) + ggtitle("A")
-
-ranksd = ggplot(data=results, aes(sdrlr)) + geom_histogram() + 
-  xlab("sd of mean log-ratio of rank relative abundances") + ylab("frequency") + 
-  scale_x_continuous(breaks = seq(0,6, by=0.5), limits = c(0,6)) + theme_classic() + 
-  scale_y_continuous(breaks = seq(0,20, by=5), limits = c(0,20)) +
-  theme(text = element_text(size=20)) + ggtitle("B")
-
-grid.arrange(compossd, ranksd, nrow = 1)
 
