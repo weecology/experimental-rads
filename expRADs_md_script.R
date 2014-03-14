@@ -692,3 +692,72 @@ zerochangeP1 = ggplot(rankzero_p1, aes(rank_p1)) + geom_histogram(binwidth=0.25)
 grid.arrange(all, zerochange, allP1, zerochangeP1, nrow = 2)
 
 
+#---------------------------------------------------------------------------------------------- 
+#             APPENDIX FIGURE C-7. pairs plots of the log-ratios and correlation coefficients
+#----------------------------------------------------------------------------------------------
+#this is a hack to ggpairs to get a white background on plots
+pairs = ggpairs(logratios[,c(6,2,3,4,7)], upper = "blank")
+text1 = ggally_text("composition", size = 6) + theme_classic()
+text2 = ggally_text(paste("Cor:", round(cor.test(logratios$composition_p1, logratios$abundance)$estimate[[1]],3)), size=6) + theme_classic()
+text3 = ggally_text(paste("Cor:", round(cor.test(logratios$composition_p1, logratios$richness)$estimate[[1]],3)), size=6) + theme_classic()
+text4 = ggally_text(paste("Cor:", round(cor.test(logratios$composition_p1, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic()
+text5 = ggally_text(paste("Cor:", round(cor.test(logratios$composition_p1, logratios$rank_p1)$estimate[[1]],3)), size=6) + theme_classic()
+
+pairs = putPlot(pairs, text1, 1, 1)
+pairs = putPlot(pairs, text2, 1, 2)
+pairs = putPlot(pairs, text3, 1, 3)
+pairs = putPlot(pairs, text4, 1, 4)
+pairs = putPlot(pairs, text5, 1, 5)
+
+text6 = ggally_text("abundance", size = 6) + theme_classic()
+text7 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$richness)$estimate[[1]],3)), size=6) + theme_classic()
+text8 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic()
+text9 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$rank_p1)$estimate[[1]],3)), size=6) + theme_classic()
+
+pairs = putPlot(pairs, text6, 2, 2)
+pairs = putPlot(pairs, text7, 2, 3)
+pairs = putPlot(pairs, text8, 2, 4)
+pairs = putPlot(pairs, text9, 2, 5)
+
+text10 = ggally_text("richness", size = 6) + theme_classic()
+text11 = ggally_text(paste("Cor:", round(cor.test(logratios$richness, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic()
+text12 = ggally_text(paste("Cor:", round(cor.test(logratios$richness, logratios$rank_p1)$estimate[[1]],3)), size=6) + theme_classic()
+
+pairs = putPlot(pairs, text10, 3, 3)
+pairs = putPlot(pairs, text11, 3, 4)
+pairs = putPlot(pairs, text12, 3, 5)
+
+text13 = ggally_text("evenness", size = 6) + theme_classic()
+text14 = ggally_text(paste("Cor:", round(cor.test(logratios$evenness, logratios$rank_p1)$estimate[[1]],3)), size=6) + theme_classic()
+
+pairs = putPlot(pairs, text13, 4, 4)
+pairs = putPlot(pairs, text14, 4, 5)
+
+text15 = ggally_text("rank", size = 6) + theme_classic()
+pairs = putPlot(pairs, text15, 5, 5)
+
+p1 = ggplot(logratios, aes(composition_p1, abundance)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p2 = ggplot(logratios, aes(composition_p1, richness)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p3 = ggplot(logratios, aes(composition_p1, evenness)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p4 = ggplot(logratios, aes(composition_p1, rank_p1)) + geom_point() + theme_classic() + xlab("") + ylab("")
+p5 = ggplot(logratios, aes(abundance, richness)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p6 = ggplot(logratios, aes(abundance, evenness)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p7 = ggplot(logratios, aes(abundance, rank_p1)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p8 = ggplot(logratios, aes(richness, evenness)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p9 = ggplot(logratios, aes(richness, rank_p1)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+p10 = ggplot(logratios, aes(evenness, rank_p1)) + geom_point() + theme_classic() + theme(axis.text.x = element_blank(),axis.ticks = element_blank()) + xlab("") + ylab("")
+
+pairs = putPlot(pairs, p1, 2, 1)
+pairs = putPlot(pairs, p2, 3, 1)
+pairs = putPlot(pairs, p3, 4, 1)
+pairs = putPlot(pairs, p4, 5, 1)
+pairs = putPlot(pairs, p5, 3, 2)
+pairs = putPlot(pairs, p6, 4, 2)
+pairs = putPlot(pairs, p7, 4, 3)
+pairs = putPlot(pairs, p8, 5, 2)
+pairs = putPlot(pairs, p9, 5, 3)
+pairs = putPlot(pairs, p10, 5, 4)
+
+pairs
+
+
