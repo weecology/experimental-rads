@@ -1,6 +1,6 @@
 # All files should be organized as such:
 # RAD: SiteID | experiment/control | year | genus | species | id2species | abundance
-# Code will compare S, N and composition among treatments at each site,
+# Code will compare S, N, evenness, rank, and composition among treatments at each site,
 # output and compare RADs, parameters for each treatment at each site.
 
 library(ggplot2)
