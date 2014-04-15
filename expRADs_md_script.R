@@ -488,6 +488,84 @@ pairs
 
 dev.off()
 
+#------------------------------------------------------
+#               Figure 3 - Alternate with axes
+#------------------------------------------------------
+noticks = theme(axis.text = element_blank(),axis.ticks = element_blank(), axis.line=element_line(colour="white"))
+df = data.frame()
+
+text1 = ggally_text("composition", size = 6) + theme_classic() + noticks
+text2 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$abundance)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text3 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$richness)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text4 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text5 = ggally_text(paste("Cor:", round(cor.test(logratios$composition, logratios$rank)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text6 = ggally_text("abundance", size = 6) + theme_classic() + noticks
+text7 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$richness)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text8 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text9 = ggally_text(paste("Cor:", round(cor.test(logratios$abundance, logratios$rank)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text10 = ggally_text("richness", size = 6) + theme_classic() + noticks
+text11 = ggally_text(paste("Cor:", round(cor.test(logratios$richness, logratios$evenness)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text12 = ggally_text(paste("Cor:", round(cor.test(logratios$richness, logratios$rank)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text13 = ggally_text("evenness", size = 6) + theme_classic() + noticks
+text14 = ggally_text(paste("Cor:", round(cor.test(logratios$evenness, logratios$rank)$estimate[[1]],3)), size=6) + theme_classic() + noticks
+text15 = ggally_text("rank", size = 6) + theme_classic() + noticks
+
+p1 = ggplot(logratios, aes(composition, abundance)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + 
+  scale_y_continuous(breaks = seq(0,2.5, by=0.5), limits = c(0,2.5)) +
+  theme(text = element_text(size=12)) 
+
+p2 = ggplot(logratios, aes(composition, richness)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + 
+  scale_y_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) +
+  theme(text = element_text(size=12)) 
+
+p3 = ggplot(logratios, aes(composition, evenness)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + 
+  scale_y_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) +
+  theme(text = element_text(size=12)) 
+
+p4 = ggplot(logratios, aes(composition, rank)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) + 
+  scale_y_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) +
+  theme(text = element_text(size=12)) 
+
+p5 = ggplot(logratios, aes(abundance, richness)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,2.5, by=0.5), limits = c(0,2.5)) + 
+  scale_y_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) +
+  theme(text = element_text(size=12)) 
+
+p6 = ggplot(logratios, aes(abundance, evenness)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,2.5, by=0.5), limits = c(0,2.5)) + 
+  scale_y_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) +
+  theme(text = element_text(size=12)) 
+
+p7 = ggplot(logratios, aes(abundance, rank)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,2.5, by=0.5), limits = c(0,2.5)) + 
+  scale_y_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) +
+  theme(text = element_text(size=12)) 
+
+p8 = ggplot(logratios, aes(richness, evenness)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) + 
+  scale_y_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) +
+  theme(text = element_text(size=12)) 
+
+p9 = ggplot(logratios, aes(richness, rank)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,1.5, by=0.5), limits = c(0,1.5)) + 
+  scale_y_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) +
+  theme(text = element_text(size=12)) 
+
+p10 = ggplot(logratios, aes(evenness, rank)) + geom_point() + xlab("") + ylab("") + theme_classic() +
+  scale_x_continuous(breaks = seq(0,2.5, by=0.5), limits = c(0,2.5)) + 
+  scale_y_continuous(breaks = seq(0,6, by=1), limits = c(0,6)) +
+  theme(text = element_text(size=12)) 
+
+grid.arrange(text1, text2, text3, text4, text5,
+             p1, text6, text7, text8, text9,
+             p2, p3, text10, text11, text12,
+             p4, p5, p6, text13, text14,
+             p7, p8, p9, p10, text15, nrow=5)
+
 #------------------------------------------------------------------------------------------- 
 #                 APPENDIX FIGURE C1. Results from previous version of the ms
 #-------------------------------------------------------------------------------------------
